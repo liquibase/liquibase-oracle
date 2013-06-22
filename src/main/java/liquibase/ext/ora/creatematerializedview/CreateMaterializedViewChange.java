@@ -3,10 +3,12 @@ package liquibase.ext.ora.creatematerializedview;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 import liquibase.ext.ora.dropmaterializedview.DropMaterializedViewChange;
 
+@DatabaseChange(name="createMaterializedView", description = "Create materialized view", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class CreateMaterializedViewChange extends AbstractChange {
     private String schemaName;
     private String viewName;
@@ -18,10 +20,6 @@ public class CreateMaterializedViewChange extends AbstractChange {
     private Boolean forUpdate;
     private String queryRewrite;
     private String subquery;
-
-    public CreateMaterializedViewChange() {
-        super("createMaterializedView", "Create Materialized View", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     public String getSchemaName() {
         return schemaName;

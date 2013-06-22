@@ -3,10 +3,12 @@ package liquibase.ext.ora.adddeferredprimarykey;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.change.core.DropPrimaryKeyChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="addDeferredPrimaryKey", description = "Add deferred primary key", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class AddDeferredPrimaryKeyChange extends AbstractChange {
 
     private String schemaName;
@@ -15,10 +17,6 @@ public class AddDeferredPrimaryKeyChange extends AbstractChange {
     private String columnNames;
     private Boolean deferrable;
     private Boolean initiallyDeferred;
-
-    public AddDeferredPrimaryKeyChange() {
-        super("addDeferredPrimaryKey", "Add Deferred Primary Key", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     public String getSchemaName() {
         return schemaName;

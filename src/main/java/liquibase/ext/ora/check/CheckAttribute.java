@@ -6,17 +6,7 @@ import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 import liquibase.util.StringUtils;
 
-public class CheckAttribute extends AbstractChange {
-
-    public CheckAttribute() {
-        super("checkAttribute", "Check attribute",
-                ChangeMetaData.PRIORITY_DEFAULT);
-    }
-
-    protected CheckAttribute(String changeName, String changeDescription,
-                             int priority) {
-        super(changeName, changeDescription, priority);
-    }
+public abstract class CheckAttribute extends AbstractChange {
 
     private String tableName;
     private String tablespace;

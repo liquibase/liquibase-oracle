@@ -2,9 +2,11 @@ package liquibase.ext.ora.truncate;
 
 import liquibase.change.AbstractChange;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="truncate", description = "Truncate", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class TruncateChange extends AbstractChange {
 
     private String schemaName;
@@ -12,10 +14,6 @@ public class TruncateChange extends AbstractChange {
     private String clusterName;
     private Boolean purgeMaterializedViewLog;
     private Boolean reuseStorage;
-
-    public TruncateChange() {
-        super("truncate", "Truncate", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     public String getSchemaName() {
         return schemaName;

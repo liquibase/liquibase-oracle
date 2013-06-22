@@ -2,17 +2,15 @@ package liquibase.ext.ora.longupdate;
 
 import liquibase.change.AbstractChange;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="longUpdate", description = "Long Update", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class LongUpdateChange extends AbstractChange {
     private Integer commitInterval;
     private Integer sleepSeconds;
     private String updateSql;
-
-    public LongUpdateChange() {
-        super("longUpdate", "Long Update", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     public Integer getCommitInterval() {
         return this.commitInterval;

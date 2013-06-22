@@ -2,14 +2,12 @@ package liquibase.ext.ora.renametrigger;
 
 import liquibase.change.AbstractChange;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="renameTrigger", description = "Rename Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class RenameTriggerChange extends AbstractChange {
-
-    public RenameTriggerChange() {
-        super("renameTrigger", "Rename Trigger", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     private String schemaName;
     private String triggerName;

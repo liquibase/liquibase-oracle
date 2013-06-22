@@ -1,14 +1,15 @@
 package liquibase.ext.ora.dropcheck;
 
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.ext.ora.check.CheckAttribute;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="dropCheck", description = "Drop Check", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class DropCheckChange extends CheckAttribute {
 
     public DropCheckChange() {
-        super("dropCheck", "drop check", ChangeMetaData.PRIORITY_DEFAULT);
     }
 
 

@@ -3,10 +3,12 @@ package liquibase.ext.ora.createtrigger;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.ext.ora.droptrigger.DropTriggerChange;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="createTrigger", description = "Create Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class CreateTriggerChange extends AbstractChange {
     private String tableName;
     private String schemaName;
@@ -28,7 +30,6 @@ public class CreateTriggerChange extends AbstractChange {
     private String procedure;
 
     public CreateTriggerChange() {
-        super("createTrigger", "Create Trigger", ChangeMetaData.PRIORITY_DEFAULT);
     }
 
     public String getTableName() {

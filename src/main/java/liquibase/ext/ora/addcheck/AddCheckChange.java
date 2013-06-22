@@ -1,5 +1,6 @@
 package liquibase.ext.ora.addcheck;
 
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.ext.ora.check.CheckAttribute;
 import liquibase.ext.ora.dropcheck.DropCheckChange;
@@ -9,11 +10,11 @@ import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 
 
+@DatabaseChange(name="addCheck", description = "Add Check", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class AddCheckChange extends CheckAttribute {
 
 
     public AddCheckChange() {
-        super("addCheck", "Add Check", ChangeMetaData.PRIORITY_DEFAULT);
     }
 
 

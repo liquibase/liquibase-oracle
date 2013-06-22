@@ -3,15 +3,13 @@ package liquibase.ext.ora.enabletrigger;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.ext.ora.disabletrigger.DisableTriggerChange;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="enableTrigger", description = "Enable Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class EnableTriggerChange extends AbstractChange {
-
-    public EnableTriggerChange() {
-        super("enableTrigger", "Enable Trigger", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     private String schemaName;
     private String triggerName;

@@ -2,14 +2,12 @@ package liquibase.ext.ora.merge;
 
 import liquibase.change.AbstractChange;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
+@DatabaseChange(name="merge", description = "Merge", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class MergeChange extends AbstractChange {
-
-    public MergeChange() {
-        super("merge", "merge", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     private String sourceTableName;
     private String sourceSchemaName;

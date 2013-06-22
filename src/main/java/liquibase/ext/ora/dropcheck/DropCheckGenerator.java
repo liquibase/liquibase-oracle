@@ -6,6 +6,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.UniqueConstraint;
 
 public class DropCheckGenerator extends
         AbstractSqlGenerator<DropCheckStatement> {
@@ -15,10 +16,8 @@ public class DropCheckGenerator extends
 
         StringBuilder sql = new StringBuilder();
         sql.append("ALTER TABLE ").append(
-                database.escapeTableName(statement.getSchemaName(), statement
-                        .getTableName()));
-        sql.append(" drop CONSTRAINT ").append(
-                database.escapeDatabaseObject(statement.getConstraintName()));
+                database.escapeTableName(null, statement.getSchemaName(), statement.getTableName()));
+        sql.append(" drop CONSTRAINT ").append(database.escapeObjectName(statement.getConstraintName(), UniqueConstraint.class));
 
         return new Sql[]{new UnparsedSql(sql.toString())};
     }

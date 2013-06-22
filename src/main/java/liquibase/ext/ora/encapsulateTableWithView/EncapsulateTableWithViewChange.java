@@ -3,6 +3,7 @@ package liquibase.ext.ora.encapsulateTableWithView;
 import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
+import liquibase.change.DatabaseChange;
 import liquibase.change.core.DropViewChange;
 import liquibase.change.core.RenameTableChange;
 import liquibase.database.Database;
@@ -10,14 +11,11 @@ import liquibase.statement.SqlStatement;
 import liquibase.statement.core.CreateViewStatement;
 import liquibase.statement.core.RenameTableStatement;
 
+@DatabaseChange(name="encapsulateTableWithView", description = "Encapsulate table with view", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class EncapsulateTableWithViewChange extends AbstractChange {
 
     private String schemaName;
     private String tableName;
-
-    public EncapsulateTableWithViewChange() {
-        super("encapsulateTableWithView", "Encapsulate table with view", ChangeMetaData.PRIORITY_DEFAULT);
-    }
 
     public String getTableName() {
         return tableName;
