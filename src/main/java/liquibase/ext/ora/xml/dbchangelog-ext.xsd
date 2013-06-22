@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            targetNamespace="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+            xmlns="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+            elementFormDefault="qualified">
+
+    <!-- Constraints state -->
+
+    <xsd:attributeGroup name="constraintState">
+        <xsd:attribute name="disable" type="xsd:boolean"/>
+        <xsd:attribute name="deferrable" type="xsd:boolean"/>
+        <xsd:attribute name="initiallyDeferred" type="xsd:boolean"/>
+        <xsd:attribute name="validate" type="xsd:boolean"/>
+        <xsd:attribute name="rely" type="xsd:boolean"/>
+    </xsd:attributeGroup>
+
+
+    <!--    Constraint Attribute by Tomek  -->
+
+    <xsd:attributeGroup name="checkAttribute">
+        <xsd:attribute name="constraintName" type="xsd:string"/>
+        <xsd:attribute name="condition" type="xsd:string" use="required"/>
+    </xsd:attributeGroup>
+
+    <!--    table Attribute(the same) by Tomek -->
+
+    <xsd:attributeGroup name="tableAttribute">
+        <xsd:attribute name="schemaName" type="xsd:string"/>
+        <xsd:attribute name="tableName" type="xsd:string" use="required"/>
+        <xsd:attribute name="tablespace" type="xsd:string"/>
+    </xsd:attributeGroup>
+
+    <!--    AddCheck Constraint by Tomek -->
+
+    <xsd:element name="addCheck">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableAttribute"/>
+            <xsd:attributeGroup ref="checkAttribute"/>
+            <xsd:attributeGroup ref="constraintState"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--    Drop Check Constraint by Tomek   -->
+
+    <xsd:element name="dropCheck">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableAttribute"/>
+            <xsd:attribute name="constraintName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <!--    Disable Constraint by Tomek -->
+
+    <xsd:element name="disableConstraint">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableAttribute"/>
+            <xsd:attribute name="constraintName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--    Enable Constraint by Tomke  -->
+
+    <xsd:element name="enableConstraint">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableAttribute"/>
+            <xsd:attribute name="constraintName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Add Deferred Primary Key  -->
+
+    <xsd:attributeGroup name="constraintAtribute">
+        <xsd:attribute name="constraintName" type="xsd:string" use="required"/>
+        <xsd:attribute name="columnNames" type="xsd:string" use="required"/>
+        <xsd:attribute name="deferrable" type="xsd:boolean"/>
+        <xsd:attribute name="initiallyDeferred" type="xsd:boolean"/>
+    </xsd:attributeGroup>
+
+    <xsd:element name="addDeferredPrimaryKey">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableAttribute"/>
+            <xsd:attributeGroup ref="constraintAtribute"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Create Trigger -->
+
+    <xsd:simpleType name="triggerActionType">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="before"></xsd:enumeration>
+            <xsd:enumeration value="after"></xsd:enumeration>
+            <xsd:enumeration value="instead of"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:simpleType name="EnableDisable">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="enable"></xsd:enumeration>
+            <xsd:enumeration value="disable"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="createTrigger">
+        <xsd:complexType>
+            <xsd:attribute name="replace" type="xsd:boolean"/>
+            <xsd:attribute name="delete" type="xsd:boolean"/>
+            <xsd:attribute name="insert" type="xsd:boolean"/>
+            <xsd:attribute name="update" type="xsd:boolean"/>
+            <xsd:attribute name="updateOf" type="xsd:boolean"/>
+            <xsd:attribute name="tableName" type="xsd:string"/>
+            <xsd:attribute name="columnNames" type="xsd:string"/>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="whenCondition" type="xsd:string"/>
+            <xsd:attribute name="nestedTableColumn" type="xsd:string"/>
+            <xsd:attribute name="viewName" type="xsd:string"/>
+            <xsd:attribute name="forEachRow" type="xsd:boolean"/>
+            <xsd:attribute name="triggerName" type="xsd:string" use="required"/>
+            <xsd:attribute name="afterBeforeInsteadOf" type="triggerActionType" use="required"/>
+            <xsd:attribute name="procedure" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Drop Trigger -->
+
+    <xsd:element name="dropTrigger">
+        <xsd:complexType>
+            <xsd:attribute name="triggerName" type="xsd:string" use="required"/>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Alter Trigger -->
+
+    <xsd:element name="alterTrigger">
+        <xsd:complexType>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="triggerName" type="xsd:string" use="required"/>
+            <xsd:attribute name="enable_disable" type="EnableDisable"/>
+            <xsd:attribute name="newName" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Long Update -->
+
+    <xsd:element name="longUpdate">
+        <xsd:complexType>
+            <xsd:attribute name="commitInterval" type="xsd:integer" use="required"/>
+            <xsd:attribute name="sleepSeconds" type="xsd:integer" use="required"/>
+            <xsd:attribute name="updateSql" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Set Transaction -->
+
+    <xsd:simpleType name="ReadOnlyWrite">
+        <xsd:restriction base="xsd:string">
+            <xsd:enumeration value="only"></xsd:enumeration>
+            <xsd:enumeration value="write"></xsd:enumeration>
+        </xsd:restriction>
+    </xsd:simpleType>
+
+    <xsd:element name="setTransaction">
+        <xsd:complexType>
+            <xsd:attribute name="isolationLevel" type="xsd:string"/>
+            <xsd:attribute name="transactionName" type="xsd:string"/>
+            <xsd:attribute name="rollbackSegment" type="xsd:string"/>
+            <xsd:attribute name="readOnlyWrite" type="ReadOnlyWrite"/>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <!-- Create Materialized View -->
+
+    <xsd:element name="createMaterializedView">
+        <xsd:complexType>
+            <xsd:attribute name="viewName" type="xsd:string" use="required"></xsd:attribute>
+            <xsd:attribute name="schemaName" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="columnAliases" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="objectType" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="reducedPrecision" type="xsd:boolean"></xsd:attribute>
+            <xsd:attribute name="usingIndex" type="xsd:boolean"></xsd:attribute>
+            <xsd:attribute name="tableSpace" type="xsd:string"></xsd:attribute>
+            <xsd:attribute name="forUpdate" type="xsd:boolean"></xsd:attribute>
+            <xsd:attribute name="queryRewrite" type="EnableDisable"></xsd:attribute>
+            <xsd:attribute name="subquery" type="xsd:string" use="required"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- Drop Materialized View -->
+
+    <xsd:element name="dropMaterializedView">
+        <xsd:complexType>
+            <xsd:attribute name="viewName" type="xsd:string" use="required"></xsd:attribute>
+            <xsd:attribute name="schemaName" type="xsd:string"></xsd:attribute>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--  Truncate -->
+
+    <xsd:element name="truncate">
+        <xsd:complexType>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="tableName" type="xsd:string"/>
+            <xsd:attribute name="clusterName" type="xsd:string"/>
+            <xsd:attribute name="purgeMaterializedViewLog" type="xsd:boolean"/>
+            <xsd:attribute name="reuseStorage" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!--  Merge Tables -->
+
+    <xsd:element name="mergeTables">
+        <xsd:complexType>
+            <xsd:attribute name="targetTableName" type="xsd:string" use="required"/>
+            <xsd:attribute name="targetSchemaName" type="xsd:string"/>
+            <xsd:attribute name="sourceSchemaName" type="xsd:string"/>
+            <xsd:attribute name="sourceTableName" type="xsd:string" use="required"/>
+            <xsd:attribute name="onCondition" type="xsd:string" use="required"/>
+            <xsd:attribute name="updateCondition" type="xsd:string"/>
+            <xsd:attribute name="insertCondition" type="xsd:string"/>
+            <xsd:attribute name="deleteCondition" type="xsd:string"/>
+            <xsd:attribute name="updateList" type="xsd:string"/>
+            <xsd:attribute name="insertColumnsNameList" type="xsd:string"/>
+            <xsd:attribute name="insertColumnsValueList" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+
+    <!--  Encapsulate Table With View -->
+
+    <xsd:element name="encapsulateTableWithView">
+        <xsd:complexType>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="tableName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- SplitTable -->
+
+    <xsd:element name="splitTable">
+        <xsd:complexType>
+            <xsd:attribute name="splitTableSchemaName" type="xsd:string"/>
+            <xsd:attribute name="splitTableName" type="xsd:string" use="required"/>
+            <xsd:attribute name="newTableSchemaName" type="xsd:string"/>
+            <xsd:attribute name="newTableName" type="xsd:string" use="required"/>
+            <xsd:attribute name="columnNameList" type="xsd:string" use="required"/>
+            <xsd:attribute name="primaryKeyColumnName" type="xsd:string" use="required"/>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

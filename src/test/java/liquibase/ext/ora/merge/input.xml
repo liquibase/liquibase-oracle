@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <myTable2 pid="4" sales="42" status="OLD"/>
+    <myTable2 pid="3" sales="0" status="OLD"/>
+    <myTable2 pid="3" sales="14" status="OLD"/>
+    <myTable2 pid="1" sales="12" status="OLD"/>
+    <myTable2 pid="2" sales="24" status="OLD"/>
+    <myTable2 pid="2" sales="13" status="OLD"/>
+</dataset>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd 
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+
+    <changeSet author="zuiol" id="renameTriggerTest1">
+        <createTable tableName="TriggerTest">
+            <column name="pierwsza" type="varchar2(30)"/>
+            <column name="created_by" type="varchar2(30)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zuiol" id="renameTriggerTest2">
+        <insert tableName="TriggerTest">
+            <column name="pierwsza" value="przedtest"></column>
+        </insert>
+    </changeSet>
+
+    <changeSet author="zuiol" id="renameTriggerTest3">
+        <ora:createTrigger
+                afterBeforeInsteadOf="before"
+                procedure="DECLARE v_username varchar2(10); BEGIN SELECT pierwsza INTO v_username FROM TriggerTest; :new.created_by := v_username; END;"
+                triggerName="zuiolTrigger"
+                tableName="TriggerTest"
+                insert="true"
+                forEachRow="true"/>
+    </changeSet>
+
+    <changeSet author="zuiol" id="renameTriggerTest4">
+        <insert tableName="TriggerTest">
+            <column name="pierwsza" value="test"></column>
+        </insert>
+    </changeSet>
+
+    <changeSet author="zuiol" id="renameTriggerTest5">
+        <ora:renameTrigger triggerName="zuiolTrigger" newName="RenamedZuiolTrigger"/>
+    </changeSet>
+
+
+</databaseChangeLog>
