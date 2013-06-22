@@ -1,6 +1,7 @@
 package liquibase.ext.ora.disableconstraint;
 
 import liquibase.database.Database;
+import liquibase.database.core.OracleDatabase;
 import liquibase.database.core.SQLiteDatabase;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
@@ -23,7 +24,7 @@ public class DisableConstraintGenerator extends AbstractSqlGenerator<DisableCons
 
     public boolean supports(DisableConstraintStatement statement, Database database) {
 
-        return (!(database instanceof SQLiteDatabase));
+        return database instanceof OracleDatabase;
     }
 
     public ValidationErrors validate(DisableConstraintStatement statement,

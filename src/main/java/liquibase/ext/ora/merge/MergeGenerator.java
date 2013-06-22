@@ -1,6 +1,7 @@
 package liquibase.ext.ora.merge;
 
 import liquibase.database.Database;
+import liquibase.database.core.OracleDatabase;
 import liquibase.database.core.SQLiteDatabase;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
@@ -61,15 +62,9 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
     }
 
 
-    public int getPriority() {
-
-        return PRIORITY_DEFAULT;
-    }
-
-
     public boolean supports(MergeStatement statement, Database database) {
 
-        return (!(database instanceof SQLiteDatabase));
+        return database instanceof OracleDatabase;
     }
 
 

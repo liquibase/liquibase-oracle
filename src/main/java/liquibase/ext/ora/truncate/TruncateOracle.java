@@ -9,9 +9,6 @@ import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
 public class TruncateOracle extends AbstractSqlGenerator<TruncateStatement> {
-    public int getPriority() {
-        return 15;
-    }
 
     public boolean supports(TruncateStatement truncateStatement, Database database) {
         return database instanceof OracleDatabase;

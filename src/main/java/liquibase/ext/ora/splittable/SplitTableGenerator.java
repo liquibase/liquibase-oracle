@@ -21,6 +21,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGenerator;
 import liquibase.sqlgenerator.SqlGeneratorChain;
+import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.sqlgenerator.core.AddColumnGenerator;
 import liquibase.sqlgenerator.core.AddForeignKeyConstraintGenerator;
 import liquibase.sqlgenerator.core.DropColumnGenerator;
@@ -29,7 +30,7 @@ import liquibase.statement.core.AddForeignKeyConstraintStatement;
 import liquibase.statement.core.DropColumnStatement;
 import liquibase.structure.core.Table;
 
-public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitTableStatement> {
+public class SplitTableGenerator extends AbstractSqlGenerator<SplitTableStatement> {
 
     private String[] columnList;
     boolean isTransition;
@@ -63,13 +64,7 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
         return false;
     }
 
-    public int getPriority() {
-
-        return PRIORITY_DEFAULT;
-    }
-
     public boolean supports(SplitTableStatement statement, Database database) {
-
         return (database instanceof OracleDatabase);
     }
 

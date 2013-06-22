@@ -11,10 +11,6 @@ import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
 public class RenameTriggerOracle extends AbstractSqlGenerator<RenameTriggerStatement> {
 
-    public int getPriority() {
-        return ChangeMetaData.PRIORITY_DEFAULT;
-    }
-
     public boolean supports(RenameTriggerStatement renameTriggertStatement, Database database) {
         return database instanceof OracleDatabase;
     }
