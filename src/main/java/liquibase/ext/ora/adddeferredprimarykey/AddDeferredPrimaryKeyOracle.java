@@ -24,10 +24,10 @@ public class AddDeferredPrimaryKeyOracle extends AbstractSqlGenerator<AddDeferre
         }
 
         if (statement.getConstraintName() == null) {
-            sql = "ALTER TABLE " + database.escapeTableName(statement.getSchemaName(), statement.getTableName())
+            sql = "ALTER TABLE " + database.escapeTableName(null, statement.getSchemaName(), statement.getTableName())
                     + " ADD PRIMARY KEY (" + database.escapeColumnNameList(statement.getColumnNames()) + ")";
         } else {
-            sql = "ALTER TABLE " + database.escapeTableName(statement.getSchemaName(), statement.getTableName())
+            sql = "ALTER TABLE " + database.escapeTableName(null, statement.getSchemaName(), statement.getTableName())
                     + " ADD CONSTRAINT " + database.escapeConstraintName(statement.getConstraintName()) + " PRIMARY KEY ("
                     + database.escapeColumnNameList(statement.getColumnNames()) + ")";
         }

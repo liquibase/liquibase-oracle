@@ -42,13 +42,13 @@ public class TruncateOracle extends AbstractSqlGenerator<TruncateStatement> {
 
         if (noCluster) {
             sql += " TABLE "
-                    + database.escapeTableName(truncateStatement.getSchemaName(), truncateStatement.getTableName());
+                    + database.escapeTableName(null, truncateStatement.getSchemaName(), truncateStatement.getTableName());
             if (truncateStatement.purgeMaterializedViewLog()) {
                 sql += " PURGE MATERIALIZED VIEW LOG";
             }
         } else {
             sql += " CLUSTER "
-                    + database.escapeTableName(truncateStatement.getSchemaName(), truncateStatement.getClusterName());
+                    + database.escapeTableName(null, truncateStatement.getSchemaName(), truncateStatement.getClusterName());
         }
 
         if (truncateStatement.reuseStorage()) {

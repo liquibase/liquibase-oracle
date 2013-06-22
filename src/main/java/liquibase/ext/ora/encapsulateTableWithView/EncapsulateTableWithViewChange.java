@@ -34,8 +34,8 @@ public class EncapsulateTableWithViewChange extends AbstractChange {
     }
 
     public SqlStatement[] generateStatements(Database database) {
-        return new SqlStatement[]{new RenameTableStatement(schemaName, tableName, "T" + tableName),
-                new CreateViewStatement(schemaName, tableName, "SELECT * FROM T" + tableName, true)};
+        return new SqlStatement[]{new RenameTableStatement(null, schemaName, tableName, "T" + tableName),
+                new CreateViewStatement(null, schemaName, tableName, "SELECT * FROM T" + tableName, true)};
     }
 
     public String getConfirmationMessage() {

@@ -7,6 +7,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.Table;
 
 public class AddCheckGenerator extends AbstractSqlGenerator<AddCheckStatement> {
 
@@ -16,11 +17,11 @@ public class AddCheckGenerator extends AbstractSqlGenerator<AddCheckStatement> {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("ALTER TABLE ").append(database.escapeTableName(statement.getSchemaName(), statement.getTableName())).append(" ");
+        sql.append("ALTER TABLE ").append(database.escapeTableName(null, statement.getSchemaName(), statement.getTableName())).append(" ");
         sql.append("ADD ");
-        if (database.escapeDatabaseObject(statement.getConstraintName()) != null)
+        if (database.escapeObjectName(statement.getConstraintName(), Table.class) != null)
             sql.append("CONSTRAINT ").append(database.escapeConstraintName(statement.getConstraintName())).append(" ");
-        sql.append("CHECK(").append(database.escapeDatabaseObject(statement.getCondition())).append(")");
+        sql.append("CHECK(").append(database.escapeObjectName(statement.getCondition(), Table.class)).append(")");
 
         if (statement.getDeferrable() != null) {
             if (statement.getDeferrable()) sql.append(" DEFERRABLE");

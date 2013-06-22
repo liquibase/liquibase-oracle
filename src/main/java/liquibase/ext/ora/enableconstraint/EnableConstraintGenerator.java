@@ -7,6 +7,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.Table;
 
 public class EnableConstraintGenerator extends AbstractSqlGenerator<EnableConstraintStatement> {
 
@@ -15,8 +16,8 @@ public class EnableConstraintGenerator extends AbstractSqlGenerator<EnableConstr
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("ALTER TABLE ").append(database.escapeTableName(statement.getSchemaName(), statement.getTableName())).append(" ENABLE CONSTRAINT ");
-        sql.append(database.escapeDatabaseObject(statement.getConstraintName()));
+        sql.append("ALTER TABLE ").append(database.escapeTableName(null, statement.getSchemaName(), statement.getTableName())).append(" ENABLE CONSTRAINT ");
+        sql.append(database.escapeObjectName(statement.getConstraintName(), Table.class));
 
         return new Sql[]{new UnparsedSql(sql.toString())};
     }

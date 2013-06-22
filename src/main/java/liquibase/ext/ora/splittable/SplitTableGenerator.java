@@ -27,6 +27,7 @@ import liquibase.sqlgenerator.core.DropColumnGenerator;
 import liquibase.statement.core.AddColumnStatement;
 import liquibase.statement.core.AddForeignKeyConstraintStatement;
 import liquibase.statement.core.DropColumnStatement;
+import liquibase.structure.core.Table;
 
 public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitTableStatement> {
 
@@ -52,6 +53,14 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
         Sql[] a = sqlList.toArray(new UnparsedSql[sqlList.size()]);
 
         return a;
+    }
+
+    public boolean generateStatementsIsVolatile(Database database) {
+        return false;
+    }
+
+    public boolean generateRollbackStatementsIsVolatile(Database database) {
+        return false;
     }
 
     public int getPriority() {
@@ -104,7 +113,7 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
 
             stat = connection.createStatement();
 
-            sb.append("CREATE TABLE " + database.escapeDatabaseObject(statement.getNewTableName()) + "(");
+            sb.append("CREATE TABLE " + database.escapeObjectName(statement.getNewTableName(), Table.class) + "(");
             sb.append(statement.getPrimaryKeyColumnName() + " INTEGER,");
 
             for (String name : columnList) {
@@ -141,7 +150,7 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
 
         // ADD COLUMN INTO NEW TABLE
 
-        AddColumnStatement acs = new AddColumnStatement(statement.getSplitTableSchemaName(), statement.getSplitTableName(),
+        AddColumnStatement acs = new AddColumnStatement(null, statement.getSplitTableSchemaName(), statement.getSplitTableName(),
                 statement.getPrimaryKeyColumnName(), "INTEGER", null);
         sqlList.add(new UnparsedSql(ColGenerator.generateSql(acs, database, sqlGeneratorChain)[0].toSql()));
 
@@ -190,11 +199,16 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
 
         // CREATE FOREIGN KEY (SPLIT TABLE)
 
-        sqlList.add(new UnparsedSql(FKGenerator.generateSql(new AddForeignKeyConstraintStatement(statement
-                .getPrimaryKeyColumnName()
-                + "_FK", statement.getSplitTableSchemaName(), statement.getSplitTableName(), statement
-                .getPrimaryKeyColumnName(), statement.getNewTableSchemaName(), statement.getNewTableName(), statement
-                .getPrimaryKeyColumnName()), database, sqlGeneratorChain)[0].toSql()));
+        sqlList.add(new UnparsedSql(FKGenerator.generateSql(new AddForeignKeyConstraintStatement(
+                statement.getPrimaryKeyColumnName()+ "_FK",
+                null,
+                statement.getSplitTableSchemaName(),
+                statement.getSplitTableName(),
+                statement.getPrimaryKeyColumnName(),
+                null,
+                statement.getNewTableSchemaName(),
+                statement.getNewTableName(),
+                statement.getPrimaryKeyColumnName()), database, sqlGeneratorChain)[0].toSql()));
 
         if (isTransition) {
             // TRIGGER BEFORE INSERT
@@ -292,7 +306,7 @@ public class SplitTableGenerator extends BaseTest implements SqlGenerator<SplitT
         DropColumnGenerator dcg = new DropColumnGenerator();
         DropColumnStatement dcs;
         for (String name : columnList) {
-            dcs = new DropColumnStatement(statement.getSplitTableSchemaName(), statement.getSplitTableName(), name);
+            dcs = new DropColumnStatement(null, statement.getSplitTableSchemaName(), statement.getSplitTableName(), name);
             sqlList.add(new UnparsedSql(dcg.generateSql(dcs, database, sqlGeneratorChain)[0].toSql()));
         }
     }

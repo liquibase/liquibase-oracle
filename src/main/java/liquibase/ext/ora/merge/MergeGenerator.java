@@ -7,6 +7,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.structure.core.Table;
 
 
 public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
@@ -23,8 +24,8 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("MERGE INTO ").append(database.escapeTableName(statement.getTargetSchemaName(), statement.getTargetTableName()));
-        sql.append(" USING ").append(database.escapeTableName(statement.getSourceSchemaName(), statement.getSourceTableName()));
+        sql.append("MERGE INTO ").append(database.escapeTableName(null, statement.getTargetSchemaName(), statement.getTargetTableName()));
+        sql.append(" USING ").append(database.escapeTableName(null, statement.getSourceSchemaName(), statement.getSourceTableName()));
         sql.append(" ON (").append(statement.getOnCondition()).append(") ");
 
         if (!isNullUpdate) {
@@ -34,9 +35,9 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
             }
             sql.deleteCharAt(sql.lastIndexOf(","));
             if (statement.getUpdateCondition() != null)
-                sql.append(" WHERE (").append(database.escapeDatabaseObject(statement.getUpdateCondition())).append(")");
+                sql.append(" WHERE (").append(database.escapeObjectName(statement.getUpdateCondition(), Table.class)).append(")");
             if (statement.getDeleteCondition() != null)
-                sql.append(" DELETE WHERE (").append(database.escapeDatabaseObject(statement.getDeleteCondition())).append(")");
+                sql.append(" DELETE WHERE (").append(database.escapeObjectName(statement.getDeleteCondition(), Table.class)).append(")");
         }
 
         if (!isNullColumnValue) {
@@ -54,7 +55,7 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
             }
             sql.deleteCharAt(sql.lastIndexOf(",")).append(")");
             if (statement.getInsertCondition() != null)
-                sql.append("WHERE (").append(database.escapeDatabaseObject(statement.getInsertCondition())).append(")");
+                sql.append("WHERE (").append(database.escapeObjectName(statement.getInsertCondition(), Table.class)).append(")");
         }
         return new Sql[]{new UnparsedSql(sql.toString())};
     }

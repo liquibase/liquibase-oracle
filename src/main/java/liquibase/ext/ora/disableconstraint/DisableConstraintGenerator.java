@@ -15,7 +15,7 @@ public class DisableConstraintGenerator extends AbstractSqlGenerator<DisableCons
 
         StringBuilder sql = new StringBuilder();
 
-        sql.append("ALTER TABLE ").append(database.escapeTableName(statement.getSchemaName(), statement.getTableName()));
+        sql.append("ALTER TABLE ").append(database.escapeTableName(null, statement.getSchemaName(), statement.getTableName()));
         sql.append(" DISABLE ");
         sql.append("CONSTRAINT ").append(database.escapeConstraintName(statement.getConstraintName()));
         return new Sql[]{new UnparsedSql(sql.toString())};
