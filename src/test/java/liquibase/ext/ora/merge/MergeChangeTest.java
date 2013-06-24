@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -92,9 +93,9 @@ public class MergeChangeTest extends BaseTest {
     public void getChangeMetaData() {
         MergeChange mergeTablesChange = new MergeChange();
 
-        assertEquals("merge", mergeTablesChange.getChangeMetaData().getName());
-        assertEquals("merge", mergeTablesChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, mergeTablesChange.getChangeMetaData().getPriority());
+        assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getName());
+        assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getPriority());
     }
 
     @Test

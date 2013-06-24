@@ -12,11 +12,9 @@
     <orderEntry type="library" name="Maven: org.liquibase:liquibase-core:3.0.0" level="project" />
     <orderEntry type="library" name="Maven: org.yaml:snakeyaml:1.12" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.4.5" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-api:1.5.8" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.4.9" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-api:1.5.6" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:jul-to-slf4j:1.5.8" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-simple:1.5.8" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: oracle:oracle-ojdbc14:10.2.0.1.5" level="project" />
   </component>
 </module>

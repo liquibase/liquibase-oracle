@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -72,9 +73,9 @@ public class DisableConstraintChangeTest extends BaseTest {
     public void getChangeMetaData() {
         DisableConstraintChange disableCheckChange = new DisableConstraintChange();
 
-        assertEquals("disableConstraint", disableCheckChange.getChangeMetaData().getName());
-        assertEquals("disable constraint", disableCheckChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, disableCheckChange.getChangeMetaData().getPriority());
+        assertEquals("disableConstraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getName());
+        assertEquals("disable constraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getPriority());
     }
 
     @Test

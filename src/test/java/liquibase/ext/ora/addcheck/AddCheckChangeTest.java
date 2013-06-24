@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -84,9 +85,9 @@ public class AddCheckChangeTest extends BaseTest {
     public void getChangeMetaData() {
         AddCheckChange enableCheckChange = new AddCheckChange();
 
-        assertEquals("addCheck", enableCheckChange.getChangeMetaData().getName());
-        assertEquals("Add Check", enableCheckChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, enableCheckChange.getChangeMetaData().getPriority());
+        assertEquals("addCheck", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
+        assertEquals("Add Check", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test

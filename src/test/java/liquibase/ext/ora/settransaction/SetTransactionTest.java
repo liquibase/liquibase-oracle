@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class SetTransactionTest extends BaseTest {
     public void getChangeMetaData() {
         SetTransactionChange setTransactionChange = new SetTransactionChange();
 
-        assertEquals("setTransaction", setTransactionChange.getChangeMetaData().getName());
-        assertEquals("Set Transaction", setTransactionChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, setTransactionChange.getChangeMetaData().getPriority());
+        assertEquals("setTransaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getName());
+        assertEquals("Set Transaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getPriority());
     }
 
     @Test

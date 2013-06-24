@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -40,9 +41,9 @@ public class EncapsulateTableWithViewTest extends BaseTest {
     public void getChangeMetaData() {
         EncapsulateTableWithViewChange change = new EncapsulateTableWithViewChange();
 
-        assertEquals("encapsulateTableWithView", change.getChangeMetaData().getName());
-        assertEquals("Encapsulate table with view", change.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, change.getChangeMetaData().getPriority());
+        assertEquals("encapsulateTableWithView", ChangeFactory.getInstance().getChangeMetaData(change).getName());
+        assertEquals("Encapsulate table with view", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
     }
 
     @Test

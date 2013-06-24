@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class RenameTriggerTest extends BaseTest {
     public void getChangeMetaData() {
         RenameTriggerChange renameTriggerChange = new RenameTriggerChange();
 
-        assertEquals("renameTrigger", renameTriggerChange.getChangeMetaData().getName());
-        assertEquals("Rename Trigger", renameTriggerChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, renameTriggerChange.getChangeMetaData().getPriority());
+        assertEquals("renameTrigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getName());
+        assertEquals("Rename Trigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getPriority());
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class AddDeferredPrimaryKeyChangeTest extends BaseTest {
     public void getChangeMetaData() {
         AddDeferredPrimaryKeyChange addPrimaryKeyChange = new AddDeferredPrimaryKeyChange();
 
-        assertEquals("addDeferredPrimaryKey", addPrimaryKeyChange.getChangeMetaData().getName());
-        assertEquals("Add Deferred Primary Key", addPrimaryKeyChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, addPrimaryKeyChange.getChangeMetaData().getPriority());
+        assertEquals("addDeferredPrimaryKey", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getName());
+        assertEquals("Add Deferred Primary Key", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getPriority());
     }
 
     @Test

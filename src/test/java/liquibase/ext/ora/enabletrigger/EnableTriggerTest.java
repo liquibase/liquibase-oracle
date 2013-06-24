@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class EnableTriggerTest extends BaseTest {
     public void getChangeMetaData() {
         EnableTriggerChange enableTriggerChange = new EnableTriggerChange();
 
-        assertEquals("enableTrigger", enableTriggerChange.getChangeMetaData().getName());
-        assertEquals("Enable Trigger", enableTriggerChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, enableTriggerChange.getChangeMetaData().getPriority());
+        assertEquals("enableTrigger", ChangeFactory.getInstance().getChangeMetaData(enableTriggerChange).getName());
+        assertEquals("Enable Trigger", ChangeFactory.getInstance().getChangeMetaData(enableTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableTriggerChange).getPriority());
     }
 
     @Test

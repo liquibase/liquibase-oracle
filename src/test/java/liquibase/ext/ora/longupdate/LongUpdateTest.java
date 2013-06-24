@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class LongUpdateTest extends BaseTest {
     public void getChangeMetaData() {
         LongUpdateChange longUpdateChange = new LongUpdateChange();
 
-        assertEquals("longUpdate", longUpdateChange.getChangeMetaData().getName());
-        assertEquals("Long Update", longUpdateChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, longUpdateChange.getChangeMetaData().getPriority());
+        assertEquals("longUpdate", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getName());
+        assertEquals("Long Update", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getPriority());
     }
 
     @Test

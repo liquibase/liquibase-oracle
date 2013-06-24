@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -42,9 +43,9 @@ public class TruncateChangeTest extends BaseTest {
     public void getChangeMetaData() {
         TruncateChange truncateChange = new TruncateChange();
 
-        assertEquals("truncate", truncateChange.getChangeMetaData().getName());
-        assertEquals("Truncate", truncateChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, truncateChange.getChangeMetaData().getPriority());
+        assertEquals("truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getName());
+        assertEquals("Truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(truncateChange).getPriority());
     }
 
     @Test

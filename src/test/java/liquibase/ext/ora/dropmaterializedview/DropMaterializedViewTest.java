@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class DropMaterializedViewTest extends BaseTest {
     public void getChangeMetaData() {
         DropMaterializedViewChange dropMaterializedViewChange = new DropMaterializedViewChange();
 
-        assertEquals("dropMaterializedView", dropMaterializedViewChange.getChangeMetaData().getName());
-        assertEquals("Drop Materialized View", dropMaterializedViewChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, dropMaterializedViewChange.getChangeMetaData().getPriority());
+        assertEquals("dropMaterializedView", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getName());
+        assertEquals("Drop Materialized View", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getPriority());
     }
 
     @Test

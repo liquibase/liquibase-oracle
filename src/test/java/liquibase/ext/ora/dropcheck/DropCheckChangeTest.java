@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -72,9 +73,9 @@ public class DropCheckChangeTest extends BaseTest {
     public void getChangeMetaData() {
         DropCheckChange dropCheckChange = new DropCheckChange();
 
-        assertEquals("dropCheck", dropCheckChange.getChangeMetaData().getName());
-        assertEquals("drop check", dropCheckChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, dropCheckChange.getChangeMetaData().getPriority());
+        assertEquals("dropCheck", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getName());
+        assertEquals("drop check", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getPriority());
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.change.Change;
+import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
@@ -38,9 +39,9 @@ public class DropTriggerTest extends BaseTest {
     public void getChangeMetaData() {
         DropTriggerChange dropTriggerChange = new DropTriggerChange();
 
-        assertEquals("dropTrigger", dropTriggerChange.getChangeMetaData().getName());
-        assertEquals("Drop Trigger", dropTriggerChange.getChangeMetaData().getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, dropTriggerChange.getChangeMetaData().getPriority());
+        assertEquals("dropTrigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getName());
+        assertEquals("Drop Trigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getPriority());
     }
 
     @Test
