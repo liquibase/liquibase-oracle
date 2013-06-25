@@ -1,6 +1,6 @@
 package liquibase.ext.ora.longupdate;
 
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
 import org.dbunit.database.DatabaseConnection;
@@ -11,7 +11,7 @@ import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Before;
 import org.junit.Test;
 
-public class LongUpdateDBTest extends BaseTest {
+public class LongUpdateDBTest extends BaseTestCase {
 
     protected IDatabaseConnection getConnection() throws Exception {
         return new DatabaseConnection(connection);

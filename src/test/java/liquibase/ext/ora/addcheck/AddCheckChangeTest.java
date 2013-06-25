@@ -3,21 +3,19 @@ package liquibase.ext.ora.addcheck;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
-import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.ClassLoaderResourceAccessor;
+import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
@@ -26,7 +24,7 @@ import liquibase.statement.SqlStatement;
 import org.junit.Before;
 import org.junit.Test;
 
-public class AddCheckChangeTest extends BaseTest {
+public class AddCheckChangeTest extends BaseTestCase {
 
     @Before
     public void setUp() throws Exception {
@@ -93,7 +91,7 @@ public class AddCheckChangeTest extends BaseTest {
     @Test
     public void parseAndGenerate() throws Exception {
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
+        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor("src/test/java");
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

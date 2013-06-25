@@ -15,7 +15,7 @@ import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
@@ -28,7 +28,7 @@ import liquibase.statement.core.RenameTableStatement;
 import org.junit.Before;
 import org.junit.Test;
 
-public class EncapsulateTableWithViewTest extends BaseTest {
+public class EncapsulateTableWithViewTest extends BaseTestCase {
 
     @Before
     public void setUp() throws Exception {

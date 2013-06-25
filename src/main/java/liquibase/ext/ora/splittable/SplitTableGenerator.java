@@ -16,7 +16,7 @@ import liquibase.ext.ora.createtrigger.CreateTriggerOracle;
 import liquibase.ext.ora.createtrigger.CreateTriggerStatement;
 import liquibase.ext.ora.droptrigger.DropTriggerOracle;
 import liquibase.ext.ora.droptrigger.DropTriggerStatement;
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGenerator;

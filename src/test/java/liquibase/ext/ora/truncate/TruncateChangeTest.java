@@ -18,7 +18,7 @@ import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
 import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
@@ -30,12 +30,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TruncateChangeTest extends BaseTest {
+public class TruncateChangeTest extends BaseTestCase {
 
     @Before
     public void setUp() throws Exception {
         changeLogFile = "liquibase/ext/ora/truncate/changelog.test.xml";
-        BaseTest.connectToDB();
+        BaseTestCase.connectToDB();
         cleanDB();
     }
 
