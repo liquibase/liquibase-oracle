@@ -31,7 +31,7 @@ public class TruncateStatement extends AbstractSqlStatement {
         return purgeMaterializedViewLog != null ? purgeMaterializedViewLog.booleanValue() : false;
     }
 
-    public TruncateStatement setPurgeMaterializedViewLog(boolean purgeMaterializedViewLog) {
+    public TruncateStatement setPurgeMaterializedViewLog(Boolean purgeMaterializedViewLog) {
         this.purgeMaterializedViewLog = purgeMaterializedViewLog;
         return this;
     }
@@ -40,7 +40,7 @@ public class TruncateStatement extends AbstractSqlStatement {
         return reuseStorage != null ? reuseStorage.booleanValue() : false;
     }
 
-    public TruncateStatement setReuseStorage(boolean reuseStorage) {
+    public TruncateStatement setReuseStorage(Boolean reuseStorage) {
         this.reuseStorage = reuseStorage;
         return this;
     }
