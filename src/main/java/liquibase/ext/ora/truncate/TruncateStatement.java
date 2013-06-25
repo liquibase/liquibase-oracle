@@ -1,14 +1,13 @@
 package liquibase.ext.ora.truncate;
 
 import liquibase.statement.AbstractSqlStatement;
-import liquibase.statement.SqlStatement;
 
 public class TruncateStatement extends AbstractSqlStatement {
     private String schemaName;
     private String tableName;
     private String clusterName;
-    private boolean purgeMaterializedViewLog;
-    private boolean reuseStorage;
+    private Boolean purgeMaterializedViewLog;
+    private Boolean reuseStorage;
 
     public TruncateStatement(String schemaName, String tableName, String clusterName) {
         this.schemaName = schemaName;
@@ -29,7 +28,7 @@ public class TruncateStatement extends AbstractSqlStatement {
     }
 
     public boolean purgeMaterializedViewLog() {
-        return purgeMaterializedViewLog;
+        return purgeMaterializedViewLog != null ? purgeMaterializedViewLog.booleanValue() : false;
     }
 
     public TruncateStatement setPurgeMaterializedViewLog(boolean purgeMaterializedViewLog) {
@@ -38,7 +37,7 @@ public class TruncateStatement extends AbstractSqlStatement {
     }
 
     public boolean reuseStorage() {
-        return reuseStorage;
+        return reuseStorage != null ? reuseStorage.booleanValue() : false;
     }
 
     public TruncateStatement setReuseStorage(boolean reuseStorage) {
