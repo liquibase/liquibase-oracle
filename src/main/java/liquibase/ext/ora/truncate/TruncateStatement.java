@@ -27,8 +27,8 @@ public class TruncateStatement extends AbstractSqlStatement {
         return clusterName;
     }
 
-    public boolean purgeMaterializedViewLog() {
-        return purgeMaterializedViewLog != null ? purgeMaterializedViewLog.booleanValue() : false;
+    public Boolean purgeMaterializedViewLog() {
+        return purgeMaterializedViewLog;
     }
 
     public TruncateStatement setPurgeMaterializedViewLog(Boolean purgeMaterializedViewLog) {
@@ -36,8 +36,8 @@ public class TruncateStatement extends AbstractSqlStatement {
         return this;
     }
 
-    public boolean reuseStorage() {
-        return reuseStorage != null ? reuseStorage.booleanValue() : false;
+    public Boolean reuseStorage() {
+        return reuseStorage;
     }
 
     public TruncateStatement setReuseStorage(Boolean reuseStorage) {
