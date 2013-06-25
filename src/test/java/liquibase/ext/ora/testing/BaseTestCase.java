@@ -1,4 +1,4 @@
-package liquibase.ext.ora.test;
+package liquibase.ext.ora.testing;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
