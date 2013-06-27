@@ -1,4 +1,4 @@
-package liquibase.ext.ora.test;
+package liquibase.ext.ora.testing;
 
 import java.io.FileInputStream;
 import java.sql.Connection;
@@ -14,7 +14,7 @@ import liquibase.resource.ClassLoaderResourceAccessor;
 /*
  * Class used by tests to set up connection and clean database.
  */
-public class BaseTest {
+public class BaseTestCase {
 
     private static String url;
     private static Driver driver;
@@ -27,7 +27,7 @@ public class BaseTest {
     public static void connectToDB() throws Exception {
         if (connection == null) {
             info = new Properties();
-            info.load(new FileInputStream("src/java-test/tests.properties"));
+            info.load(new FileInputStream("src/test/resources/tests.properties"));
 
             url = info.getProperty("url");
             driver = (Driver) Class.forName(DatabaseFactory.getInstance().findDefaultDriver(url), true,

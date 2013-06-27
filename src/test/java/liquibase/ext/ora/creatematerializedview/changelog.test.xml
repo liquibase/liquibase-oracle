@@ -15,7 +15,7 @@
     </changeSet>
 
     <changeSet author="zuiol" id="CreateMaterializedViewTest2">
-        <createTable tableName="zuiolView">
+        <createTable tableName="zuiolTable">
             <column name="one" type="varchar2(30)"></column>
             <column name="two" type="varchar2(30)"></column>
         </createTable>

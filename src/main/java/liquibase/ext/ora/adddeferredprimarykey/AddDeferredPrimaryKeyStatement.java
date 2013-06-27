@@ -1,9 +1,8 @@
 package liquibase.ext.ora.adddeferredprimarykey;
 
 import liquibase.statement.AbstractSqlStatement;
-import liquibase.statement.SqlStatement;
 
-//TODO: zamieniæ prefixy is na get!
+//TODO: zamieni: prefixy is na get!
 
 public class AddDeferredPrimaryKeyStatement extends AbstractSqlStatement {
 

@@ -5,13 +5,13 @@ import static org.junit.Assert.assertEquals;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.database.core.OracleDatabase;
-import liquibase.ext.ora.test.BaseTest;
+import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.statement.SqlStatement;
 
 import org.junit.Before;
 import org.junit.Test;
 
-public class SplitTableChangeTest extends BaseTest {
+public class SplitTableChangeTest extends BaseTestCase {
 
     @Before
     public void setUp() throws Exception {
