@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/liquibase-oracle.iml" filepath="$PROJECT_DIR$/liquibase-oracle.iml" />
+      <module fileurl="file://$PROJECT_DIR$/liquibase-extension.iml" filepath="$PROJECT_DIR$/liquibase-extension.iml" />
     </modules>
   </component>
 </project>

@@ -1,0 +1,7 @@
+liquibase.ext.ora.addcheck
+liquibase.ext.ora.addcheckconstraint
+liquibase.ext.ora.addprimarykey
+liquibase.ext.ora.createtrigger
+liquibase.ext.ora.dropcheck
+liquibase.ext.ora.dropcheckconstraint
+liquibase.ext.ora.yourextension

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd 
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest1">
+        <createTable tableName="Table1">
+            <column name="one" type="varchar2(30)"></column>
+            <column name="two" type="varchar2(30)"></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest2">
+        <createTable tableName="zuiolView">
+            <column name="one" type="varchar2(30)"></column>
+            <column name="two" type="varchar2(30)"></column>
+        </createTable>
+    </changeSet>
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest3">
+        <insert tableName="Table1">
+            <column name="one" value="first"></column>
+            <column name="two" value="second"></column>
+        </insert>
+    </changeSet>
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest4">
+        <ora:addPrimaryKey tableName="Table1" columnNames="one"/>
+    </changeSet>
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest5">
+        <ora:createMaterializedView subquery="select * from Table1" viewName="zuiolView"/>
+    </changeSet>
+
+    <changeSet author="zuiol" id="DropMaterializedViewTest6">
+        <ora:dropMaterializedView viewName="zuiolView"/>
+    </changeSet>
+
+</databaseChangeLog>

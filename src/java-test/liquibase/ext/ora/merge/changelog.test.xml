@@ -1,0 +1,61 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+
+    <changeSet author="tomek" id="1">
+        <sql>CREATE TABLE myTable(pid NUMBER, sales number, status varchar2(6))</sql>
+    </changeSet>
+
+    <changeSet author="tomek" id="2">
+        <sql>CREATE TABLE myTable2(pid NUMBER, sales number, status varchar2(6))</sql>
+    </changeSet>
+
+    <changeSet author="tomek" id="3">
+        <insert tableName="myTable">
+            <column name="pid" value="1"/>
+            <column name="sales" value="12"/>
+            <column name="status" value="CURR"/>
+        </insert>
+        <insert tableName="myTable">
+            <column name="pid" value="2"/>
+            <column name="sales" value="13"/>
+            <column name="status" value="OLD"/>
+        </insert>
+        <insert tableName="myTable">
+            <column name="pid" value="3"/>
+            <column name="sales" value="14"/>
+            <column name="status" value="CURR"/>
+        </insert>
+        <insert tableName="myTable">
+            <column name="pid" value="2"/>
+            <column name="sales" value="24"/>
+            <column name="status" value="CURR"/>
+        </insert>
+        <insert tableName="myTable">
+            <column name="pid" value="3"/>
+            <column name="sales" value="0"/>
+            <column name="status" value="OBS"/>
+        </insert>
+        <insert tableName="myTable">
+            <column name="pid" value="4"/>
+            <column name="sales" value="42"/>
+            <column name="status" value="CURR"/>
+        </insert>
+    </changeSet>
+
+
+    <changeSet author="tomek" id="4">
+        <ora:merge targetTableName="myTable2 m"
+                   sourceTableName="myTable d"
+                   onCondition="m.pid=d.pid"
+                   insertColumnsValueList="d.pid,d.sales,'OLD'"
+                   updateList="m.sales=m.sales+d.sales,m.status=d.status"
+                   deleteCondition="m.status='OBS'"
+                />
+    </changeSet>
+
+
+</databaseChangeLog>

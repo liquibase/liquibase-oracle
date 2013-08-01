@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="lrejkowicz">
+        <createTable tableName="AddDeferredPrimaryKeyTest">
+            <column name="id" type="int"/>
+            <column name="name" type="varchar2(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="lrejkowicz">
+        <ora:addDeferredPrimaryKey tableName="AddDeferredPrimaryKeyTest" deferrable="true" initiallyDeferred="true"
+                                   columnNames="id" constraintName="PK_AddDeferredPrimaryKeyTest"/>
+    </changeSet>
+
+</databaseChangeLog>

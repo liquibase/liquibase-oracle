@@ -1,6 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
     <name>Liquibase Oracle Extensions</name>
@@ -17,7 +16,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.0.0</version>
+            <version>2.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -31,11 +30,17 @@
             <version>2.4.5</version>
             <scope>test</scope>
         </dependency>
+        <!--<dependency>-->
+        <!--<groupId>org.liquibase</groupId>-->
+        <!--<artifactId>liquibase-integration-tests</artifactId>-->
+        <!--<version>2.0-SNAPSHOT</version>-->
+        <!--<type>test-jar</type>-->
+        <!--<scope>test</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>1.5.8</version>
-            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -50,23 +55,9 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>commons-collections</groupId>
-            <artifactId>commons-collections</artifactId>
-            <version>3.2.1</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!--<dependency>-->
-        <!--<groupId>org.liquibase</groupId>-->
-        <!--<artifactId>liquibase-integration-tests</artifactId>-->
-        <!--<version>2.0-SNAPSHOT</version>-->
-        <!--<type>test-jar</type>-->
-        <!--<scope>test</scope>-->
-        <!--</dependency>-->
-        <dependency>
             <groupId>oracle</groupId>
             <artifactId>oracle-ojdbc14</artifactId>
-            <version>10.2.0.1.5</version>
+            <version>10.1.0.5</version>
             <scope>test</scope>
         </dependency>
     </dependencies>
@@ -89,12 +80,15 @@
     </developers>
 
     <scm>
-        <connection>scm:git:https://github.com/liquibase/liquibase-oracle.git</connection>
-        <url>scm:git:https://github.com/liquibase/liquibase-oracle.git</url>
-        <developerConnection>scm:git:https://github.com/liquibase/liquibase-oracle.git</developerConnection>
+        <url>https://liquibase.jira.com/svn/CONTRIB/trunk/oracle-extensions/trunk</url>
+        <developerConnection>scm:svn:https://liquibase.jira.com/svn/CONTRIB/trunk/oracle-extensions/trunk
+        </developerConnection>
     </scm>
 
     <build>
+        <sourceDirectory>src/java</sourceDirectory>
+        <testSourceDirectory>src/java-test</testSourceDirectory>
+
         <pluginManagement>
             <plugins>
                 <plugin>
@@ -108,56 +102,11 @@
                 </plugin>
 
                 <plugin>
-                    <artifactId>maven-surefire-plugin</artifactId>
-                    <version>2.7.1</version>
-                    <configuration>
-                        <redirectTestOutputToFile>true</redirectTestOutputToFile>
-                        <reportFormat>plain</reportFormat>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-enforcer-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>enforce-java</id>
-                            <phase>compile</phase>
-                            <goals>
-                                <goal>enforce</goal>
-                            </goals>
-                            <configuration>
-                                <rules>
-                                    <requireJavaVersion>
-                                        <version>1.6</version>
-                                    </requireJavaVersion>
-                                </rules>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-
-                <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-release-plugin</artifactId>
-                    <version>2.2.2</version>
+                    <version>2.0</version>
                     <configuration>
                         <mavenExecutorId>forked-path</mavenExecutorId>
-                        <pushChanges>false</pushChanges>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-deploy-plugin</artifactId>
-                    <version>2.5</version>
-                    <configuration>
-                        <skip>false</skip>
-                    </configuration>
-                </plugin>
-
-                <plugin>
-                    <artifactId>maven-scm-plugin</artifactId>
-                    <configuration>
-                        <pushChanges>false</pushChanges>
                     </configuration>
                 </plugin>
             </plugins>
