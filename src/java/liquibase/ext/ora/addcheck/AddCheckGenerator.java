@@ -20,7 +20,7 @@ public class AddCheckGenerator extends AbstractSqlGenerator<AddCheckStatement> {
         sql.append("ADD ");
         if (database.escapeDatabaseObject(statement.getConstraintName()) != null)
             sql.append("CONSTRAINT ").append(database.escapeConstraintName(statement.getConstraintName())).append(" ");
-        sql.append("CHECK(").append(database.escapeDatabaseObject(statement.getCondition())).append(")");
+        sql.append("CHECK(").append(statement.getCondition()).append(")");
 
         if (statement.getDeferrable() != null) {
             if (statement.getDeferrable()) sql.append(" DEFERRABLE");
