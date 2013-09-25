@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
     <name>Liquibase Oracle Extensions</name>
-    <version>3.0.0-SNAPSHOT</version>
+    <version>3.0.0</version>
 
      <licenses>
         <license>
