@@ -207,7 +207,7 @@ public class CreateTriggerChange extends AbstractChange {
         }
 
 
-        CreateTriggerStatement statement = new CreateTriggerStatement(getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName(), getTriggerName(), getAfterBeforeInsteadOf());
+        CreateTriggerStatement statement = new CreateTriggerStatement(getSchemaName(), getTriggerName(), getAfterBeforeInsteadOf());
         statement.setTablespace(getTablespace());
         statement.setDelete(delete);
         statement.setInsert(insert);
