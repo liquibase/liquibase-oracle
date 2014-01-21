@@ -18,7 +18,7 @@ public class EnableTriggerOracle extends AbstractSqlGenerator<EnableTriggerState
                                      SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
         validationErrors.checkRequiredField("triggerName", enableTriggerStatement.getTriggerName());
-        validationErrors.checkDisallowedField("schemaName", enableTriggerStatement.getSchemaName(), database);
+        //validationErrors.checkDisallowedField("schemaName", enableTriggerStatement.getSchemaName(), database);
         return validationErrors;
     }
 
@@ -27,7 +27,7 @@ public class EnableTriggerOracle extends AbstractSqlGenerator<EnableTriggerState
         StringBuilder sql = new StringBuilder();
         sql.append("ALTER TRIGGER ");
         if (enableTriggerStatement.getSchemaName() != null) {
-            sql.append(enableTriggerStatement.getSchemaName()).append(" ");
+            sql.append(enableTriggerStatement.getSchemaName()).append(".");
         }
         if (enableTriggerStatement.getTriggerName() != null) {
             sql.append(enableTriggerStatement.getTriggerName()).append(" ");

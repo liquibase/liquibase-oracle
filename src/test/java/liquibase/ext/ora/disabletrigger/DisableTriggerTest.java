@@ -90,7 +90,7 @@ public class DisableTriggerTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TRIGGER RenamedZuiolTrigger DISABLE");
+        expectedQuery.add("ALTER TRIGGER LIQUIBASE.RenamedZuiolTrigger DISABLE");
 
         int i = 0;
 

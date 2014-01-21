@@ -18,7 +18,6 @@ public class DisableTriggerOracle extends AbstractSqlGenerator<DisableTriggerSta
                                      SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
         validationErrors.checkRequiredField("triggerName", disableTriggerStatement.getTriggerName());
-        validationErrors.checkDisallowedField("schemaName", disableTriggerStatement.getSchemaName(), database);
         return validationErrors;
     }
 
@@ -27,7 +26,7 @@ public class DisableTriggerOracle extends AbstractSqlGenerator<DisableTriggerSta
         StringBuilder sql = new StringBuilder();
         sql.append("ALTER TRIGGER ");
         if (disableTriggerStatement.getSchemaName() != null) {
-            sql.append(disableTriggerStatement.getSchemaName()).append(" ");
+            sql.append(disableTriggerStatement.getSchemaName()).append(".");
         }
         if (disableTriggerStatement.getTriggerName() != null) {
             sql.append(disableTriggerStatement.getTriggerName()).append(" ");

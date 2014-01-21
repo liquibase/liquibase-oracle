@@ -40,7 +40,7 @@ public class CreateMaterializedViewTest extends BaseTestCase {
         CreateMaterializedViewChange createMaterializedViewChange = new CreateMaterializedViewChange();
 
         assertEquals("createMaterializedView", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getName());
-        assertEquals("Create Materialized View", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getDescription());
+        assertEquals("Create materialized view", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getPriority());
     }
 
@@ -107,7 +107,7 @@ public class CreateMaterializedViewTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("CREATE MATERIALIZED VIEW zuiolView ON PREBUILT TABLE AS select * from Table1");
+        expectedQuery.add("CREATE MATERIALIZED VIEW zuiolView AS select * from Table1");
 
         int i = 0;
 

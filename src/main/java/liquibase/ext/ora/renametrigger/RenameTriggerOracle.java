@@ -19,8 +19,6 @@ public class RenameTriggerOracle extends AbstractSqlGenerator<RenameTriggerState
                                      SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
         validationErrors.checkRequiredField("triggerName", renameTriggerStatement.getTriggerName());
-        validationErrors.checkDisallowedField("schemaName", renameTriggerStatement.getSchemaName(), database);
-        validationErrors.checkDisallowedField("newName", renameTriggerStatement.getNewName(), database);
         return validationErrors;
     }
 
@@ -29,7 +27,7 @@ public class RenameTriggerOracle extends AbstractSqlGenerator<RenameTriggerState
         StringBuilder sql = new StringBuilder();
         sql.append("ALTER TRIGGER ");
         if (renameTriggerStatement.getSchemaName() != null) {
-            sql.append(renameTriggerStatement.getSchemaName()).append(" ");
+            sql.append(renameTriggerStatement.getSchemaName()).append(".");
         }
         if (renameTriggerStatement.getTriggerName() != null) {
             sql.append(renameTriggerStatement.getTriggerName()).append(" ");

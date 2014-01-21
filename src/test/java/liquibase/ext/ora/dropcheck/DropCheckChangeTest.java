@@ -74,7 +74,7 @@ public class DropCheckChangeTest extends BaseTestCase {
         DropCheckChange dropCheckChange = new DropCheckChange();
 
         assertEquals("dropCheck", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getName());
-        assertEquals("drop check", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getDescription());
+        assertEquals("Drop check", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getPriority());
     }
 
@@ -97,7 +97,7 @@ public class DropCheckChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE test drop CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LIQUIBASE.test drop CONSTRAINT tom_check");
 
         int i = 0;
 

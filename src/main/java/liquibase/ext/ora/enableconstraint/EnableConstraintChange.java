@@ -8,7 +8,7 @@ import liquibase.ext.ora.check.CheckAttribute;
 import liquibase.ext.ora.disableconstraint.DisableConstraintChange;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="enableConstraint", description = "Enable Constraint", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="enableConstraint", description = "Enable constraint", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class EnableConstraintChange extends CheckAttribute {
 
     public EnableConstraintChange() {

@@ -74,7 +74,7 @@ public class DisableConstraintChangeTest extends BaseTestCase {
         DisableConstraintChange disableCheckChange = new DisableConstraintChange();
 
         assertEquals("disableConstraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getName());
-        assertEquals("disable constraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getDescription());
+        assertEquals("Disable constraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getPriority());
     }
 
@@ -100,7 +100,7 @@ public class DisableConstraintChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE test DISABLE CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LIQUIBASE.test DISABLE CONSTRAINT tom_check");
 
         int i = 0;
 

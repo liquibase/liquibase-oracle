@@ -17,7 +17,6 @@ public class SetTransactionOracle extends AbstractSqlGenerator<SetTransactionSta
     public ValidationErrors validate(SetTransactionStatement setTransactionStatement, Database database,
                                      SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
-        validationErrors.checkDisallowedField("transactionName", setTransactionStatement.getTransactionName(), database);
         validationErrors.checkDisallowedField("rollbackSegment", setTransactionStatement.getRollbackSegment(), database);
         validationErrors.checkDisallowedField("isolationLevel", setTransactionStatement.getIsolationLevel(), database);
         validationErrors.checkDisallowedField("readOnlyWrite", setTransactionStatement.getReadOnlyWrite(), database);

@@ -99,9 +99,9 @@ public class TruncateChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("CREATE TABLE truncatetest (id INT, name varchar2(50))");
+        expectedQuery.add("CREATE TABLE LIQUIBASE.truncatetest (id NUMBER(10), name VARCHAR2(50))");
         expectedQuery.add("insert into truncatetest (id, name) values (1, 'dgolda')");
-        expectedQuery.add("TRUNCATE TABLE truncatetest PURGE MATERIALIZED VIEW LOG REUSE STORAGE");
+        expectedQuery.add("TRUNCATE TABLE LIQUIBASE.truncatetest PURGE MATERIALIZED VIEW LOG REUSE STORAGE");
         // expectedQuery.add("TRUNCATE TABLE artur.truncatetest PURGE MATERIALIZED VIEW LOG REUSE STORAGE");
 
         int i = 0;

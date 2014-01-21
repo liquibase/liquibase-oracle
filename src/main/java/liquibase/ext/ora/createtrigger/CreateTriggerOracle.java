@@ -20,7 +20,6 @@ public class CreateTriggerOracle extends AbstractSqlGenerator<CreateTriggerState
         ValidationErrors validationErrors = new ValidationErrors();
         validationErrors.checkRequiredField("triggerName", createTriggerStatement.getTriggerName());
         validationErrors.checkRequiredField("afterBeforeInsteadOf", createTriggerStatement.getAfterBeforeInsteadOf());
-        validationErrors.checkDisallowedField("schemaName", createTriggerStatement.getSchemaName(), database);
         return validationErrors;
     }
 

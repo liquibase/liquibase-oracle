@@ -40,7 +40,7 @@ public class DropTriggerTest extends BaseTestCase {
         DropTriggerChange dropTriggerChange = new DropTriggerChange();
 
         assertEquals("dropTrigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getName());
-        assertEquals("Drop Trigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getDescription());
+        assertEquals("Drop trigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getPriority());
     }
 
@@ -90,7 +90,7 @@ public class DropTriggerTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("DROP TRIGGER zuiolTrigger");
+        expectedQuery.add("DROP TRIGGER LIQUIBASE.zuiolTrigger");
 
         int i = 0;
 
