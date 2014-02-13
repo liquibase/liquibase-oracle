@@ -92,7 +92,7 @@ public class RenameTriggerTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TRIGGER zuiolTrigger RENAME TO RenamedZuiolTrigger");
+        expectedQuery.add("ALTER TRIGGER LIQUIBASE.zuiolTrigger RENAME TO RenamedZuiolTrigger");
 
         int i = 0;
 

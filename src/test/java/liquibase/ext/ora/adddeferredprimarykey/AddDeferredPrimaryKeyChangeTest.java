@@ -94,7 +94,7 @@ public class AddDeferredPrimaryKeyChangeTest extends BaseTestCase {
 
 		List<String> expectedQuery = new ArrayList<String>();
 
-		expectedQuery.add("CREATE TABLE AddDeferredPrimaryKeyTest (id INTEGER, name VARCHAR2(50))");
+		expectedQuery.add("CREATE TABLE LIQUIBASE.AddDeferredPrimaryKeyTest (id NUMBER(10), name VARCHAR2(50))");
 		expectedQuery.add("ALTER TABLE LIQUIBASE.AddDeferredPrimaryKeyTest ADD CONSTRAINT PK_AddDeferredPrimaryKeyTest PRIMARY KEY (id) DEFERRABLE INITIALLY DEFERRED");
 
 		int i = 0;

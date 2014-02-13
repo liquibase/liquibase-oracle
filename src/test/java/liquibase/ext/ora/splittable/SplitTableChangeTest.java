@@ -68,7 +68,7 @@ public class SplitTableChangeTest extends BaseTestCase {
         SplitTableChange change = new SplitTableChange();
 
         assertEquals("splitTable", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("split table", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
+        assertEquals("Split table", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
     }
 }

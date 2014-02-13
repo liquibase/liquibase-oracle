@@ -94,7 +94,7 @@ public class MergeChangeTest extends BaseTestCase {
         MergeChange mergeTablesChange = new MergeChange();
 
         assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getName());
-        assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getDescription());
+        assertEquals("Merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getPriority());
     }
 
@@ -117,7 +117,7 @@ public class MergeChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("MERGE INTO myTable2 m " + "USING myTable d " + "ON (m.pid=d.pid) "
+        expectedQuery.add("MERGE INTO LIQUIBASE.myTable2 m " + "USING LIQUIBASE.myTable d " + "ON (m.pid=d.pid) "
                 + "WHEN MATCHED THEN UPDATE SET m.sales=m.sales+d.sales,m.status=d.status " + "DELETE WHERE (m.status='OBS') "
                 + "WHEN NOT MATCHED THEN INSERT VALUES(d.pid,d.sales,'OLD')");
 

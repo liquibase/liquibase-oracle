@@ -14,13 +14,6 @@
         </createTable>
     </changeSet>
 
-    <changeSet author="zuiol" id="DropMaterializedViewTest2">
-        <createTable tableName="zuiolView">
-            <column name="one" type="varchar2(30)"></column>
-            <column name="two" type="varchar2(30)"></column>
-        </createTable>
-    </changeSet>
-
     <changeSet author="zuiol" id="DropMaterializedViewTest3">
         <insert tableName="Table1">
             <column name="one" value="first"></column>

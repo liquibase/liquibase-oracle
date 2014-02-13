@@ -17,7 +17,7 @@ public class DropTriggerOracle extends AbstractSqlGenerator<DropTriggerStatement
     public ValidationErrors validate(DropTriggerStatement dropTrigger, Database database, SqlGeneratorChain sqlGeneratorChain) {
 
         ValidationErrors validationErrors = new ValidationErrors();
-        validationErrors.checkRequiredField("schemaName", dropTrigger.getSchemaName());
+        validationErrors.checkRequiredField("triggerName", dropTrigger.getTriggerName());
         return validationErrors;
     }
 
@@ -28,7 +28,7 @@ public class DropTriggerOracle extends AbstractSqlGenerator<DropTriggerStatement
         sql.append("DROP TRIGGER ");
         if (statement.getSchemaName() != null) {
             sql.append(statement.getSchemaName())
-                    .append(" ");
+                    .append(".");
         }
         if (statement.getTriggerName() != null) {
             sql.append(statement.getTriggerName());

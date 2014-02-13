@@ -74,7 +74,7 @@ public class EnableCheckChangeTest extends BaseTestCase {
         EnableConstraintChange enableCheckChange = new EnableConstraintChange();
 
         assertEquals("enableConstraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
-        assertEquals("constraint enable", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
+        assertEquals("Enable constraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
     }
 
@@ -98,7 +98,7 @@ public class EnableCheckChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE test ENABLE CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LIQUIBASE.test ENABLE CONSTRAINT tom_check");
 
         ChangeSet changeSet = changeSets.get(2);
         Change change = changeSet.getChanges().get(0);

@@ -96,10 +96,10 @@ public class EncapsulateTableWithViewTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("CREATE TABLE person (id INT, name varchar2(50))");
-        expectedQuery.add("INSERT INTO person (id, name) VALUES ('1', 'James')");
-        expectedQuery.add("ALTER TABLE person RENAME TO Tperson");
-        expectedQuery.add("CREATE OR REPLACE VIEW person AS SELECT * FROM Tperson");
+        expectedQuery.add("CREATE TABLE LIQUIBASE.person (id NUMBER(10), name VARCHAR2(50))");
+        expectedQuery.add("INSERT INTO LIQUIBASE.person (id, name) VALUES ('1', 'James')");
+        expectedQuery.add("ALTER TABLE LIQUIBASE.person RENAME TO Tperson");
+        expectedQuery.add("CREATE OR REPLACE VIEW LIQUIBASE.person AS SELECT * FROM Tperson");
 
         int i = 0;
 

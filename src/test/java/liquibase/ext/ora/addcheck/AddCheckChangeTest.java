@@ -108,7 +108,7 @@ public class AddCheckChangeTest extends BaseTestCase {
 
         // expectedQuery.add("ALTER TABLE addcheck ADD CONSTRAINT tom_check CHECK(id between 0 and 5 ) DEFERRABLE INITIALLY DEFERRED DISABLE");
         // expectedQuery.add("ALTER TABLE addcheck ADD CONSTRAINT tom_check1 CHECK(id between 10 and 15) ENABLE");
-        expectedQuery.add("ALTER TABLE addcheck ADD CHECK(id between 0 and 5 ) DEFERRABLE INITIALLY DEFERRED DISABLE");
+        expectedQuery.add("ALTER TABLE LIQUIBASE.addcheck ADD CHECK(id between 0 and 5 ) DEFERRABLE INITIALLY DEFERRED DISABLE");
 
         ChangeSet changeSet = changeSets.get(1);
         Change change = changeSet.getChanges().get(0);

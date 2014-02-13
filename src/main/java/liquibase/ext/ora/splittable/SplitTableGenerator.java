@@ -31,6 +31,7 @@ import liquibase.structure.core.Table;
 
 public class SplitTableGenerator extends AbstractSqlGenerator<SplitTableStatement> {
 
+    // XXX: that is wrong, Generator must be stateless
     private String[] columnList;
     boolean isTransition;
     private final List<UnparsedSql> sqlList = new ArrayList<UnparsedSql>();

@@ -13,15 +13,20 @@ import liquibase.structure.core.Table;
 
 public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
 
-    private String[] insertColumnsName;
-    private String[] insertColumnsValue;
-    private String[] updateList;
-    private boolean isNullUpdate;
-    private boolean isNullColumnName;
-    private boolean isNullColumnValue;
-
     public Sql[] generateSql(MergeStatement statement, Database database,
                              SqlGeneratorChain sqlGeneratorChain) {
+        String[] insertColumnsName = null;
+        String[] insertColumnsValue = null;
+        String[] updateList = null;
+        if (statement.getInsertColumnsNameList() != null) {
+            insertColumnsName = statement.getInsertColumnsNameList().split(",");
+        }
+        if (statement.getInsertColumnsValueList() != null) {
+            insertColumnsValue = statement.getInsertColumnsValueList().split(",");
+        }
+        if (statement.getUpdateList() != null) {
+            updateList = statement.getUpdateList().split(",");
+        }
 
         StringBuilder sql = new StringBuilder();
 
@@ -29,7 +34,7 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
         sql.append(" USING ").append(database.escapeTableName(null, statement.getSourceSchemaName(), statement.getSourceTableName()));
         sql.append(" ON (").append(statement.getOnCondition()).append(") ");
 
-        if (!isNullUpdate) {
+        if (updateList != null) {
             sql.append("WHEN MATCHED THEN UPDATE SET ");
             for (String list : updateList) {
                 sql.append(list).append(",");
@@ -41,9 +46,9 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
                 sql.append(" DELETE WHERE (").append(database.escapeObjectName(statement.getDeleteCondition(), Table.class)).append(")");
         }
 
-        if (!isNullColumnValue) {
+        if (insertColumnsValue != null) {
             sql.append(" WHEN NOT MATCHED THEN INSERT ");
-            if (!isNullColumnName) {
+            if (insertColumnsName != null) {
                 for (String list : insertColumnsName) {
                     sql.append(list).append(",");
                 }
@@ -74,17 +79,6 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
         valid.checkRequiredField("sourceTableName", statement.getSourceTableName());
         valid.checkRequiredField("targetTableName", statement.getTargetTableName());
         valid.checkRequiredField("onCondition", statement.getOnCondition());
-
-
-        if (statement.getInsertColumnsNameList() != null)
-            insertColumnsName = statement.getInsertColumnsNameList().split(",");
-        else isNullColumnName = true;
-
-        if (statement.getInsertColumnsValueList() != null)
-            insertColumnsValue = statement.getInsertColumnsValueList().split(",");
-        else isNullColumnValue = true;
-        if (statement.getUpdateList() != null) updateList = statement.getUpdateList().split(",");
-        else isNullUpdate = true;
 
         return valid;
     }
