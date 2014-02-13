@@ -37,7 +37,7 @@ public class DropCheckDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update((String) null);
 
         actualDataSet.addTable(TABLE_NAME, "select * from " + TABLE_NAME + " where constraint_name='TOM_CHECK'");
         loadedDataSet = getDataSet();

@@ -31,7 +31,7 @@ public class TruncateDBTest extends BaseTestCase {
         changeLogFile = "liquibase/ext/ora/truncate/changelog.test.xml";
         connectToDB();
         cleanDB();
-        liquiBase.update(null);
+        liquiBase.update((String) null);
     }
 
     @Test

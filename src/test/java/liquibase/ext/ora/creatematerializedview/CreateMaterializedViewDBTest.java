@@ -37,12 +37,12 @@ public class CreateMaterializedViewDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update((String) null);
         actualDataSet.addTable(TABLE_NAME, "SELECT * from " + TABLE_NAME);
         loadedDataSet = getDataSet();
 
         Assertion.assertEquals(loadedDataSet, actualDataSet);
-        liquiBase.rollback(1, null);
+        liquiBase.rollback(1, (String) null);
     }
 
 }

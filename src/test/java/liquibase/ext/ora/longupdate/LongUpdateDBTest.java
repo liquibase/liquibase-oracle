@@ -36,7 +36,7 @@ public class LongUpdateDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update((String) null);
 
         actualDataSet.addTable("LONGUPDATETEST", "SELECT * FROM LONGUPDATETEST");
         loadedDataSet = getDataSet();

@@ -37,7 +37,7 @@ public class EnableTriggerDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update((String) null);
         actualDataSet.addTable("USER_TRIGGERS", "SELECT STATUS from " + TABLE_NAME
                 + " WHERE TRIGGER_NAME = 'RENAMEDZUIOLTRIGGER'");
         loadedDataSet = getDataSet();

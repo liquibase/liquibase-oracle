@@ -38,7 +38,7 @@ public class AddCheckDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update((String) null);
         actualDataSet.addTable(TABLE_NAME, "SELECT * FROM " + TABLE_NAME);
         loadedDataSet = getDataSet();
 

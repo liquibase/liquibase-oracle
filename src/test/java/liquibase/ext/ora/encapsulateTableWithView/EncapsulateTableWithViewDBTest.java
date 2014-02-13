@@ -37,7 +37,7 @@ public class EncapsulateTableWithViewDBTest extends BaseTestCase {
         changeLogFile = "liquibase/ext/ora/encapsulateTableWithView/changelog.test.xml";
         connectToDB();
         cleanDB();
-        liquiBase.update(null);
+        liquiBase.update((String) null);
     }
 
     @Test
@@ -53,7 +53,7 @@ public class EncapsulateTableWithViewDBTest extends BaseTestCase {
 
     @Test
     public void rollbackTest() throws Exception {
-        liquiBase.rollback(1, null);
+        liquiBase.rollback(1, (String) null);
 
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
         actualDataSet.addTable(TABLE_NAME);

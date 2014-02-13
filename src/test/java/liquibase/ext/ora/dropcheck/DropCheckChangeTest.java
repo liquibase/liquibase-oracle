@@ -89,7 +89,6 @@ public class DropCheckChangeTest extends BaseTestCase {
         DatabaseChangeLog changeLog = ChangeLogParserFactory.getInstance().getParser(changeLogFile, resourceAccessor).parse(changeLogFile,
                 changeLogParameters, resourceAccessor);
 
-        database.checkDatabaseChangeLogTable(false, changeLog, null);
         changeLog.validate(database);
 
 

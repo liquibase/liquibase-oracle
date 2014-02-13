@@ -84,7 +84,6 @@ public class SetTransactionTest extends BaseTestCase {
         DatabaseChangeLog changeLog = ChangeLogParserFactory.getInstance().getParser(changeLogFile, resourceAccessor).parse(changeLogFile,
                 changeLogParameters, resourceAccessor);
 
-        database.checkDatabaseChangeLogTable(false, changeLog, null);
         changeLog.validate(database);
 
 
@@ -108,6 +107,6 @@ public class SetTransactionTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
-        liquiBase.update(null);
+        liquiBase.update((String) null);
     }
 }
