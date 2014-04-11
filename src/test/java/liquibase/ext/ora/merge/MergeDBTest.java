@@ -1,5 +1,6 @@
 package liquibase.ext.ora.merge;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -37,7 +38,7 @@ public class MergeDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
 
         actualDataSet.addTable(TABLE_NAME, "SELECT * FROM " + TABLE_NAME);
         loadedDataSet = getDataSet();

@@ -1,5 +1,6 @@
 package liquibase.ext.ora.creatematerializedview;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -37,12 +38,12 @@ public class CreateMaterializedViewDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
         actualDataSet.addTable(TABLE_NAME, "SELECT * from " + TABLE_NAME);
         loadedDataSet = getDataSet();
 
         Assertion.assertEquals(loadedDataSet, actualDataSet);
-        liquiBase.rollback(1, null);
+        liquiBase.rollback(1, new Contexts());
     }
 
 }

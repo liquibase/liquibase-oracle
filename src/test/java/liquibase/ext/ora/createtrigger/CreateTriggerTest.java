@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Contexts;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -111,7 +112,7 @@ public class CreateTriggerTest extends BaseTestCase {
         DatabaseChangeLog changeLog = ChangeLogParserFactory.getInstance().getParser(changeLogFile, resourceAccessor).parse(changeLogFile,
                 changeLogParameters, resourceAccessor);
 
-        database.checkDatabaseChangeLogTable(false, changeLog, null);
+        liquiBase.checkLiquibaseTables( false, changeLog, new Contexts() );
         changeLog.validate(database);
 
 
@@ -119,7 +120,7 @@ public class CreateTriggerTest extends BaseTestCase {
         List<String> expectedQuery = new ArrayList<String>();
 
         expectedQuery
-                .add("CREATE TRIGGER LIQUIBASE.zuiolTrigger before INSERT ON LIQUIBASE.TriggerTest FOR EACH ROW DECLARE v_username varchar2(10); BEGIN SELECT pierwsza INTO v_username FROM TriggerTest; :new.created_by := v_username; END;");
+                .add("CREATE TRIGGER zuiolTrigger before INSERT ON TriggerTest FOR EACH ROW DECLARE v_username varchar2(10); BEGIN SELECT pierwsza INTO v_username FROM TriggerTest; :new.created_by := v_username; END;");
 
         int i = 0;
 
@@ -136,7 +137,7 @@ public class CreateTriggerTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
     }
 
 }

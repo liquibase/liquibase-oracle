@@ -1,5 +1,6 @@
 package liquibase.ext.ora.disableconstraint;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -37,7 +38,7 @@ public class DisableCheckDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
         actualDataSet.addTable(TABLE_NAME, "select status from " + TABLE_NAME + " where constraint_name='TOM_CHECK'");
         loadedDataSet = getDataSet();
 

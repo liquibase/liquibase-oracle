@@ -1,5 +1,6 @@
 package liquibase.ext.ora.truncate;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -31,7 +32,7 @@ public class TruncateDBTest extends BaseTestCase {
         changeLogFile = "liquibase/ext/ora/truncate/changelog.test.xml";
         connectToDB();
         cleanDB();
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
     }
 
     @Test

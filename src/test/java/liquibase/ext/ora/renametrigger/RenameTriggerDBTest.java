@@ -1,5 +1,6 @@
 package liquibase.ext.ora.renametrigger;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -37,7 +38,7 @@ public class RenameTriggerDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
         actualDataSet.addTable("USER_TRIGGERS", "SELECT TRIGGER_NAME from " + TABLE_NAME
                 + " WHERE table_name = 'TRIGGERTEST'");
         loadedDataSet = getDataSet();

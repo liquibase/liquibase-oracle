@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Contexts;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -82,7 +83,7 @@ public class LongUpdateTest extends BaseTestCase {
         DatabaseChangeLog changeLog = ChangeLogParserFactory.getInstance().getParser(changeLogFile, resourceAccessor).parse(changeLogFile,
                 changeLogParameters, resourceAccessor);
 
-        database.checkDatabaseChangeLogTable(false, changeLog, null);
+        liquiBase.checkLiquibaseTables( false, changeLog, new Contexts() );
         changeLog.validate(database);
         List<ChangeSet> changeSets = changeLog.getChangeSets();
 
@@ -106,6 +107,6 @@ public class LongUpdateTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
     }
 }
