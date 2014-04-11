@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
     <name>Liquibase Oracle Extensions</name>
-    <version>3.0.1-SNAPSHOT</version>
+    <version>3.2.0-SNAPSHOT</version>
 
      <licenses>
         <license>
@@ -14,7 +14,7 @@
     </licenses>
 
     <properties>
-        <oracle.version>11.2.0.3</oracle.version>
+        <oracle.version>11.2.0.4</oracle.version>
         <slf4j.version>1.7.5</slf4j.version>
         <junit.version>4.11</junit.version>
     </properties>
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.0.8</version>
+            <version>3.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -56,7 +56,11 @@
         <!--<type>test-jar</type>-->
         <!--<scope>test</scope>-->
         <!--</dependency>-->
-        <!-- Download from http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html -->
+        <!-- 
+        Download from http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html 
+        Then install using command line:
+        mvn install:install-file -DgroupId=com.oracle -DartifactId=ojdbc6 -Dversion=11.2.0.4.0 -Dpackaging=jar -Dfile=ojdbc6.jar -DgeneratePom=true
+        -->
         <dependency>
             <groupId>com.oracle</groupId>
             <artifactId>ojdbc6</artifactId>

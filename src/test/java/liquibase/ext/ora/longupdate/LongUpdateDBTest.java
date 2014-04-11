@@ -1,5 +1,6 @@
 package liquibase.ext.ora.longupdate;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -36,7 +37,7 @@ public class LongUpdateDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
 
         actualDataSet.addTable("LONGUPDATETEST", "SELECT * FROM LONGUPDATETEST");
         loadedDataSet = getDataSet();

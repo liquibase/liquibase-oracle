@@ -1,7 +1,7 @@
 package liquibase.ext.ora.splittable;
 
 import static org.junit.Assert.assertEquals;
-
+import liquibase.Contexts;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.database.core.OracleDatabase;
@@ -22,7 +22,7 @@ public class SplitTableChangeTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
     }
 
     @Test

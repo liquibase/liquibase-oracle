@@ -1,5 +1,6 @@
 package liquibase.ext.ora.encapsulateTableWithView;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -37,7 +38,7 @@ public class EncapsulateTableWithViewDBTest extends BaseTestCase {
         changeLogFile = "liquibase/ext/ora/encapsulateTableWithView/changelog.test.xml";
         connectToDB();
         cleanDB();
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
     }
 
     @Test
@@ -53,7 +54,7 @@ public class EncapsulateTableWithViewDBTest extends BaseTestCase {
 
     @Test
     public void rollbackTest() throws Exception {
-        liquiBase.rollback(1, null);
+        liquiBase.rollback(1, new Contexts());
 
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
         actualDataSet.addTable(TABLE_NAME);

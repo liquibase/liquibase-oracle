@@ -1,5 +1,6 @@
 package liquibase.ext.ora.adddeferredprimarykey;
 
+import liquibase.Contexts;
 import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.dbunit.Assertion;
@@ -38,7 +39,7 @@ public class AddDeferredPrimaryKeyDBTest extends BaseTestCase {
     public void testCompare() throws Exception {
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
-        liquiBase.update(null);
+        liquiBase.update(new Contexts());
 
         actualDataSet.addTable(TABLE_NAME, "select constraint_name as primary_key_name from " + TABLE_NAME
                 + " WHERE constraint_type = 'P' and constraint_name = 'PK_ADDDEFERREDPRIMARYKEYTEST'");
