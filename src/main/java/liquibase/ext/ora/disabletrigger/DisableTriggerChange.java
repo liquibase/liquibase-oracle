@@ -43,8 +43,7 @@ public class DisableTriggerChange extends AbstractChange {
     }
 
     public SqlStatement[] generateStatements(Database database) {
-        DisableTriggerStatement statement = new DisableTriggerStatement(getSchemaName() == null ? database
-                .getDefaultSchemaName() : getSchemaName(), getTriggerName());
+        DisableTriggerStatement statement = new DisableTriggerStatement(getSchemaName(), getTriggerName());
 
         return new SqlStatement[]{statement};
     }

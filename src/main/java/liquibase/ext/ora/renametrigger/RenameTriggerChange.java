@@ -42,8 +42,7 @@ public class RenameTriggerChange extends AbstractChange {
     }
 
     public SqlStatement[] generateStatements(Database database) {
-        RenameTriggerStatement statement = new RenameTriggerStatement(getSchemaName() == null ? database
-                .getDefaultSchemaName() : getSchemaName(), getTriggerName(), getNewName());
+        RenameTriggerStatement statement = new RenameTriggerStatement(getSchemaName(), getTriggerName(), getNewName());
 
         return new SqlStatement[]{statement};
     }
