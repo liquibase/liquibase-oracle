@@ -85,9 +85,9 @@ public class SplitTableChange extends AbstractChange {
         ChangeSet changeSet = getChangeSet();
 
         if (changeSet != null && changeSet.getContexts() != null) {
-            if (super.getChangeSet().getContexts().contains("TRANSITION".toLowerCase())) {
+            if (super.getChangeSet().getContexts().toString().contains("TRANSITION".toLowerCase())) {
                 level = "TRANSITION";
-            } else if (super.getChangeSet().getContexts().contains("RESULTING".toLowerCase())) {
+            } else if (super.getChangeSet().getContexts().toString().contains("RESULTING".toLowerCase())) {
                 level = "RESULTING";
             } else {
                 level = "BASIC";
