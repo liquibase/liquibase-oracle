@@ -51,6 +51,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	}
 
 	public Boolean getSelect() {
+		if ( select == null ) {
+			return false;
+		}
 		return select;
 	}
 
@@ -59,6 +62,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	}
 
 	public Boolean getUpdate() {
+		if ( update == null ) {
+			return false;
+		}
 		return update;
 	}
 
@@ -67,6 +73,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	}
 
 	public Boolean getInsert() {
+		if ( insert == null ) {
+			return false;
+		}
 		return insert;
 	}
 
@@ -75,6 +84,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	}
 
 	public Boolean getDelete() {
+		if ( delete == null ) {
+			return false;
+		}
 		return delete;
 	}
 
@@ -83,6 +95,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	}
 
 	public Boolean getExecute() {
+		if ( execute == null ) {
+			return false;
+		}
 		return execute;
 	}
 
