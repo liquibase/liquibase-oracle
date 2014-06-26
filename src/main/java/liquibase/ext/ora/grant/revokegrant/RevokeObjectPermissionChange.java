@@ -1,11 +1,11 @@
-package liquibase.ext.ora.revokegrant;
+package liquibase.ext.ora.grant.revokegrant;
 
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
-import liquibase.ext.ora.addgrant.AbstractObjectPermissionChange;
-import liquibase.ext.ora.addgrant.GrantObjectPermissionChange;
+import liquibase.ext.ora.grant.AbstractObjectPermissionChange;
+import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionChange;
 import liquibase.statement.SqlStatement;
 
 

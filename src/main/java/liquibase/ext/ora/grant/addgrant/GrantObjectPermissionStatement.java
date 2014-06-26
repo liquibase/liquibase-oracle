@@ -1,4 +1,6 @@
-package liquibase.ext.ora.addgrant;
+package liquibase.ext.ora.grant.addgrant;
+
+import liquibase.ext.ora.grant.AbstractObjectPermissionStatement;
 
 
 public class GrantObjectPermissionStatement extends AbstractObjectPermissionStatement {

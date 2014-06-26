@@ -1,4 +1,4 @@
-package liquibase.ext.ora.addgrant;
+package liquibase.ext.ora.grant.addgrant;
 
 import static org.junit.Assert.assertEquals;
 

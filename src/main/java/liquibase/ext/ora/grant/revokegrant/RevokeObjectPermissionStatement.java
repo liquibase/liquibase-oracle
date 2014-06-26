@@ -1,6 +1,6 @@
-package liquibase.ext.ora.revokegrant;
+package liquibase.ext.ora.grant.revokegrant;
 
-import liquibase.ext.ora.addgrant.AbstractObjectPermissionStatement;
+import liquibase.ext.ora.grant.AbstractObjectPermissionStatement;
 
 public class RevokeObjectPermissionStatement extends AbstractObjectPermissionStatement {
 

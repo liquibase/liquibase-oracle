@@ -1,6 +1,7 @@
-package liquibase.ext.ora.addgrant;
+package liquibase.ext.ora.grant.addgrant;
 
 import liquibase.database.Database;
+import liquibase.ext.ora.grant.AbstractObjectPermissionGenerator;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
