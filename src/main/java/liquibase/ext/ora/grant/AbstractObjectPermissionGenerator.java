@@ -14,7 +14,7 @@ import org.apache.commons.lang.StringUtils;
 public abstract class AbstractObjectPermissionGenerator<T extends AbstractObjectPermissionStatement> extends
 		AbstractSqlGenerator<T> {
 
-	protected String getPermissionList( AbstractObjectPermissionStatement statement ) {
+	protected String getPermissionList( T statement ) {
         List<String> permissions = new ArrayList<String>(5);
         if ( statement.getSelect() ) {
         	permissions.add( "SELECT" );
@@ -35,12 +35,12 @@ public abstract class AbstractObjectPermissionGenerator<T extends AbstractObject
 	}
 
     @Override
-	public boolean supports(AbstractObjectPermissionStatement statement, Database database) {
+	public boolean supports(T statement, Database database) {
         return database instanceof OracleDatabase;
     }
 
     @Override
-	public ValidationErrors validate(AbstractObjectPermissionStatement statement,
+	public ValidationErrors validate(T statement,
                                      Database database, SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
         validationErrors.checkRequiredField("tableName", statement.getObjectName());

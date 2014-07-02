@@ -1,4 +1,4 @@
-package liquibase.ext.ora.grant.addgrant;
+package liquibase.ext.ora.grant.revokegrant;
 
 import static org.junit.Assert.assertEquals;
 
@@ -24,11 +24,11 @@ import liquibase.statement.SqlStatement;
 import org.junit.Before;
 import org.junit.Test;
 
-public class GrantObjectPermissionChangeTest extends BaseTestCase {
+public class RevokeObjectPermissionChangeTest extends BaseTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-        changeLogFile = "liquibase/ext/ora/grant/addgrant/changelog.test.xml";
+        changeLogFile = "liquibase/ext/ora/grant/revokegrant/changelog.test.xml";
         connectToDB();
         cleanDB();
 	}
@@ -40,7 +40,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void generateStatement() {
-        GrantObjectPermissionChange change = new GrantObjectPermissionChange();
+        RevokeObjectPermissionChange change = new RevokeObjectPermissionChange();
 
         change.setSchemaName("SCHEMA_NAME");
         change.setObjectName("TABLE_NAME");
@@ -53,7 +53,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
         SqlStatement[] statements = change.generateStatements(new OracleDatabase());
         assertEquals(1, statements.length);
-        GrantObjectPermissionStatement statement = (GrantObjectPermissionStatement) statements[0];
+        RevokeObjectPermissionStatement statement = (RevokeObjectPermissionStatement) statements[0];
 
         assertEquals("SCHEMA_NAME", statement.getSchemaName());
         assertEquals("TABLE_NAME", statement.getObjectName());
@@ -67,21 +67,21 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void getConfirmationMessage() {
-    	GrantObjectPermissionChange change = new GrantObjectPermissionChange();
+    	RevokeObjectPermissionChange change = new RevokeObjectPermissionChange();
 
         change.setObjectName("TABLE_NAME");
         change.setRecipientList("RECIPIENT_USER");
 
-        assertEquals("Grants on " + change.getObjectName() + " have been given to " + change.getRecipientList(),
+        assertEquals("Revoking grants on " + change.getObjectName() + " that had been given to " + change.getRecipientList(),
                 change.getConfirmationMessage());
     }
 
     @Test
     public void getChangeMetaData() {
-    	GrantObjectPermissionChange change = new GrantObjectPermissionChange();
+    	RevokeObjectPermissionChange change = new RevokeObjectPermissionChange();
 
-        assertEquals("grantObjectPermission", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("Grant Schema Object Permission", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
+        assertEquals("revokeObjectPermission", ChangeFactory.getInstance().getChangeMetaData(change).getName());
+        assertEquals("Revoke Schema Object Permission", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
         assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
     }
 
@@ -99,14 +99,14 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         changeLog.validate(database);
 
         List<ChangeSet> changeSets = changeLog.getChangeSets();
-        assertEquals( "number of changesets in the " + changeLogFile + " is incorrect", 2, changeSets.size() );
-        ChangeSet changeSet = changeSets.get(1);
+        assertEquals( "number of changesets in the " + changeLogFile + " is incorrect", 3, changeSets.size() );
+        ChangeSet changeSet = changeSets.get(2);
 
         assertEquals("Wrong number of changes found in changeset", 1, changeSet.getChanges().size());
         Change change = changeSet.getChanges().get(0);
 
         List<String> expectedQueries = new ArrayList<String>();
-        expectedQueries.add("GRANT SELECT,UPDATE,INSERT,DELETE ON LIQUIBASE.addgrant TO SYSTEM");
+        expectedQueries.add("REVOKE UPDATE,INSERT,DELETE ON LIQUIBASE.addgrant FROM SYSTEM");
 
         Sql[] sql = SqlGeneratorFactory.getInstance().generateSql(change.generateStatements(database)[0], database);
         assertEquals( "wrong number of statements generated", expectedQueries.size(), sql.length );
