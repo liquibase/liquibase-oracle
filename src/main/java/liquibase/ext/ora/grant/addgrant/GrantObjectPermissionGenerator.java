@@ -1,12 +1,14 @@
 package liquibase.ext.ora.grant.addgrant;
 
 import liquibase.database.Database;
-import liquibase.ext.ora.grant.AbstractObjectPermissionGenerator;
+import liquibase.database.core.OracleDatabase;
+import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
+import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class GrantObjectPermissionGenerator extends AbstractObjectPermissionGenerator<GrantObjectPermissionStatement> {
+public class GrantObjectPermissionGenerator extends AbstractSqlGenerator<GrantObjectPermissionStatement> {
 
 
     @Override
@@ -16,7 +18,7 @@ public class GrantObjectPermissionGenerator extends AbstractObjectPermissionGene
         StringBuilder sql = new StringBuilder();
 
         sql.append("GRANT ");
-        sql.append( getPermissionList(statement) );
+        sql.append( statement.getPermissionList() );
         sql.append( " ON " );
         sql.append(database.escapeTableName(null, statement.getSchemaName(), statement.getObjectName()));
         sql.append( " TO " );
@@ -25,4 +27,14 @@ public class GrantObjectPermissionGenerator extends AbstractObjectPermissionGene
         return new Sql[]{new UnparsedSql(sql.toString())};
     }
 
+    @Override
+	public boolean supports(GrantObjectPermissionStatement statement, Database database) {
+        return database instanceof OracleDatabase;
+    }
+
+    @Override
+    public ValidationErrors validate(GrantObjectPermissionStatement statement,
+    		Database database, SqlGeneratorChain sqlGeneratorChain) {
+    	return statement.validate();
+    }
 }

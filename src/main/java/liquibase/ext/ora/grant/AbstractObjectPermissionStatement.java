@@ -1,6 +1,12 @@
 package liquibase.ext.ora.grant;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import liquibase.exception.ValidationErrors;
 import liquibase.statement.AbstractSqlStatement;
+
+import org.apache.commons.lang.StringUtils;
 
 public abstract class AbstractObjectPermissionStatement extends
 		AbstractSqlStatement {
@@ -104,5 +110,40 @@ public abstract class AbstractObjectPermissionStatement extends
 	public void setExecute(Boolean execute) {
 		this.execute = execute;
 	}
+
+	public String getPermissionList() {
+        List<String> permissions = new ArrayList<String>(5);
+        if ( getSelect() ) {
+        	permissions.add( "SELECT" );
+        }
+        if ( getUpdate() ) {
+        	permissions.add( "UPDATE" );
+        }
+        if ( getInsert() ) {
+        	permissions.add( "INSERT" );
+        }
+        if ( getDelete() ) {
+        	permissions.add( "DELETE" );
+        }
+        if ( getExecute() ) {
+        	permissions.add( "EXECUTE" );
+        }
+        return StringUtils.join(permissions, ',');
+	}
+
+	public ValidationErrors validate() {
+        ValidationErrors validationErrors = new ValidationErrors();
+        validationErrors.checkRequiredField("tableName", getObjectName());
+        validationErrors.checkRequiredField("recipientList", getRecipientList());
+        if ( !getSelect()
+        		&& !getUpdate()
+        		&& !getInsert()
+        		&& !getDelete()
+        		&& !getExecute()
+        		) {
+        	validationErrors.addError("You must specify at least one permission.");
+        }
+        return validationErrors;
+    }
 
 }
