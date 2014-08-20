@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../liquibase/ext/ora/xml/dbchangelog-3.2.xsd 
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_1">
+        <createTable tableName="TABLE1">
+            <column name="one" type="varchar2(30)">
+            	<constraints primaryKey="true" />
+            </column>
+            <column name="two" type="varchar2(30)" />
+        </createTable>
+    </changeSet>
+
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_2">
+        <insert tableName="TABLE1">
+            <column name="one" value="first" />
+            <column name="two" value="second" />
+        </insert>
+    </changeSet>
+    
+    <!-- Special cleanup task, since Liquibase does not know to drop materialized views when clearing the schema. -->
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_3">
+    	<preConditions onFail="CONTINUE">
+    		<sqlCheck expectedResult="1">SELECT COUNT(*) FROM USER_MVIEWS WHERE mview_name = 'TABLE1_MVIEW'</sqlCheck>
+    	</preConditions>
+    	<ora:dropMaterializedView viewName="TABLE1_MVIEW" />
+    </changeSet>
+
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_4">
+        <ora:createMaterializedView subquery="select * from TABLE1" viewName="TABLE1_MVIEW" />
+    </changeSet>
+
+	<!-- Add a new row to the table so we can see if it gets copied by the refresh. -->
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_5">
+        <insert tableName="TABLE1">
+            <column name="one" value="third" />
+            <column name="two" value="fourth" />
+        </insert>
+    </changeSet>
+
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_6">
+        <ora:refreshMaterializedView viewName="TABLE1_MVIEW" atomicRefresh="true" refreshType="force" />
+        <ora:refreshMaterializedView viewName="TABLE1_MVIEW" atomicRefresh="false" refreshType="complete" />
+        <ora:refreshMaterializedView schemaName="LIQUIBASE" viewName="TABLE1_MVIEW" />
+    </changeSet>
+
+</databaseChangeLog>
