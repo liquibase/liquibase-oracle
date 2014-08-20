@@ -32,7 +32,7 @@ public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshM
                              SqlGeneratorChain sqlGeneratorChain) {
         StringBuilder sql = new StringBuilder();
 
-        sql.append("BEGIN DBMS_MVIEW.REFRESH( '");
+        sql.append("BEGIN DBMS_MVIEW.REFRESH('");
         if ( StringUtils.isNotBlank( statement.getSchemaName() ) ) {
             sql.append(statement.getSchemaName()).append(".");
         }
