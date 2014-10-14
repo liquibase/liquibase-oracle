@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd 
+        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+
+	<changeSet id="Drop synonym new_synonym" author="Ivan">
+		<ora:dropSynonym synonymName="new_synonym" />
+	</changeSet>
+</databaseChangeLog>
