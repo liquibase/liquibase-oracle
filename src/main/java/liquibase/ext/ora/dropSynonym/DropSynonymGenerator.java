@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class DropSynonymOracle extends AbstractSqlGenerator<DropSynonymStatement> {
+public class DropSynonymGenerator extends AbstractSqlGenerator<DropSynonymStatement> {
 
 	public boolean supports(DropSynonymStatement statement, Database database) {
 		return database instanceof OracleDatabase;
@@ -27,7 +27,7 @@ public class DropSynonymOracle extends AbstractSqlGenerator<DropSynonymStatement
 	public Sql[] generateSql(DropSynonymStatement statement, Database database, SqlGeneratorChain chain) {
 		StringBuilder sql = new StringBuilder("DROP ");
 
-		if (statement.isPublic()) {
+		if (statement.isPublic() != null && statement.isPublic()) {
 			sql.append("PUBLIC ");
 		}
 
@@ -39,7 +39,7 @@ public class DropSynonymOracle extends AbstractSqlGenerator<DropSynonymStatement
 
 		sql.append(statement.getSynonymName());
 
-		if (statement.isForce()) {
+		if (statement.isForce() != null && statement.isForce()) {
 			sql.append(" FORCE");
 		}
 

@@ -15,6 +15,7 @@ import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
+import liquibase.exception.LiquibaseException;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
 import liquibase.resource.ClassLoaderResourceAccessor;
@@ -105,6 +106,11 @@ public class LongUpdateTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
-        liquiBase.update((String) null);
+        try {
+            liquiBase.update((String) null);
+        } catch (LiquibaseException e) {
+            System.out.println("Error executing LongUpdateTest. If the error is: \"identifier 'DBMS_LOCK' must be declared\" you need to run 'GRANT exectue ON DBMS_LOCK to LBUSER' with SYS as SYSDBA");
+            throw e;
+        }
     }
 }

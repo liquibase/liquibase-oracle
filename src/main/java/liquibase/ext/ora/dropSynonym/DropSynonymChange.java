@@ -13,16 +13,16 @@ import liquibase.statement.SqlStatement;
 @DatabaseChange(name = "dropSynonym", description = "Drop synonym", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class DropSynonymChange extends AbstractChange {
 
-	private boolean isPublic = false;
+	private Boolean isPublic = false;
 	private String synonymSchemaName;
 	private String synonymName;
-	private boolean force = false;
+	private Boolean force;
 
-	public boolean isPublic() {
+	public Boolean isPublic() {
 		return isPublic;
 	}
 
-	public void setPublic(boolean isPublic) {
+	public void setPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 
@@ -42,11 +42,11 @@ public class DropSynonymChange extends AbstractChange {
 		this.synonymSchemaName = synonymSchemaName;
 	}
 
-	public boolean isForce() {
+	public Boolean isForce() {
 		return force;
 	}
 
-	public void setForce(boolean force) {
+	public void setForce(Boolean force) {
 		this.force = force;
 	}
 

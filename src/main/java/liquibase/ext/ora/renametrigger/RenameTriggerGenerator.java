@@ -9,7 +9,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class RenameTriggerOracle extends AbstractSqlGenerator<RenameTriggerStatement> {
+public class RenameTriggerGenerator extends AbstractSqlGenerator<RenameTriggerStatement> {
 
     public boolean supports(RenameTriggerStatement renameTriggertStatement, Database database) {
         return database instanceof OracleDatabase;

@@ -3,16 +3,16 @@ package liquibase.ext.ora.dropSynonym;
 import liquibase.statement.AbstractSqlStatement;
 
 public class DropSynonymStatement extends AbstractSqlStatement {
-	private boolean isPublic = false;
-	private boolean force = false;
+	private Boolean isPublic = false;
+	private Boolean force = false;
 	private String synonymName;
 	private String synonymSchemaName;
 
-	public boolean isPublic() {
+	public Boolean isPublic() {
 		return isPublic;
 	}
 
-	public void setPublic(boolean isPublic) {
+	public void setPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 
@@ -32,11 +32,11 @@ public class DropSynonymStatement extends AbstractSqlStatement {
 		this.synonymSchemaName = synonymSchemaName;
 	}
 
-	public boolean isForce() {
+	public Boolean isForce() {
 		return force;
 	}
 
-	public void setForce(boolean force) {
+	public void setForce(Boolean force) {
 		this.force = force;
 	}
 }

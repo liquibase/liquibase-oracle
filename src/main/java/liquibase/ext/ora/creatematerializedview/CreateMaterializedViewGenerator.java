@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class CreateMaterializedViewOracle extends AbstractSqlGenerator<CreateMaterializedViewStatement> {
+public class CreateMaterializedViewGenerator extends AbstractSqlGenerator<CreateMaterializedViewStatement> {
 
     public boolean supports(CreateMaterializedViewStatement createMaterializedViewStatement, Database database) {
         return database instanceof OracleDatabase;

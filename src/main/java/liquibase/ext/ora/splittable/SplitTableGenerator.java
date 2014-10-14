@@ -7,18 +7,18 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.change.ColumnConfig;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.ValidationErrors;
 import liquibase.exception.Warnings;
-import liquibase.ext.ora.createtrigger.CreateTriggerOracle;
+import liquibase.ext.ora.createtrigger.CreateTriggerGenerator;
 import liquibase.ext.ora.createtrigger.CreateTriggerStatement;
-import liquibase.ext.ora.droptrigger.DropTriggerOracle;
+import liquibase.ext.ora.droptrigger.DropTriggerGenerator;
 import liquibase.ext.ora.droptrigger.DropTriggerStatement;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
-import liquibase.sqlgenerator.SqlGenerator;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 import liquibase.sqlgenerator.core.AddColumnGenerator;
@@ -97,7 +97,7 @@ public class SplitTableGenerator extends AbstractSqlGenerator<SplitTableStatemen
 
         AddForeignKeyConstraintGenerator FKGenerator = new AddForeignKeyConstraintGenerator();
         AddColumnGenerator ColGenerator = new AddColumnGenerator();
-        CreateTriggerOracle trigger = new CreateTriggerOracle();
+        CreateTriggerGenerator trigger = new CreateTriggerGenerator();
 
         Statement stat;
         ResultSet result;
@@ -199,11 +199,11 @@ public class SplitTableGenerator extends AbstractSqlGenerator<SplitTableStatemen
                 null,
                 statement.getSplitTableSchemaName(),
                 statement.getSplitTableName(),
-                statement.getPrimaryKeyColumnName(),
+                new ColumnConfig[] {new ColumnConfig().setName(statement.getPrimaryKeyColumnName())},
                 null,
                 statement.getNewTableSchemaName(),
                 statement.getNewTableName(),
-                statement.getPrimaryKeyColumnName()), database, sqlGeneratorChain)[0].toSql()));
+                new ColumnConfig[] {new ColumnConfig().setName(statement.getPrimaryKeyColumnName())}), database, sqlGeneratorChain)[0].toSql()));
 
         if (isTransition) {
             // TRIGGER BEFORE INSERT
@@ -283,7 +283,7 @@ public class SplitTableGenerator extends AbstractSqlGenerator<SplitTableStatemen
 
     private void Resulting(SplitTableStatement statement, Database database, SqlGeneratorChain sqlGeneratorChain) {
 
-        DropTriggerOracle dto = new DropTriggerOracle();
+        DropTriggerGenerator dto = new DropTriggerGenerator();
         DropTriggerStatement dts = new DropTriggerStatement(statement.getNewTableSchemaName(), "sequence_trigger_"
                 + statement.getNewTableName());
 

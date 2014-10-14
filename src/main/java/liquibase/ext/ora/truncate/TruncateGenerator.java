@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class TruncateOracle extends AbstractSqlGenerator<TruncateStatement> {
+public class TruncateGenerator extends AbstractSqlGenerator<TruncateStatement> {
 
     public boolean supports(TruncateStatement truncateStatement, Database database) {
         return database instanceof OracleDatabase;

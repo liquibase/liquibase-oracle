@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class LongUpdateOracle extends AbstractSqlGenerator<LongUpdateStatement> {
+public class LongUpdateGenerator extends AbstractSqlGenerator<LongUpdateStatement> {
 
     public boolean supports(LongUpdateStatement longUpdateStatement, Database database) {
         return database instanceof OracleDatabase;

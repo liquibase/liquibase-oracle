@@ -13,27 +13,27 @@ import liquibase.statement.SqlStatement;
 @DatabaseChange(name = "createSynonym", description = "Create synonym", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class CreateSynonymChange extends AbstractChange {
 	
-	private boolean replace = false;
-	private boolean isPublic = false;
+	private Boolean replace;
+	private Boolean isPublic;
 	private String objectName;
 	private String objectSchemaName;
 
 	private String synonymName;
 	private String synonymSchemaName;
 
-	public boolean isReplace() {
+	public Boolean isReplace() {
 		return replace;
 	}
 
-	public void setReplace(boolean replace) {
+	public void setReplace(Boolean replace) {
 		this.replace = replace;
 	}
 
-	public boolean isPublic() {
+	public Boolean isPublic() {
 		return isPublic;
 	}
 
-	public void setPublic(boolean isPublic) {
+	public void setPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 

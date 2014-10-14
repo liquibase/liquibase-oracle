@@ -9,7 +9,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class AddDeferredPrimaryKeyOracle extends AbstractSqlGenerator<AddDeferredPrimaryKeyStatement> {
+public class AddDeferredPrimaryKeyGenerator extends AbstractSqlGenerator<AddDeferredPrimaryKeyStatement> {
 
     public Sql[] generateSql(AddDeferredPrimaryKeyStatement statement, Database database,
                              SqlGeneratorChain sqlGeneratorChain) {

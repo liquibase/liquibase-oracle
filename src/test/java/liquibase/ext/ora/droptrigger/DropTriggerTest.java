@@ -89,7 +89,7 @@ public class DropTriggerTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("DROP TRIGGER LIQUIBASE.zuiolTrigger");
+        expectedQuery.add("DROP TRIGGER LBUSER.zuiolTrigger");
 
         int i = 0;
 

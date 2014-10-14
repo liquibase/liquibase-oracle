@@ -4,27 +4,27 @@ import liquibase.statement.AbstractSqlStatement;
 
 public class CreateSynonymStatement extends AbstractSqlStatement {
 	
-	private boolean replace = false;
-	private boolean isPublic = false;
+	private Boolean replace = false;
+	private Boolean isPublic = false;
 	private String objectName;
 	private String objectSchemaName;
 
 	private String synonymName;
 	private String synonymSchemaName;
 
-	public boolean isReplace() {
+	public Boolean isReplace() {
 		return replace;
 	}
 
-	public void setReplace(boolean replace) {
+	public void setReplace(Boolean replace) {
 		this.replace = replace;
 	}
 
-	public boolean isPublic() {
+	public Boolean isPublic() {
 		return isPublic;
 	}
 
-	public void setPublic(boolean isPublic) {
+	public void setPublic(Boolean isPublic) {
 		this.isPublic = isPublic;
 	}
 

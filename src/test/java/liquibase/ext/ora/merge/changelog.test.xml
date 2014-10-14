@@ -2,8 +2,8 @@
         xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
         xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../../java/liquibase/ext/ora/xml/dbchangelog-2.0.xsd
-        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../../java/liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="tomek" id="1">
         <sql>CREATE TABLE myTable(pid NUMBER, sales number, status varchar2(6))</sql>
@@ -48,12 +48,12 @@
 
 
     <changeSet author="tomek" id="4">
-        <ora:merge targetTableName="myTable2 m"
-                   sourceTableName="myTable d"
-                   onCondition="m.pid=d.pid"
-                   insertColumnsValueList="d.pid,d.sales,'OLD'"
-                   updateList="m.sales=m.sales+d.sales,m.status=d.status"
-                   deleteCondition="m.status='OBS'"
+        <ora:merge targetTableName="myTable2"
+                   sourceTableName="myTable"
+                   onCondition="myTable2.pid=myTable.pid"
+                   insertColumnsValueList="myTable.pid,myTable.sales,'OLD'"
+                   updateList="myTable2.sales=myTable2.sales+myTable.sales,myTable2.status=myTable.status"
+                   deleteCondition="myTable2.status='OBS'"
                 />
     </changeSet>
 

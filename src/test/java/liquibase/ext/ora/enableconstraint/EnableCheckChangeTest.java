@@ -97,7 +97,7 @@ public class EnableCheckChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE LIQUIBASE.test ENABLE CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LBUSER.test ENABLE CONSTRAINT tom_check");
 
         ChangeSet changeSet = changeSets.get(2);
         Change change = changeSet.getChanges().get(0);

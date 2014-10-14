@@ -89,7 +89,7 @@ public class EnableTriggerTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TRIGGER LIQUIBASE.RenamedZuiolTrigger ENABLE");
+        expectedQuery.add("ALTER TRIGGER RenamedZuiolTrigger ENABLE");
 
         int i = 0;
 

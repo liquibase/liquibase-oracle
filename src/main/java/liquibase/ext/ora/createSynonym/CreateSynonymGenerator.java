@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class CreateSynonymOracle extends AbstractSqlGenerator<CreateSynonymStatement> {
+public class CreateSynonymGenerator extends AbstractSqlGenerator<CreateSynonymStatement> {
 
 	public boolean supports(CreateSynonymStatement statement, Database database) {
 		return database instanceof OracleDatabase;
@@ -29,11 +29,11 @@ public class CreateSynonymOracle extends AbstractSqlGenerator<CreateSynonymState
 	 */
 	public Sql[] generateSql(CreateSynonymStatement statement, Database database, SqlGeneratorChain chain) {
 		StringBuilder sql = new StringBuilder("CREATE ");
-		if (statement.isReplace()) {
+		if (statement.isReplace() != null && statement.isReplace()) {
 			sql.append("OR REPLACE ");
 		}
 
-		if (statement.isPublic()) {
+		if (statement.isPublic() != null && statement.isPublic()) {
 			sql.append("PUBLIC ");
 		}
 

@@ -97,7 +97,7 @@ public class DisableConstraintChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE LIQUIBASE.test DISABLE CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LBUSER.test DISABLE CONSTRAINT tom_check");
 
         int i = 0;
 

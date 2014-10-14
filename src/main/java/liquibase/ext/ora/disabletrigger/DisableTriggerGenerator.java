@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class DisableTriggerOracle extends AbstractSqlGenerator<DisableTriggerStatement> {
+public class DisableTriggerGenerator extends AbstractSqlGenerator<DisableTriggerStatement> {
 
     public boolean supports(DisableTriggerStatement disableTriggertStatement, Database database) {
         return database instanceof OracleDatabase;

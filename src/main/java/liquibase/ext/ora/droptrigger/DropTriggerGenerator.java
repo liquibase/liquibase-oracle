@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class DropTriggerOracle extends AbstractSqlGenerator<DropTriggerStatement> {
+public class DropTriggerGenerator extends AbstractSqlGenerator<DropTriggerStatement> {
 
     public boolean supports(DropTriggerStatement statement, Database database) {
         return (database instanceof OracleDatabase);

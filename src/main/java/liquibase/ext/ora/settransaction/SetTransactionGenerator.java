@@ -8,7 +8,7 @@ import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
 
-public class SetTransactionOracle extends AbstractSqlGenerator<SetTransactionStatement> {
+public class SetTransactionGenerator extends AbstractSqlGenerator<SetTransactionStatement> {
 
     public boolean supports(SetTransactionStatement setTransactionStatement, Database database) {
         return database instanceof OracleDatabase;

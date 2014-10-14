@@ -2,6 +2,9 @@ package liquibase.ext.ora.synonym.createSynonym;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
+
+import liquibase.Contexts;
+import liquibase.LabelExpression;
 import liquibase.ext.ora.synonym.BaseSynonymTest;
 
 import org.junit.Before;
@@ -20,10 +23,10 @@ public class CreateSynonymDbTest extends BaseSynonymTest {
 	public void testCompare() throws Exception {
 		assertFalse(synonymExists());
 
-		liquiBase.update(null);
+		liquiBase.update(new Contexts());
 		assertTrue(synonymExists());
 
-		liquiBase.rollback(1, null);
+		liquiBase.rollback(1, new Contexts(), new LabelExpression());
 		assertFalse(synonymExists());
 	}
 

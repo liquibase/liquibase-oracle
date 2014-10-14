@@ -116,9 +116,7 @@ public class MergeChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("MERGE INTO LIQUIBASE.myTable2 m " + "USING LIQUIBASE.myTable d " + "ON (m.pid=d.pid) "
-                + "WHEN MATCHED THEN UPDATE SET m.sales=m.sales+d.sales,m.status=d.status " + "DELETE WHERE (m.status='OBS') "
-                + "WHEN NOT MATCHED THEN INSERT VALUES(d.pid,d.sales,'OLD')");
+        expectedQuery.add("MERGE INTO LBUSER.myTable2 USING LBUSER.myTable ON (myTable2.pid=myTable.pid) WHEN MATCHED THEN UPDATE SET myTable2.sales=myTable2.sales+myTable.sales,myTable2.status=myTable.status DELETE WHERE (myTable2.status='OBS') WHEN NOT MATCHED THEN INSERT VALUES(myTable.pid,myTable.sales,'OLD')");
 
         int i = 0;
 

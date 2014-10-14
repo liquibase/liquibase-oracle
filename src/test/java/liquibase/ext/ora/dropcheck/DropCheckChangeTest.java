@@ -96,7 +96,7 @@ public class DropCheckChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("ALTER TABLE LIQUIBASE.test drop CONSTRAINT tom_check");
+        expectedQuery.add("ALTER TABLE LBUSER.test drop CONSTRAINT tom_check");
 
         int i = 0;
 

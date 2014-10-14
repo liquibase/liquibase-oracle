@@ -5,6 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import liquibase.Contexts;
+import liquibase.LabelExpression;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -94,7 +96,7 @@ public class CreateSynonymTest extends BaseTestCase {
 		DatabaseChangeLog changeLog = ChangeLogParserFactory.getInstance().getParser(changeLogFile, resourceAccessor).parse(changeLogFile,
 				changeLogParameters, resourceAccessor);
 
-		database.checkDatabaseChangeLogTable(false, changeLog);
+        liquiBase.checkLiquibaseTables(false, changeLog, new Contexts(), new LabelExpression());
 		changeLog.validate(database);
 
 		List<ChangeSet> changeSets = changeLog.getChangeSets();
@@ -107,7 +109,7 @@ public class CreateSynonymTest extends BaseTestCase {
 
 	@Test
 	public void test() throws Exception {
-		liquiBase.update(null);
-		liquiBase.rollback(1, null);
+		liquiBase.update(new Contexts());
+		liquiBase.rollback(1, new Contexts(), new LabelExpression());
 	}
 }

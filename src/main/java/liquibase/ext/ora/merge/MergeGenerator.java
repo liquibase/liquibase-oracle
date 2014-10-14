@@ -41,9 +41,9 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
             }
             sql.deleteCharAt(sql.lastIndexOf(","));
             if (statement.getUpdateCondition() != null)
-                sql.append(" WHERE (").append(database.escapeObjectName(statement.getUpdateCondition(), Table.class)).append(")");
+                sql.append(" WHERE (").append(statement.getUpdateCondition()).append(")");
             if (statement.getDeleteCondition() != null)
-                sql.append(" DELETE WHERE (").append(database.escapeObjectName(statement.getDeleteCondition(), Table.class)).append(")");
+                sql.append(" DELETE WHERE (").append(statement.getDeleteCondition()).append(")");
         }
 
         if (insertColumnsValue != null) {
