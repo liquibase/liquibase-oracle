@@ -15,12 +15,21 @@ public class CreateSynonymDbTest extends BaseSynonymTest {
 	@Before
 	public void setUp() throws Exception {
 		changeLogFile = "liquibase/ext/ora/synonym/createSynonym/changelog.text.xml";
+
+		if (connection == null) {
+			return;
+		}
+
 		connectToDB();
 		cleanDB();
 	}
 
 	@Test
 	public void testCompare() throws Exception {
+		if (connection == null) {
+			return;
+		}
+
 		assertFalse(synonymExists());
 
 		liquiBase.update(new Contexts());

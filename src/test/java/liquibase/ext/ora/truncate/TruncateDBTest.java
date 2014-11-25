@@ -29,6 +29,11 @@ public class TruncateDBTest extends BaseTestCase {
     @Before
     public void setUp() throws Exception {
         changeLogFile = "liquibase/ext/ora/truncate/changelog.test.xml";
+
+        if (connection == null) {
+            return;
+        }
+
         connectToDB();
         cleanDB();
         liquiBase.update((String) null);
@@ -36,6 +41,10 @@ public class TruncateDBTest extends BaseTestCase {
 
     @Test
     public void testCompare() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
         actualDataSet.addTable(TABLE_NAME, "SELECT * FROM " + TABLE_NAME);
 

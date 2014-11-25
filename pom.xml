@@ -56,13 +56,16 @@
         <!--<type>test-jar</type>-->
         <!--<scope>test</scope>-->
         <!--</dependency>-->
+
+        <!-- TO PHYSICALLY RUN TESTS AGAINST THE DATABASE UNCOMMENT THIS DEPENDENCY -->
+        <!-- NOT ENABLE BY DEFAULT SO BUILDSERVER RUNS SUCCESSFULLY -->
         <!-- Download from http://www.oracle.com/technetwork/database/enterprise-edition/jdbc-112010-090769.html -->
-        <dependency>
-            <groupId>com.oracle</groupId>
-            <artifactId>ojdbc6</artifactId>
-            <version>${oracle.version}</version>
-            <scope>test</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.oracle</groupId>-->
+            <!--<artifactId>ojdbc6</artifactId>-->
+            <!--<version>${oracle.version}</version>-->
+            <!--<scope>test</scope>-->
+        <!--</dependency>-->
     </dependencies>
     <description>Some tags to work on Oracle DB.</description>
     <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>

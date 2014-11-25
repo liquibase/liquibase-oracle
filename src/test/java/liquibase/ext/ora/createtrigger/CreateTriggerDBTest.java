@@ -34,6 +34,9 @@ public class CreateTriggerDBTest extends BaseTestCase {
 
     @Test
     public void testCompare() throws Exception {
+        if (connection == null) {
+            return;
+        }
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
         liquiBase.update((String) null);

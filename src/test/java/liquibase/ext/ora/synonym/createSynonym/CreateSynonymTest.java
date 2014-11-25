@@ -109,6 +109,9 @@ public class CreateSynonymTest extends BaseTestCase {
 
 	@Test
 	public void test() throws Exception {
+		if (connection == null) {
+			return;
+		}
 		liquiBase.update(new Contexts());
 		liquiBase.rollback(1, new Contexts(), new LabelExpression());
 	}

@@ -3,6 +3,7 @@ package liquibase.ext.ora.synonym;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
 import liquibase.ext.ora.testing.BaseTestCase;
 
@@ -11,7 +12,7 @@ public abstract class BaseSynonymTest extends BaseTestCase {
 			+ "WHERE synonym_name = 'NEW_SYNONYM'";
 
 	protected boolean synonymExists() throws SQLException, DatabaseException {
-		ResultSet result = jdbcConnection.createStatement().executeQuery(SYNONYM_CHECK);
+		ResultSet result = ((JdbcConnection) jdbcConnection).createStatement().executeQuery(SYNONYM_CHECK);
 		return result.next();
 	}
 

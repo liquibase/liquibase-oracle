@@ -106,6 +106,10 @@ public class LongUpdateTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         try {
             liquiBase.update((String) null);
         } catch (LiquibaseException e) {

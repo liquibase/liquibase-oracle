@@ -35,6 +35,9 @@ public class AddCheckChangeTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
+        if (connection == null) {
+            return;
+        }
         liquiBase.update("null");
 
     }
