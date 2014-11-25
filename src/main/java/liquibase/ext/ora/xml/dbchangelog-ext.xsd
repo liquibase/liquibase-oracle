@@ -260,6 +260,36 @@
         </xsd:complexType>
     </xsd:element>
 
+    <!-- grantObjectPermission -->
+
+    <xsd:element name="grantObjectPermission">
+        <xsd:complexType>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="objectName" type="xsd:string" use="required"/>
+            <xsd:attribute name="recipientList" type="xsd:string" use="required"/>
+	        <xsd:attribute name="select" type="xsd:boolean"/>
+	        <xsd:attribute name="update" type="xsd:boolean"/>
+	        <xsd:attribute name="insert" type="xsd:boolean"/>
+	        <xsd:attribute name="delete" type="xsd:boolean"/>
+	        <xsd:attribute name="execute" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+
+    <!-- revokeObjectPermission -->
+
+    <xsd:element name="revokeObjectPermission">
+        <xsd:complexType>
+            <xsd:attribute name="schemaName" type="xsd:string"/>
+            <xsd:attribute name="objectName" type="xsd:string" use="required"/>
+            <xsd:attribute name="recipientList" type="xsd:string" use="required"/>
+	        <xsd:attribute name="select" type="xsd:boolean"/>
+	        <xsd:attribute name="update" type="xsd:boolean"/>
+	        <xsd:attribute name="insert" type="xsd:boolean"/>
+	        <xsd:attribute name="delete" type="xsd:boolean"/>
+	        <xsd:attribute name="execute" type="xsd:boolean"/>
+        </xsd:complexType>
+    </xsd:element>
+
 	<!-- Create synonym -->
     <xsd:element name="createSynonym">
         <xsd:complexType>
