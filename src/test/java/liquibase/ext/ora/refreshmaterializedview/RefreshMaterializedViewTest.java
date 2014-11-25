@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import liquibase.Contexts;
+import liquibase.LabelExpression;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -72,6 +73,9 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
 
     @Test
     public void parseAndGenerate() throws Exception {
+        if (connection == null) {
+            return;
+        }
         Database database = liquiBase.getDatabase();
         ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
@@ -79,11 +83,11 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
         		.getParser(changeLogFile, resourceAccessor)
         		.parse(changeLogFile, new ChangeLogParameters(), resourceAccessor);
 
-        liquiBase.checkLiquibaseTables( false, changeLog, new Contexts() );
+        liquiBase.checkLiquibaseTables( false, changeLog, new Contexts(), new LabelExpression());
 
         changeLog.validate(database);
 
-        List<String> expectedSql = new ArrayList<>();
+        List<String> expectedSql = new ArrayList<String>();
         expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('TABLE1_MVIEW','?',ATOMIC_REFRESH=>TRUE); END;");
         expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('TABLE1_MVIEW','C',ATOMIC_REFRESH=>FALSE); END;");
         expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('LIQUIBASE.TABLE1_MVIEW','?',ATOMIC_REFRESH=>FALSE); END;");
@@ -94,7 +98,7 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
         ChangeSet changeSet = changeSets.get(changeSets.size()-1);
         assertEquals( "Test is out of sync with the changelog.test.xml file.  # of changes in changeset", 3, changeSet.getChanges().size() );
 
-        List<String> actualSql = new ArrayList<>();
+        List<String> actualSql = new ArrayList<String>();
 
         for (Change change : changeSet.getChanges()) {
             Sql[] sql = SqlGeneratorFactory.getInstance().generateSql(change.generateStatements(database)[0], database);
@@ -107,6 +111,10 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
 
     @Test
     public void testUpdate() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         liquiBase.update(new Contexts());
     }
 }

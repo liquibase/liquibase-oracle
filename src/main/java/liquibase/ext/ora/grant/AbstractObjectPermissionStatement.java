@@ -5,8 +5,7 @@ import java.util.List;
 
 import liquibase.exception.ValidationErrors;
 import liquibase.statement.AbstractSqlStatement;
-
-import org.apache.commons.lang.StringUtils;
+import liquibase.util.StringUtils;
 
 public abstract class AbstractObjectPermissionStatement extends
 		AbstractSqlStatement {
@@ -128,7 +127,7 @@ public abstract class AbstractObjectPermissionStatement extends
         if ( getExecute() ) {
         	permissions.add( "EXECUTE" );
         }
-        return StringUtils.join(permissions, ',');
+        return StringUtils.join(permissions, ",");
 	}
 
 	public ValidationErrors validate() {

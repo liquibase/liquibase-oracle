@@ -32,6 +32,10 @@ public class RefreshMaterializedViewDBTest extends BaseTestCase {
 
     @Test
     public void testRefreshWorked() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         QueryDataSet actualDataSet = new QueryDataSet(getConnection());
 
         liquiBase.update(new Contexts());

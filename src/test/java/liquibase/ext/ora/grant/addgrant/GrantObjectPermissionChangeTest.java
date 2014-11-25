@@ -35,6 +35,10 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void test() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         liquiBase.update("null");
     }
 
@@ -87,6 +91,10 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void parseAndGenerate() throws Exception {
+        if (connection == null) {
+            return;
+        }
+
         Database database = liquiBase.getDatabase();
         ResourceAccessor resourceAccessor = new FileSystemResourceAccessor("src/test/java");
 

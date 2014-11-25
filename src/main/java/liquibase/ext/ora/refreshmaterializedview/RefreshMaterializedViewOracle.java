@@ -7,8 +7,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
-
-import org.apache.commons.lang.StringUtils;
+import liquibase.util.StringUtils;
 
 public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshMaterializedViewStatement> {
 
@@ -33,20 +32,18 @@ public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshM
         StringBuilder sql = new StringBuilder();
 
         sql.append("BEGIN DBMS_MVIEW.REFRESH('");
-        if ( StringUtils.isNotBlank( statement.getSchemaName() ) ) {
+        if ( StringUtils.trimToNull(statement.getSchemaName())  != null) {
             sql.append(statement.getSchemaName()).append(".");
         }
         sql.append(statement.getViewName());
         sql.append( "','" );
-        switch ( statement.getRefreshType() ) {
-        	case  "fast" :
-        		sql.append( 'F' );
-        		break;
-        	case  "complete" :
+
+        String refreshType = statement.getRefreshType();
+        if (refreshType.equals("fast")) {
+            sql.append( 'F' );
+        } else if (refreshType.equals("complete")) {
         		sql.append( 'C' );
-        		break;
-        	case  "force" :
-        	default :
+        } else if (refreshType.equals("complete")) {
         		sql.append( '?' );
         }
         sql.append( "',ATOMIC_REFRESH=>" ).append( statement.getAtomicRefresh().toString().toUpperCase() );
