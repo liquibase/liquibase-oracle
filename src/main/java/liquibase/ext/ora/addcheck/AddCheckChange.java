@@ -38,6 +38,10 @@ public class AddCheckChange extends CheckAttribute {
     }
 
     protected Change[] createInverses() {
+        if (getConstraintName() == null) {
+            return null;
+        }
+
         DropCheckChange inverse = new DropCheckChange();
         inverse.setSchemaName(getSchemaName());
         inverse.setTableName(getTableName());
