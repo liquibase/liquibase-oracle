@@ -196,6 +196,16 @@
             <xsd:attribute name="schemaName" type="xsd:string"></xsd:attribute>
         </xsd:complexType>
     </xsd:element>
+    
+    <!-- Refresh Materialized View -->
+    <xsd:element name="refreshMaterializedView">
+        <xsd:complexType>
+            <xsd:attribute name="viewName" type="xsd:string" use="required" />
+            <xsd:attribute name="schemaName" type="xsd:string" />
+            <xsd:attribute name="refreshType" type="MaterializedViewRefreshType" default="force" />
+            <xsd:attribute name="atomicRefresh" type="xsd:boolean" default="false" />
+        </xsd:complexType>
+    </xsd:element>
 
     <!--  Truncate -->
 
