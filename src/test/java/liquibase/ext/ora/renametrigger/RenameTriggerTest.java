@@ -74,6 +74,9 @@ public class RenameTriggerTest extends BaseTestCase {
 
     @Test
     public void parseAndGenerate() throws Exception {
+        if (connection == null) {
+            return;
+        }
 
         Database database = liquiBase.getDatabase();
         ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
