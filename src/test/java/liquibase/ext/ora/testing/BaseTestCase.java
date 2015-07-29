@@ -46,7 +46,7 @@ public class BaseTestCase {
                 jdbcConnection = new JdbcConnection(connection);
 
             } catch (ClassNotFoundException e) {
-                jdbcConnection = new OfflineConnection("offline:oracle?catalog=LBUSER");
+                jdbcConnection = new OfflineConnection("offline:oracle?catalog=LBUSER", new ClassLoaderResourceAccessor());
             }
 
 
