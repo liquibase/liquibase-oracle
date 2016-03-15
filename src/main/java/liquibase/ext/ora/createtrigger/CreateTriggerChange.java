@@ -163,7 +163,7 @@ public class CreateTriggerChange extends AbstractChange {
     }
 
     public String getConfirmationMessage() {
-        return "Trigger" + getTriggerName() + " has been created";
+        return "Trigger " + getTriggerName() + " has been created";
     }
 
     protected Change[] createInverses() {

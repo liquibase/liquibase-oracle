@@ -38,11 +38,11 @@ public class CreateTriggerTest extends BaseTestCase {
 
     @Test
     public void getChangeMetaData() {
-        CreateTriggerChange addPrimaryKeyChange = new CreateTriggerChange();
+        CreateTriggerChange createTriggerChange = new CreateTriggerChange();
 
-        assertEquals("createTrigger", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getName());
-        assertEquals("Create Trigger", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getPriority());
+        assertEquals("createTrigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getName());
+        assertEquals("Create Trigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getPriority());
     }
 
     @Test
@@ -50,7 +50,7 @@ public class CreateTriggerTest extends BaseTestCase {
         CreateTriggerChange change = new CreateTriggerChange();
         change.setTriggerName("TRIGGER_NAME");
 
-        assertEquals("Trigger TRIGGER_NAME has been created", "Trigger " + change.getTriggerName() + " has been created");
+        assertEquals("Trigger TRIGGER_NAME has been created", change.getConfirmationMessage());
     }
 
     @Test
@@ -81,23 +81,24 @@ public class CreateTriggerTest extends BaseTestCase {
         assertEquals(1, sqlStatements.length);
         assertTrue(sqlStatements[0] instanceof CreateTriggerStatement);
 
-        assertEquals("SCHEMA_NAME", ((CreateTriggerStatement) sqlStatements[0]).getSchemaName());
-        assertEquals("TABLE_NAME", ((CreateTriggerStatement) sqlStatements[0]).getTableName());
-        assertEquals("COLUMN_NAMES", ((CreateTriggerStatement) sqlStatements[0]).getColumnNames());
-        assertEquals("TABLESPACE_NAME", ((CreateTriggerStatement) sqlStatements[0]).getTablespace());
-        assertEquals("AFTER_BEFORE_INSTEADOF", ((CreateTriggerStatement) sqlStatements[0]).getAfterBeforeInsteadOf());
-        assertEquals("NESTED_TABLE_COLUMN", ((CreateTriggerStatement) sqlStatements[0]).getNestedTableColumn());
-        assertEquals("POCEDURE", ((CreateTriggerStatement) sqlStatements[0]).getProcedure());
-        assertEquals("TRIGGER_NAME", ((CreateTriggerStatement) sqlStatements[0]).getTriggerName());
-        assertEquals("VIEW_NAME", ((CreateTriggerStatement) sqlStatements[0]).getViewName());
-        assertEquals("WHEN_CONDITION", ((CreateTriggerStatement) sqlStatements[0]).getWhenCondition());
+        CreateTriggerStatement sqlStatement = (CreateTriggerStatement) sqlStatements[0];
+        assertEquals("SCHEMA_NAME", sqlStatement.getSchemaName());
+        assertEquals("TABLE_NAME", sqlStatement.getTableName());
+        assertEquals("COLUMN_NAMES", sqlStatement.getColumnNames());
+        assertEquals("TABLESPACE_NAME", sqlStatement.getTablespace());
+        assertEquals("AFTER_BEFORE_INSTEADOF", sqlStatement.getAfterBeforeInsteadOf());
+        assertEquals("NESTED_TABLE_COLUMN", sqlStatement.getNestedTableColumn());
+        assertEquals("POCEDURE", sqlStatement.getProcedure());
+        assertEquals("TRIGGER_NAME", sqlStatement.getTriggerName());
+        assertEquals("VIEW_NAME", sqlStatement.getViewName());
+        assertEquals("WHEN_CONDITION", sqlStatement.getWhenCondition());
 
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getUpdate());
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getUpdateOf());
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getReplace());
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getDelete());
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getForEachRow());
-        assertTrue(((CreateTriggerStatement) sqlStatements[0]).getInsert());
+        assertTrue(sqlStatement.getUpdate());
+        assertTrue(sqlStatement.getUpdateOf());
+        assertTrue(sqlStatement.getReplace());
+        assertTrue(sqlStatement.getDelete());
+        assertTrue(sqlStatement.getForEachRow());
+        assertTrue(sqlStatement.getInsert());
     }
 
     @Test
