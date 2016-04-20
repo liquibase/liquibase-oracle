@@ -49,6 +49,7 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
         if (insertColumnsValue != null) {
             sql.append(" WHEN NOT MATCHED THEN INSERT ");
             if (insertColumnsName != null) {
+            	sql.append("(");
                 for (String list : insertColumnsName) {
                     sql.append(list).append(",");
                 }
