@@ -1,0 +1,5 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <USER_COL_COMMENTS TABLE_NAME="FOR_COMMENT" COLUMN_NAME="ID" COMMENTS="My comment 'quoted'" />
+    <USER_TAB_COMMENTS TABLE_NAME="FOR_COMMENT" TABLE_TYPE="TABLE" COMMENTS="My TABLE comment 'quoted'" />
+</dataset>
