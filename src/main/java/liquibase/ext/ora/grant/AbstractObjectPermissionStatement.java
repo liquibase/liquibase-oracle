@@ -2,7 +2,6 @@ package liquibase.ext.ora.grant;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import liquibase.exception.ValidationErrors;
 import liquibase.statement.AbstractSqlStatement;
 import liquibase.util.StringUtils;
@@ -18,6 +17,9 @@ public abstract class AbstractObjectPermissionStatement extends
 	private Boolean insert = Boolean.FALSE;
 	private Boolean delete = Boolean.FALSE;
 	private Boolean execute = Boolean.FALSE;
+  private Boolean references = Boolean.FALSE;
+  private Boolean index = Boolean.FALSE;
+  private Boolean grantOption = Boolean.FALSE;
 
 	public AbstractObjectPermissionStatement() {
 		super();
@@ -110,39 +112,71 @@ public abstract class AbstractObjectPermissionStatement extends
 		this.execute = execute;
 	}
 
+  public Boolean getGrantOption() {
+    return grantOption;
+  }
+
+  public void setGrantOption(final Boolean grantOption) {
+    this.grantOption = grantOption;
+  }
+
+  public Boolean getReferences() {
+    return references;
+  }
+
+  public void setReferences(final Boolean references) {
+    this.references = references;
+  }
+
+  public Boolean getIndex() {
+    return index;
+  }
+
+  public void setIndex(final Boolean index) {
+    this.index = index;
+  }
+
 	public String getPermissionList() {
-        List<String> permissions = new ArrayList<String>(5);
-        if ( getSelect() ) {
-        	permissions.add( "SELECT" );
-        }
-        if ( getUpdate() ) {
-        	permissions.add( "UPDATE" );
-        }
-        if ( getInsert() ) {
-        	permissions.add( "INSERT" );
-        }
-        if ( getDelete() ) {
-        	permissions.add( "DELETE" );
-        }
-        if ( getExecute() ) {
-        	permissions.add( "EXECUTE" );
-        }
-        return StringUtils.join(permissions, ",");
-	}
+    List<String> permissions = new ArrayList<String>(5);
+    if (getSelect()) {
+      permissions.add("SELECT");
+    }
+    if (getUpdate()) {
+      permissions.add("UPDATE");
+    }
+    if (getInsert()) {
+      permissions.add("INSERT");
+    }
+    if (getDelete()) {
+      permissions.add("DELETE");
+    }
+    if (getExecute()) {
+      permissions.add("EXECUTE");
+    }
+    if (getReferences()) {
+      permissions.add("REFERENCES");
+    }
+    if (getIndex()) {
+      permissions.add("INDEX");
+    }
+    return StringUtils.join(permissions, ",");
+  }
 
 	public ValidationErrors validate() {
-        ValidationErrors validationErrors = new ValidationErrors();
-        validationErrors.checkRequiredField("tableName", getObjectName());
-        validationErrors.checkRequiredField("recipientList", getRecipientList());
-        if ( !getSelect()
-        		&& !getUpdate()
-        		&& !getInsert()
-        		&& !getDelete()
-        		&& !getExecute()
-        		) {
-        	validationErrors.addError("You must specify at least one permission.");
-        }
-        return validationErrors;
+    ValidationErrors validationErrors = new ValidationErrors();
+    validationErrors.checkRequiredField("tableName", getObjectName());
+    validationErrors.checkRequiredField("recipientList", getRecipientList());
+    if (!getSelect()
+            && !getUpdate()
+            && !getInsert()
+            && !getDelete()
+            && !getExecute()
+            && !getIndex()
+            && !getReferences()
+            ) {
+      validationErrors.addError("You must specify at least one permission.");
     }
+    return validationErrors;
+  }
 
 }

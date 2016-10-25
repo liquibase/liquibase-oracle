@@ -267,11 +267,14 @@
             <xsd:attribute name="schemaName" type="xsd:string"/>
             <xsd:attribute name="objectName" type="xsd:string" use="required"/>
             <xsd:attribute name="recipientList" type="xsd:string" use="required"/>
-	        <xsd:attribute name="select" type="xsd:boolean"/>
-	        <xsd:attribute name="update" type="xsd:boolean"/>
-	        <xsd:attribute name="insert" type="xsd:boolean"/>
-	        <xsd:attribute name="delete" type="xsd:boolean"/>
-	        <xsd:attribute name="execute" type="xsd:boolean"/>
+            <xsd:attribute name="select" type="xsd:boolean"/>
+            <xsd:attribute name="update" type="xsd:boolean"/>
+            <xsd:attribute name="insert" type="xsd:boolean"/>
+            <xsd:attribute name="delete" type="xsd:boolean"/>
+            <xsd:attribute name="execute" type="xsd:boolean"/>
+            <xsd:attribute name="index" type="xsd:boolean"/>
+            <xsd:attribute name="references" type="xsd:boolean"/>
+            <xsd:attribute name="grantOption" type="xsd:boolean"/>
         </xsd:complexType>
     </xsd:element>
 
@@ -282,11 +285,13 @@
             <xsd:attribute name="schemaName" type="xsd:string"/>
             <xsd:attribute name="objectName" type="xsd:string" use="required"/>
             <xsd:attribute name="recipientList" type="xsd:string" use="required"/>
-	        <xsd:attribute name="select" type="xsd:boolean"/>
-	        <xsd:attribute name="update" type="xsd:boolean"/>
-	        <xsd:attribute name="insert" type="xsd:boolean"/>
-	        <xsd:attribute name="delete" type="xsd:boolean"/>
-	        <xsd:attribute name="execute" type="xsd:boolean"/>
+            <xsd:attribute name="select" type="xsd:boolean"/>
+            <xsd:attribute name="update" type="xsd:boolean"/>
+            <xsd:attribute name="insert" type="xsd:boolean"/>
+            <xsd:attribute name="delete" type="xsd:boolean"/>
+            <xsd:attribute name="execute" type="xsd:boolean"/>
+            <xsd:attribute name="index" type="xsd:boolean"/>
+            <xsd:attribute name="references" type="xsd:boolean"/>
         </xsd:complexType>
     </xsd:element>
 

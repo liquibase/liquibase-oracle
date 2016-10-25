@@ -12,6 +12,9 @@ public abstract class AbstractObjectPermissionChange extends AbstractChange {
 	private Boolean insert = Boolean.FALSE;
 	private Boolean delete = Boolean.FALSE;
 	private Boolean execute = Boolean.FALSE;
+	private Boolean references = Boolean.FALSE;
+	private Boolean index = Boolean.FALSE;
+	private Boolean grantOption = Boolean.FALSE;
 
 	public AbstractObjectPermissionChange() {
 		super();
@@ -110,4 +113,27 @@ public abstract class AbstractObjectPermissionChange extends AbstractChange {
 		this.execute = execute;
 	}
 
+	public Boolean getReferences() {
+		return references;
+	}
+
+	public void setReferences(final Boolean references) {
+		this.references = references;
+	}
+
+	public Boolean getIndex() {
+		return index;
+	}
+
+	public void setIndex(final Boolean index) {
+		this.index = index;
+	}
+
+	public Boolean getGrantOption() {
+		return grantOption;
+	}
+
+	public void setGrantOption(final Boolean grantOption) {
+		this.grantOption = grantOption;
+	}
 }

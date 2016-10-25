@@ -15,16 +15,20 @@ public class GrantObjectPermissionGenerator extends AbstractSqlGenerator<GrantOb
 	public Sql[] generateSql(GrantObjectPermissionStatement statement, Database database,
                              SqlGeneratorChain sqlGeneratorChain) {
 
-        StringBuilder sql = new StringBuilder();
+      StringBuilder sql = new StringBuilder();
 
-        sql.append("GRANT ");
-        sql.append( statement.getPermissionList() );
-        sql.append( " ON " );
-        sql.append(database.escapeTableName(null, statement.getSchemaName(), statement.getObjectName()));
-        sql.append( " TO " );
-        sql.append( statement.getRecipientList() );
+      sql.append("GRANT ");
+      sql.append(statement.getPermissionList());
+      sql.append(" ON ");
+      sql.append(database.escapeTableName(null, statement.getSchemaName(), statement.getObjectName()));
+      sql.append(" TO ");
+      sql.append(statement.getRecipientList());
 
-        return new Sql[]{new UnparsedSql(sql.toString())};
+      if (statement.getGrantOption()) {
+        sql.append(" WITH GRANT OPTION");
+      }
+
+      return new Sql[]{new UnparsedSql(sql.toString())};
     }
 
     @Override

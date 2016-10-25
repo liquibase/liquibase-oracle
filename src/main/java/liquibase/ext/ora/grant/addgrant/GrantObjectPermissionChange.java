@@ -21,17 +21,18 @@ public class GrantObjectPermissionChange extends AbstractObjectPermissionChange 
 
     @Override
 	public SqlStatement[] generateStatements(Database database) {
+      String schemaName = getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName();
 
-        String schemaName = getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName();
+      AbstractObjectPermissionStatement statement = new GrantObjectPermissionStatement(schemaName, getObjectName(), getRecipientList());
+      statement.setSelect(getSelect());
+      statement.setUpdate(getUpdate());
+      statement.setInsert(getInsert());
+      statement.setDelete(getDelete());
+      statement.setExecute(getExecute());
+      statement.setReferences(getReferences());
+      statement.setGrantOption(getGrantOption());
 
-        AbstractObjectPermissionStatement statement = new GrantObjectPermissionStatement(schemaName, getObjectName(), getRecipientList() );
-        statement.setSelect(getSelect());
-        statement.setUpdate(getUpdate());
-        statement.setInsert(getInsert());
-        statement.setDelete(getDelete());
-        statement.setExecute(getExecute());
-
-        return new SqlStatement[]{statement};
+      return new SqlStatement[]{statement};
     }
 
 	@Override
