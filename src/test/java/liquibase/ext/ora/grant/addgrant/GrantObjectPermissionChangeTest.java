@@ -1,6 +1,9 @@
 package liquibase.ext.ora.grant.addgrant;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,26 +15,28 @@ import liquibase.changelog.ChangeLogParameters;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
-import liquibase.database.core.OracleDatabase;
+import liquibase.ext.ora.grant.PermissionHelper;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
 import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
-import liquibase.statement.SqlStatement;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
 public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
-	@Before
-	public void setUp() throws Exception {
+    @Before
+    public void setUp() throws Exception {
         changeLogFile = "liquibase/ext/ora/grant/addgrant/changelog.test.xml";
         connectToDB();
         cleanDB();
-	}
+    }
 
     @Test
     public void test() throws Exception {
@@ -44,37 +49,29 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void generateStatement() {
-        GrantObjectPermissionChange change = new GrantObjectPermissionChange();
+        final GrantObjectPermissionChange change = PermissionHelper.createGrantObjectPermissionChangeWithAllPrivileges();
+        final GrantObjectPermissionStatement statement = PermissionHelper.createObjectPermissionStatement(change);
 
-        change.setSchemaName("SCHEMA_NAME");
-        change.setObjectName("TABLE_NAME");
-        change.setRecipientList("RECIPIENT_USER");
-        change.setSelect(true);
-        change.setUpdate(true);
-        change.setInsert(true);
-        change.setDelete(true);
-        change.setExecute(true);
-
-        SqlStatement[] statements = change.generateStatements(new OracleDatabase());
-        assertEquals(1, statements.length);
-        GrantObjectPermissionStatement statement = (GrantObjectPermissionStatement) statements[0];
-
-        assertEquals("SCHEMA_NAME", statement.getSchemaName());
-        assertEquals("TABLE_NAME", statement.getObjectName());
-        assertEquals("RECIPIENT_USER", statement.getRecipientList());
+        assertEquals(PermissionHelper.SCHEMA_NAME, statement.getSchemaName());
+        assertEquals(PermissionHelper.TABLE_NAME, statement.getObjectName());
+        assertEquals(PermissionHelper.RECIPIENT_USER, statement.getRecipientList());
         assertEquals(true, statement.getSelect());
         assertEquals(true, statement.getUpdate());
         assertEquals(true, statement.getInsert());
         assertEquals(true, statement.getDelete());
         assertEquals(true, statement.getExecute());
+        assertEquals(true, statement.getIndex());
+        assertEquals(true, statement.getReferences());
+
+
     }
 
     @Test
     public void getConfirmationMessage() {
-    	GrantObjectPermissionChange change = new GrantObjectPermissionChange();
+        GrantObjectPermissionChange change = new GrantObjectPermissionChange();
 
-        change.setObjectName("TABLE_NAME");
-        change.setRecipientList("RECIPIENT_USER");
+        change.setObjectName(PermissionHelper.TABLE_NAME);
+        change.setRecipientList(PermissionHelper.RECIPIENT_USER);
 
         assertEquals("Grants on " + change.getObjectName() + " have been given to " + change.getRecipientList(),
                 change.getConfirmationMessage());
@@ -119,6 +116,23 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         Sql[] sql = SqlGeneratorFactory.getInstance().generateSql(change.generateStatements(database)[0], database);
         assertEquals( "wrong number of statements generated", expectedQueries.size(), sql.length );
         assertEquals(expectedQueries.get(0), sql[0].toSql());
+    }
+
+    @Test
+    public void generateSqlStatement() {
+        // Given
+        final GrantObjectPermissionChange change = PermissionHelper.createGrantObjectPermissionChangeWithAllPrivileges();
+        final GrantObjectPermissionStatement statement = PermissionHelper.createObjectPermissionStatement(change);
+        Database databaseMock = mock(Database.class);
+        when(databaseMock.escapeTableName(anyString(), anyString(), anyString())).thenReturn(statement.getObjectName());
+
+        // When
+        Sql[] sqls = new GrantObjectPermissionGenerator().generateSql(statement, databaseMock, null);
+
+        // Then
+        assertEquals(1, sqls.length);
+        assertEquals("GRANT SELECT,UPDATE,INSERT,DELETE,EXECUTE,REFERENCES,INDEX ON " + PermissionHelper.TABLE_NAME
+                + " TO " + PermissionHelper.RECIPIENT_USER + " WITH GRANT OPTION", sqls[0].toSql());
     }
 
 }

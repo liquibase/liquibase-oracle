@@ -1,6 +1,9 @@
 package liquibase.ext.ora.grant.revokegrant;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +16,10 @@ import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
+import liquibase.ext.ora.grant.PermissionHelper;
+import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionChange;
+import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionGenerator;
+import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionStatement;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
 import liquibase.resource.FileSystemResourceAccessor;
@@ -44,24 +51,12 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
 
     @Test
     public void generateStatement() {
-        RevokeObjectPermissionChange change = new RevokeObjectPermissionChange();
+        RevokeObjectPermissionChange change = PermissionHelper.createRevokeObjectPermissionChangeWithAllPrivileges();
+        RevokeObjectPermissionStatement statement = PermissionHelper.createObjectPermissionStatement(change);
 
-        change.setSchemaName("SCHEMA_NAME");
-        change.setObjectName("TABLE_NAME");
-        change.setRecipientList("RECIPIENT_USER");
-        change.setSelect(true);
-        change.setUpdate(true);
-        change.setInsert(true);
-        change.setDelete(true);
-        change.setExecute(true);
-
-        SqlStatement[] statements = change.generateStatements(new OracleDatabase());
-        assertEquals(1, statements.length);
-        RevokeObjectPermissionStatement statement = (RevokeObjectPermissionStatement) statements[0];
-
-        assertEquals("SCHEMA_NAME", statement.getSchemaName());
-        assertEquals("TABLE_NAME", statement.getObjectName());
-        assertEquals("RECIPIENT_USER", statement.getRecipientList());
+        assertEquals(PermissionHelper.SCHEMA_NAME, statement.getSchemaName());
+        assertEquals(PermissionHelper.TABLE_NAME, statement.getObjectName());
+        assertEquals(PermissionHelper.RECIPIENT_USER, statement.getRecipientList());
         assertEquals(true, statement.getSelect());
         assertEquals(true, statement.getUpdate());
         assertEquals(true, statement.getInsert());
@@ -73,8 +68,8 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
     public void getConfirmationMessage() {
     	RevokeObjectPermissionChange change = new RevokeObjectPermissionChange();
 
-        change.setObjectName("TABLE_NAME");
-        change.setRecipientList("RECIPIENT_USER");
+        change.setObjectName(PermissionHelper.TABLE_NAME);
+        change.setRecipientList(PermissionHelper.RECIPIENT_USER);
 
         assertEquals("Revoking grants on " + change.getObjectName() + " that had been given to " + change.getRecipientList(),
                 change.getConfirmationMessage());
@@ -120,5 +115,23 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
         assertEquals( "wrong number of statements generated", expectedQueries.size(), sql.length );
         assertEquals(expectedQueries.get(0), sql[0].toSql());
     }
+
+    @Test
+    public void generateSqlStatement() {
+        // Given
+        final RevokeObjectPermissionChange change = PermissionHelper.createRevokeObjectPermissionChangeWithAllPrivileges();
+        final RevokeObjectPermissionStatement statement = PermissionHelper.createObjectPermissionStatement(change);
+        final Database databaseMock = mock(Database.class);
+        when(databaseMock.escapeTableName(anyString(), anyString(), anyString())).thenReturn(statement.getObjectName());
+
+        // When
+        Sql[] sqls = new RevokeObjectPermissionGenerator().generateSql(statement, databaseMock, null);
+
+        // Then
+        assertEquals(1, sqls.length);
+        assertEquals("REVOKE SELECT,UPDATE,INSERT,DELETE,EXECUTE,REFERENCES,INDEX ON " + PermissionHelper.TABLE_NAME
+                + " FROM " + PermissionHelper.RECIPIENT_USER, sqls[0].toSql());
+    }
+
 
 }
