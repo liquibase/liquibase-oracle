@@ -5,6 +5,18 @@ import liquibase.ext.ora.grant.AbstractObjectPermissionStatement;
 
 public class GrantObjectPermissionStatement extends AbstractObjectPermissionStatement {
 
+  private Boolean grantOption = Boolean.FALSE;
+
+  public Boolean getGrantOption() {
+    if ( grantOption == null ) {
+      return false;
+    }
+    return grantOption;
+  }
+
+  public void setGrantOption(final Boolean grantOption) {
+    this.grantOption = grantOption;
+  }
   public GrantObjectPermissionStatement() {
   }
 

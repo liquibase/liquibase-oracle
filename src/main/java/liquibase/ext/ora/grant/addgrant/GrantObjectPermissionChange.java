@@ -13,23 +13,33 @@ import liquibase.statement.SqlStatement;
 @DatabaseChange(name="grantObjectPermission", description = "Grant Schema Object Permission", priority = ChangeMetaData.PRIORITY_DEFAULT)
 public class GrantObjectPermissionChange extends AbstractObjectPermissionChange {
 
+    private Boolean grantOption = Boolean.FALSE;
+
     public GrantObjectPermissionChange() {}
 
     public GrantObjectPermissionChange( AbstractObjectPermissionChange other ) {
     	super(other);
     }
 
+    public Boolean getGrantOption() {
+        return grantOption;
+    }
+
+    public void setGrantOption(final Boolean grantOption) {
+        this.grantOption = grantOption;
+    }
     @Override
 	public SqlStatement[] generateStatements(Database database) {
       String schemaName = getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName();
 
-      AbstractObjectPermissionStatement statement = new GrantObjectPermissionStatement(schemaName, getObjectName(), getRecipientList());
+      GrantObjectPermissionStatement statement = new GrantObjectPermissionStatement(schemaName, getObjectName(), getRecipientList());
       statement.setSelect(getSelect());
       statement.setUpdate(getUpdate());
       statement.setInsert(getInsert());
       statement.setDelete(getDelete());
       statement.setExecute(getExecute());
       statement.setReferences(getReferences());
+      statement.setIndex(getIndex());
       statement.setGrantOption(getGrantOption());
 
       return new SqlStatement[]{statement};
