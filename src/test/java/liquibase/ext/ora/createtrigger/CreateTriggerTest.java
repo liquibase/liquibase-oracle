@@ -55,6 +55,11 @@ public class CreateTriggerTest extends BaseTestCase {
 
     @Test
     public void generateStatement() {
+        final String triggerBodyExample = "                   DECLARE v_username varchar2(10);\r\n"
+        + "                   BEGIN\r\n"
+        + "                   		SELECT pierwsza INTO v_username FROM TriggerTest;\r\n"
+        + "                   		:new.created_by := v_username;\r\n"
+        + "                    END;\r\n";
 
         CreateTriggerChange change = new CreateTriggerChange();
         change.setSchemaName("SCHEMA_NAME");
@@ -63,7 +68,8 @@ public class CreateTriggerTest extends BaseTestCase {
         change.setTablespace("TABLESPACE_NAME");
         change.setAfterBeforeInsteadOf("AFTER_BEFORE_INSTEADOF");
         change.setNestedTableColumn("NESTED_TABLE_COLUMN");
-        change.setProcedure("POCEDURE");
+		change.setProcedureNode( triggerBodyExample);
+        
         change.setTriggerName("TRIGGER_NAME");
         change.setViewName("VIEW_NAME");
         change.setWhenCondition("WHEN_CONDITION");
@@ -88,7 +94,7 @@ public class CreateTriggerTest extends BaseTestCase {
         assertEquals("TABLESPACE_NAME", sqlStatement.getTablespace());
         assertEquals("AFTER_BEFORE_INSTEADOF", sqlStatement.getAfterBeforeInsteadOf());
         assertEquals("NESTED_TABLE_COLUMN", sqlStatement.getNestedTableColumn());
-        assertEquals("POCEDURE", sqlStatement.getProcedure());
+        assertEquals(triggerBodyExample, sqlStatement.getProcedure());
         assertEquals("TRIGGER_NAME", sqlStatement.getTriggerName());
         assertEquals("VIEW_NAME", sqlStatement.getViewName());
         assertEquals("WHEN_CONDITION", sqlStatement.getWhenCondition());

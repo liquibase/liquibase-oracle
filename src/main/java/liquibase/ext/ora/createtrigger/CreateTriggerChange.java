@@ -4,8 +4,10 @@ import liquibase.change.AbstractChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
+import liquibase.change.DatabaseChangeProperty;
 import liquibase.database.Database;
 import liquibase.ext.ora.droptrigger.DropTriggerChange;
+import liquibase.serializer.LiquibaseSerializable;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="createTrigger", description = "Create Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
@@ -29,6 +31,8 @@ public class CreateTriggerChange extends AbstractChange {
 
     private String procedure;
 
+    private String procedureNode;
+    
     public CreateTriggerChange() {
     }
 
@@ -153,7 +157,6 @@ public class CreateTriggerChange extends AbstractChange {
         this.whenCondition = whenCondition;
     }
 
-
     public String getProcedure() {
         return procedure;
     }
@@ -220,8 +223,17 @@ public class CreateTriggerChange extends AbstractChange {
         statement.setViewName(getViewName());
         statement.setWhenCondition(getWhenCondition());
         statement.setTableName(getTableName());
-        statement.setProcedure(getProcedure());
+        statement.setProcedure(getProcedureNode() != null ?  getProcedureNode() : getProcedure());
 
         return new SqlStatement[]{statement};
     }
+    
+    @DatabaseChangeProperty(serializationType=LiquibaseSerializable.SerializationType.DIRECT_VALUE)
+	public String getProcedureNode() {
+		return procedureNode;
+	}
+
+	public void setProcedureNode(String procedureNode) {
+		this.procedureNode = procedureNode;
+	}
 }
