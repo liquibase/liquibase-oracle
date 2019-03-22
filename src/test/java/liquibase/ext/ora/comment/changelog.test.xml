@@ -1,0 +1,33 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="table for comment" author="mjeffrey">
+        <createTable tableName="for_comment">
+            <column name="id" type="integer"/>
+            <column name="name" type="varchar2(50)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="view for comment" author="mjeffrey">
+        <createView viewName="for_comment_view" replaceIfExists="true">
+            select * from for_comment
+        </createView>
+    </changeSet>
+
+    <changeSet id="column-comment" author="mjeffrey">
+        <ora:commentOn tableName="for_comment" columnName="id" comment="My comment 'quoted'" />
+    </changeSet>
+
+    <changeSet id="table-comment" author="mjeffrey">
+        <ora:commentOn tableName="for_comment" comment="My TABLE comment 'quoted'" />
+    </changeSet>
+
+    <changeSet id="view-comment" author="mjeffrey">
+        <ora:commentOn tableName="for_comment_view" comment="My VIEW comment" />
+    </changeSet>
+
+</databaseChangeLog>

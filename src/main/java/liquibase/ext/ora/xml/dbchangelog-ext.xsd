@@ -316,4 +316,19 @@
             <xsd:attribute name="synonymName" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
+
+    <xsd:attributeGroup name="tableLogicalAttribute">
+        <xsd:attribute name="schemaName" type="xsd:string"/>
+        <xsd:attribute name="tableName" type="xsd:string" use="required"/>
+    </xsd:attributeGroup>
+
+    <xsd:element name="commentOn">
+        <xsd:complexType>
+            <xsd:attributeGroup ref="tableLogicalAttribute"/>
+            <xsd:attribute name="columnName" type="xsd:string"/>
+            <xsd:attribute name="comment" type="xsd:string"/>
+        </xsd:complexType>
+    </xsd:element>
+
+
 </xsd:schema>
