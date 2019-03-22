@@ -22,16 +22,18 @@ public class RevokeObjectPermissionChange extends AbstractObjectPermissionChange
     @Override
 	public SqlStatement[] generateStatements(Database database) {
 
-        String schemaName = getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName();
+      String schemaName = getSchemaName() == null ? database.getDefaultSchemaName() : getSchemaName();
 
-        RevokeObjectPermissionStatement statement = new RevokeObjectPermissionStatement(schemaName, getObjectName(), getRecipientList() );
-        statement.setSelect(getSelect());
-        statement.setUpdate(getUpdate());
-        statement.setInsert(getInsert());
-        statement.setDelete(getDelete());
-        statement.setExecute(getExecute());
+      RevokeObjectPermissionStatement statement = new RevokeObjectPermissionStatement(schemaName, getObjectName(), getRecipientList());
+      statement.setSelect(getSelect());
+      statement.setUpdate(getUpdate());
+      statement.setInsert(getInsert());
+      statement.setDelete(getDelete());
+      statement.setExecute(getExecute());
+      statement.setIndex(getIndex());
+      statement.setReferences(getReferences());
 
-        return new SqlStatement[]{statement};
+      return new SqlStatement[]{statement};
     }
 
     @Override

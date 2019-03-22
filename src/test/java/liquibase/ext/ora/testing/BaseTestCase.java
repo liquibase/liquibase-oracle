@@ -1,9 +1,12 @@
 package liquibase.ext.ora.testing;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.net.URL;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 import liquibase.Liquibase;
 import liquibase.database.DatabaseConnection;
@@ -17,6 +20,9 @@ import liquibase.resource.ClassLoaderResourceAccessor;
  * Class used by tests to set up connection and clean database.
  */
 public class BaseTestCase {
+    private static final Class<BaseTestCase> THIS_CLASS = BaseTestCase.class;
+    private static final Logger LOGGER = Logger.getLogger(THIS_CLASS.getName());
+    private static final String TESTS_PROPERTIES_FILE_NAME = "tests.properties";
 
     private static String url;
     private static Driver driver;
@@ -29,7 +35,9 @@ public class BaseTestCase {
     public static void connectToDB() throws Exception {
         if (connection == null) {
             info = new Properties();
-            info.load(new FileInputStream("src/test/resources/tests.properties"));
+
+            final FileInputStream fileInputStream = getTestsProperties(TESTS_PROPERTIES_FILE_NAME);
+            info.load(fileInputStream);
 
             url = info.getProperty("url");
             try {
@@ -51,6 +59,24 @@ public class BaseTestCase {
 
 
         }
+    }
+
+    private static FileInputStream getTestsProperties(final String testsProperties) throws FileNotFoundException {
+        FileInputStream fileInputStream = null;
+
+        final URL url = THIS_CLASS.getClassLoader().getResource(testsProperties);
+        if (url != null) {
+            fileInputStream = new FileInputStream(url.getFile());
+        } else {
+            LOGGER.info("no file '" + testsProperties + "' found in resources directory");
+        }
+
+        if (fileInputStream == null) {
+            final String path = "src/test/resources/" + testsProperties;
+            fileInputStream = new FileInputStream(path);
+        }
+
+        return fileInputStream;
     }
 
     public static void cleanDB() throws Exception {
