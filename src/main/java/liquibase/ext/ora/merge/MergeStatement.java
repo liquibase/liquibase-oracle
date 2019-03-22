@@ -1,5 +1,9 @@
 package liquibase.ext.ora.merge;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+import liquibase.change.ColumnConfig;
 import liquibase.statement.AbstractSqlStatement;
 import liquibase.statement.SqlStatement;
 
@@ -13,9 +17,8 @@ public class MergeStatement extends AbstractSqlStatement {
     private String updateCondition;
     private String deleteCondition;
     private String insertCondition;
-    private String insertColumnsNameList;
-    private String insertColumnsValueList;
     private String updateList;
+    private Map<String, Object> columnValues = new LinkedHashMap<String, Object>();
 
 
     public MergeStatement(String sourceTableName, String sourceSchemaName,
@@ -25,6 +28,24 @@ public class MergeStatement extends AbstractSqlStatement {
         this.sourceSchemaName = sourceSchemaName;
         this.targetSchemaName = targetSchemaName;
         this.targetTableName = targetTableName;
+    }
+    
+    public MergeStatement addColumnValue(String columnName, Object newValue) {
+        columnValues.put(columnName, newValue);
+
+        return this;
+    }
+
+    public Object getColumnValue(String columnName) {
+        return columnValues.get(columnName);
+    }
+
+    public Map<String, Object> getColumnValues() {
+        return columnValues;
+    }
+    
+    public MergeStatement addColumn(ColumnConfig columnConfig) {
+    	return addColumnValue(columnConfig.getName(), columnConfig.getValueObject());
     }
 
 
@@ -106,27 +127,6 @@ public class MergeStatement extends AbstractSqlStatement {
     public void setInsertCondition(String insertCondition) {
         this.insertCondition = insertCondition;
     }
-
-
-    public String getInsertColumnsNameList() {
-        return insertColumnsNameList;
-    }
-
-
-    public void setInsertColumnsNameList(String insertColumnsNameList) {
-        this.insertColumnsNameList = insertColumnsNameList;
-    }
-
-
-    public String getInsertColumnsValueList() {
-        return insertColumnsValueList;
-    }
-
-
-    public void setInsertColumnsValueList(String insertColumnsValueList) {
-        this.insertColumnsValueList = insertColumnsValueList;
-    }
-
 
     public String getUpdateList() {
         return updateList;

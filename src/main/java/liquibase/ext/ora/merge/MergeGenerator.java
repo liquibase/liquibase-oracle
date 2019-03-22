@@ -1,13 +1,16 @@
 package liquibase.ext.ora.merge;
 
+import java.sql.Date;
+
 import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
-import liquibase.database.core.SQLiteDatabase;
+import liquibase.datatype.DataTypeFactory;
 import liquibase.exception.ValidationErrors;
 import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
+import liquibase.statement.DatabaseFunction;
 import liquibase.structure.core.Table;
 
 
@@ -15,15 +18,8 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
 
     public Sql[] generateSql(MergeStatement statement, Database database,
                              SqlGeneratorChain sqlGeneratorChain) {
-        String[] insertColumnsName = null;
-        String[] insertColumnsValue = null;
+
         String[] updateList = null;
-        if (statement.getInsertColumnsNameList() != null) {
-            insertColumnsName = statement.getInsertColumnsNameList().split(",");
-        }
-        if (statement.getInsertColumnsValueList() != null) {
-            insertColumnsValue = statement.getInsertColumnsValueList().split(",");
-        }
         if (statement.getUpdateList() != null) {
             updateList = statement.getUpdateList().split(",");
         }
@@ -46,20 +42,39 @@ public class MergeGenerator extends AbstractSqlGenerator<MergeStatement> {
                 sql.append(" DELETE WHERE (").append(statement.getDeleteCondition()).append(")");
         }
 
-        if (insertColumnsValue != null) {
-            sql.append(" WHEN NOT MATCHED THEN INSERT ");
-            if (insertColumnsName != null) {
-                for (String list : insertColumnsName) {
-                    sql.append(list).append(",");
+        if (statement.getColumnValues().size() > 0) {
+            sql.append(" WHEN NOT MATCHED THEN INSERT (");
+            for (String column : statement.getColumnValues().keySet()) {
+                sql.append(column).append(",");
+            }
+            sql.deleteCharAt(sql.lastIndexOf(",")).append(") ");
+            
+            sql.append("VALUES (");
+            
+            for (String column : statement.getColumnValues().keySet()) {
+                Object newValue = statement.getColumnValues().get(column);
+                if (newValue == null || newValue.toString().equalsIgnoreCase("NULL")) {
+                    sql.append("NULL");
+                } else if (newValue instanceof String && !looksLikeFunctionCall(((String) newValue), database)) {
+                    sql.append(DataTypeFactory.getInstance().fromObject(newValue, database).objectToSql(newValue, database));
+                } else if (newValue instanceof Date) {
+                    sql.append(database.getDateLiteral(((Date) newValue)));
+                } else if (newValue instanceof Boolean) {
+                    if (((Boolean) newValue)) {
+                        sql.append(DataTypeFactory.getInstance().getTrueBooleanValue(database));
+                    } else {
+                        sql.append(DataTypeFactory.getInstance().getFalseBooleanValue(database));
+                    }
+                } else if (newValue instanceof DatabaseFunction) {
+                    sql.append(database.generateDatabaseFunctionValue((DatabaseFunction) newValue));
                 }
-                sql.deleteCharAt(sql.lastIndexOf(",")).append(") ");
+                else {
+                    sql.append(newValue);
+                }
+                sql.append(",");
+    
             }
-
-            sql.append("VALUES(");
-            for (String list : insertColumnsValue) {
-                sql.append(list).append(",");
-            }
-            sql.deleteCharAt(sql.lastIndexOf(",")).append(")");
+            sql.deleteCharAt(sql.lastIndexOf(",")).append(") ");
             if (statement.getInsertCondition() != null)
                 sql.append("WHERE (").append(database.escapeObjectName(statement.getInsertCondition(), Table.class)).append(")");
         }
