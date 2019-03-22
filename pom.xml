@@ -86,9 +86,9 @@
     </developers>
 
     <scm>
-        <connection>scm:git:git@github.com:liquibase/liquibase-oracle.git</connection>
-        <url>scm:git:https://github.com/liquibase/liquibase-oracle.git</url>
-        <developerConnection>scm:git:git@github.com:liquibase/liquibase-oracle.git</developerConnection>
+        <connection>scm:git:git@github.com:iszilagyigit/liquibase-oracle.git</connection>
+        <url>scm:git:https://github.com/iszilagyigit/liquibase-oracle.git</url>
+        <developerConnection>scm:git:git@github.com:iszilagyigit/liquibase-oracle.git</developerConnection>
     </scm>
 
     <build>
