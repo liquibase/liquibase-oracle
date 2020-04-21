@@ -15,7 +15,7 @@
 
     <properties>
         <oracle.version>11.2.0.3</oracle.version>
-        <slf4j.version>1.7.5</slf4j.version>
+        <slf4j.version>1.7.30</slf4j.version>
         <junit.version>4.11</junit.version>
     </properties>
     <dependencies>
