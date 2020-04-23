@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import liquibase.exception.ValidationErrors;
 import liquibase.statement.AbstractSqlStatement;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 public abstract class AbstractObjectPermissionStatement extends
 		AbstractSqlStatement {
@@ -156,7 +156,7 @@ public abstract class AbstractObjectPermissionStatement extends
         if ( getIndex() ) {
             permissions.add("INDEX");
         }
-        return StringUtils.join(permissions, ",");
+        return StringUtil.join(permissions, ",");
     }
 
     public ValidationErrors validate() {

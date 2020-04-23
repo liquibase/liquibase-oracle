@@ -1,8 +1,10 @@
 package liquibase.ext.ora.comment;
 
+import liquibase.Scope;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.File;
 import java.util.List;
 
 import liquibase.change.Change;
@@ -73,9 +75,9 @@ public class CommentOnChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         CommentOnChange enableCheckChange = new CommentOnChange();
 
-        assertEquals("commentOn", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
-        assertEquals("Create or replace a comment on a table or a column", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals("commentOn", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getName());
+        assertEquals("Create or replace a comment on a table or a column", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test
@@ -85,7 +87,7 @@ public class CommentOnChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor("src/test/java");
+        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

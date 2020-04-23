@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -40,9 +41,9 @@ public class CreateTriggerTest extends BaseTestCase {
     public void getChangeMetaData() {
         CreateTriggerChange createTriggerChange = new CreateTriggerChange();
 
-        assertEquals("createTrigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getName());
-        assertEquals("Create Trigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getPriority());
+        assertEquals("createTrigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createTriggerChange).getName());
+        assertEquals("Create Trigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createTriggerChange).getPriority());
     }
 
     @Test

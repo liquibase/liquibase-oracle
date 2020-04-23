@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class CreateMaterializedViewTest extends BaseTestCase {
     public void getChangeMetaData() {
         CreateMaterializedViewChange createMaterializedViewChange = new CreateMaterializedViewChange();
 
-        assertEquals("createMaterializedView", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getName());
-        assertEquals("Create materialized view", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getPriority());
+        assertEquals("createMaterializedView", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createMaterializedViewChange).getName());
+        assertEquals("Create materialized view", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createMaterializedViewChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createMaterializedViewChange).getPriority());
     }
 
     @Test

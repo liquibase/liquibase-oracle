@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -96,9 +97,9 @@ public class MergeChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         MergeChange mergeTablesChange = new MergeChange();
 
-        assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getName());
-        assertEquals("Merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getPriority());
+        assertEquals("merge", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(mergeTablesChange).getName());
+        assertEquals("Merge", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(mergeTablesChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(mergeTablesChange).getPriority());
     }
 
     @Test

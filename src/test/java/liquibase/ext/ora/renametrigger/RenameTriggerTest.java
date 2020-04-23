@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class RenameTriggerTest extends BaseTestCase {
     public void getChangeMetaData() {
         RenameTriggerChange renameTriggerChange = new RenameTriggerChange();
 
-        assertEquals("renameTrigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getName());
-        assertEquals("Rename Trigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getPriority());
+        assertEquals("renameTrigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(renameTriggerChange).getName());
+        assertEquals("Rename Trigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(renameTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(renameTriggerChange).getPriority());
     }
 
     @Test

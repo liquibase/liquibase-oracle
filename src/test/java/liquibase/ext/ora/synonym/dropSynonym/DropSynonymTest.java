@@ -7,6 +7,7 @@ import java.util.List;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -42,9 +43,9 @@ public class DropSynonymTest extends BaseTestCase {
 	@Test
 	public void getChangeMetaData() {
 		DropSynonymChange change = new DropSynonymChange();
-		assertEquals("dropSynonym", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-		assertEquals("Drop synonym", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-		assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+		assertEquals("dropSynonym", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getName());
+		assertEquals("Drop synonym", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getDescription());
+		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getPriority());
 	}
 
 	@Test

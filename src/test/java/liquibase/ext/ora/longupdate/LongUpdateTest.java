@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -40,9 +41,9 @@ public class LongUpdateTest extends BaseTestCase {
     public void getChangeMetaData() {
         LongUpdateChange longUpdateChange = new LongUpdateChange();
 
-        assertEquals("longUpdate", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getName());
-        assertEquals("Long Update", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getPriority());
+        assertEquals("longUpdate", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(longUpdateChange).getName());
+        assertEquals("Long Update", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(longUpdateChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(longUpdateChange).getPriority());
     }
 
     @Test

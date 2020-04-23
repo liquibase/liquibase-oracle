@@ -2,6 +2,7 @@ package liquibase.ext.ora.splittable;
 
 import static org.junit.Assert.assertEquals;
 
+import liquibase.Scope;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
 import liquibase.database.core.OracleDatabase;
@@ -70,8 +71,8 @@ public class SplitTableChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         SplitTableChange change = new SplitTableChange();
 
-        assertEquals("splitTable", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("Split table", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals("splitTable", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getName());
+        assertEquals("Split table", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getPriority());
     }
 }

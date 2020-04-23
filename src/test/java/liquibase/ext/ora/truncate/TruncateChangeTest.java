@@ -9,6 +9,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -43,9 +44,9 @@ public class TruncateChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         TruncateChange truncateChange = new TruncateChange();
 
-        assertEquals("truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getName());
-        assertEquals("Truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(truncateChange).getPriority());
+        assertEquals("truncate", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(truncateChange).getName());
+        assertEquals("Truncate", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(truncateChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(truncateChange).getPriority());
     }
 
     @Test

@@ -7,6 +7,7 @@ import java.util.List;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
     public void getChangeMetaData() {
         RefreshMaterializedViewChange change = new RefreshMaterializedViewChange();
 
-        assertEquals("metadata name incorrect", "refreshMaterializedView", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("metadata description incorrect", "Refresh Materialized View", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals("metadata priority incorrect", ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals("metadata name incorrect", "refreshMaterializedView", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getName());
+        assertEquals("metadata description incorrect", "Refresh Materialized View", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getDescription());
+        assertEquals("metadata priority incorrect", ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getPriority());
     }
 
     @Test
