@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="truncate", description = "Truncate", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="truncate", description = "Truncate", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class TruncateChange extends AbstractChange {
 
     private String schemaName;

@@ -7,7 +7,7 @@ import liquibase.changelog.ChangeSet;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="splitTable", description = "Split table", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="splitTable", description = "Split table", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class SplitTableChange extends AbstractChange {
 
     private String splitTableName;

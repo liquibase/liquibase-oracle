@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="longUpdate", description = "Long Update", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="longUpdate", description = "Long Update", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class LongUpdateChange extends AbstractChange {
     private Integer commitInterval;
     private Integer sleepSeconds;

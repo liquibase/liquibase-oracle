@@ -10,7 +10,7 @@ import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 
 
-@DatabaseChange(name="addCheck", description = "Add Check", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="addCheck", description = "Add Check", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class AddCheckChange extends CheckAttribute {
 
 

@@ -10,7 +10,7 @@ import liquibase.database.Database;
 import liquibase.ext.ora.dropSynonym.DropSynonymChange;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name = "createSynonym", description = "Create synonym", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name = "createSynonym", description = "Create synonym", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class CreateSynonymChange extends AbstractChange {
 	
 	private Boolean replace;

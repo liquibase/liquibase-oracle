@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="renameTrigger", description = "Rename Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="renameTrigger", description = "Rename Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class RenameTriggerChange extends AbstractChange {
 
     private String schemaName;

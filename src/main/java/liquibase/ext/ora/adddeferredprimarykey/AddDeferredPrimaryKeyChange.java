@@ -8,7 +8,7 @@ import liquibase.change.core.DropPrimaryKeyChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="addDeferredPrimaryKey", description = "Add deferred primary key", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="addDeferredPrimaryKey", description = "Add deferred primary key", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class AddDeferredPrimaryKeyChange extends AbstractChange {
 
     private String schemaName;

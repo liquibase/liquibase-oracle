@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="dropTrigger", description = "Drop trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="dropTrigger", description = "Drop trigger", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class DropTriggerChange extends AbstractChange {
     private String triggerName;
     private String schemaName;

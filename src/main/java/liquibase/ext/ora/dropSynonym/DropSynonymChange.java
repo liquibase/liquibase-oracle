@@ -10,7 +10,7 @@ import liquibase.database.Database;
 import liquibase.ext.ora.dropcheck.DropCheckChange;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name = "dropSynonym", description = "Drop synonym", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name = "dropSynonym", description = "Drop synonym", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class DropSynonymChange extends AbstractChange {
 
 	private Boolean isPublic = false;

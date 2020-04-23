@@ -11,7 +11,7 @@ import liquibase.statement.SqlStatement;
 import liquibase.statement.core.CreateViewStatement;
 import liquibase.statement.core.RenameTableStatement;
 
-@DatabaseChange(name="encapsulateTableWithView", description = "Encapsulate table with view", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="encapsulateTableWithView", description = "Encapsulate table with view", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class EncapsulateTableWithViewChange extends AbstractChange {
 
     private String schemaName;

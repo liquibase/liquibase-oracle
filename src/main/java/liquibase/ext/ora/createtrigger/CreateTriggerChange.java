@@ -10,7 +10,7 @@ import liquibase.ext.ora.droptrigger.DropTriggerChange;
 import liquibase.serializer.LiquibaseSerializable;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="createTrigger", description = "Create Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="createTrigger", description = "Create Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class CreateTriggerChange extends AbstractChange {
     private String tableName;
     private String schemaName;

@@ -8,7 +8,7 @@ import liquibase.database.Database;
 import liquibase.ext.ora.disabletrigger.DisableTriggerChange;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="enableTrigger", description = "Enable Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="enableTrigger", description = "Enable Trigger", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class EnableTriggerChange extends AbstractChange {
 
     private String schemaName;

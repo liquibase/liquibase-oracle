@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="setTransaction", description = "Set Transaction", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="setTransaction", description = "Set Transaction", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class SetTransactionChange extends AbstractChange {
     private String transactionName;
     private String rollbackSegment;

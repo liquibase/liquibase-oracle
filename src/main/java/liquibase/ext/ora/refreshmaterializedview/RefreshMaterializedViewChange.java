@@ -6,7 +6,7 @@ import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="refreshMaterializedView", description = "Refresh Materialized View", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="refreshMaterializedView", description = "Refresh Materialized View", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class RefreshMaterializedViewChange extends AbstractChange {
 
     private String schemaName;

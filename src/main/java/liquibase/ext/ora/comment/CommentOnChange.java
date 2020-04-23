@@ -8,7 +8,7 @@ import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 
-@DatabaseChange(name="commentOn", description = "Create or replace a comment on a table or a column", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="commentOn", description = "Create or replace a comment on a table or a column", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class CommentOnChange extends AbstractChange {
 
     private String schemaName;

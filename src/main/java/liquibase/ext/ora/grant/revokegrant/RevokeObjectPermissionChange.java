@@ -9,7 +9,7 @@ import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionChange;
 import liquibase.statement.SqlStatement;
 
 
-@DatabaseChange(name="revokeObjectPermission", description = "Revoke Schema Object Permission", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="revokeObjectPermission", description = "Revoke Schema Object Permission", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class RevokeObjectPermissionChange extends AbstractObjectPermissionChange {
 
     public RevokeObjectPermissionChange() {}

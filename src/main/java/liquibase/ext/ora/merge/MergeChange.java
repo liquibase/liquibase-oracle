@@ -13,7 +13,7 @@ import liquibase.database.Database;
 import liquibase.exception.ValidationErrors;
 import liquibase.statement.SqlStatement;
 
-@DatabaseChange(name="merge", description = "Merge", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="merge", description = "Merge", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class MergeChange extends AbstractChange implements ChangeWithColumns<ColumnConfig>{
 
     private String sourceTableName;

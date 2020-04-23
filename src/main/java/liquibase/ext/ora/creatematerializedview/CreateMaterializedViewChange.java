@@ -8,7 +8,7 @@ import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 import liquibase.ext.ora.dropmaterializedview.DropMaterializedViewChange;
 
-@DatabaseChange(name="createMaterializedView", description = "Create materialized view", priority = ChangeMetaData.PRIORITY_DEFAULT)
+@DatabaseChange(name="createMaterializedView", description = "Create materialized view", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
 public class CreateMaterializedViewChange extends AbstractChange {
     private String schemaName;
     private String viewName;
