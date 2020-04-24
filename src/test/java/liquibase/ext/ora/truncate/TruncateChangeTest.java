@@ -45,7 +45,7 @@ public class TruncateChangeTest extends BaseTestCase {
 
         assertEquals("truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getName());
         assertEquals("Truncate", ChangeFactory.getInstance().getChangeMetaData(truncateChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(truncateChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(truncateChange).getPriority());
     }
 
     @Test

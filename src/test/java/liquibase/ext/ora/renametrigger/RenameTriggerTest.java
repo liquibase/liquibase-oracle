@@ -41,7 +41,7 @@ public class RenameTriggerTest extends BaseTestCase {
 
         assertEquals("renameTrigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getName());
         assertEquals("Rename Trigger", ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(renameTriggerChange).getPriority());
     }
 
     @Test

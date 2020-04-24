@@ -88,7 +88,7 @@ public class AddCheckChangeTest extends BaseTestCase {
 
         assertEquals("addCheck", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
         assertEquals("Add Check", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test

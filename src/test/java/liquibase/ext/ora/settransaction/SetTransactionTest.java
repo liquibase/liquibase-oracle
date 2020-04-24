@@ -41,7 +41,7 @@ public class SetTransactionTest extends BaseTestCase {
 
         assertEquals("setTransaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getName());
         assertEquals("Set Transaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getPriority());
     }
 
     @Test

@@ -78,7 +78,7 @@ public class DropCheckChangeTest extends BaseTestCase {
 
         assertEquals("dropCheck", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getName());
         assertEquals("Drop check", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getPriority());
     }
 
     @Test

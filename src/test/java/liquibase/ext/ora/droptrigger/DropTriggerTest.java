@@ -41,7 +41,7 @@ public class DropTriggerTest extends BaseTestCase {
 
         assertEquals("dropTrigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getName());
         assertEquals("Drop trigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getPriority());
     }
 
     @Test

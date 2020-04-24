@@ -41,7 +41,7 @@ public class DropMaterializedViewTest extends BaseTestCase {
 
         assertEquals("dropMaterializedView", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getName());
         assertEquals("Drop Materialized View", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getPriority());
     }
 
     @Test

@@ -39,7 +39,7 @@ public class AddDeferredPrimaryKeyChangeTest extends BaseTestCase {
 		AddDeferredPrimaryKeyChange addPrimaryKeyChange = new AddDeferredPrimaryKeyChange();
 		assertEquals("addDeferredPrimaryKey", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getName());
 		assertEquals("Add deferred primary key", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getDescription());
-		assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getPriority());
+		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getPriority());
 	}
 
 	@Test

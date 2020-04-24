@@ -42,7 +42,7 @@ public class LongUpdateTest extends BaseTestCase {
 
         assertEquals("longUpdate", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getName());
         assertEquals("Long Update", ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(longUpdateChange).getPriority());
     }
 
     @Test

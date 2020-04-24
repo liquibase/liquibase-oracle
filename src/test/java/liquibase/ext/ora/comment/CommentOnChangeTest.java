@@ -75,7 +75,7 @@ public class CommentOnChangeTest extends BaseTestCase {
 
         assertEquals("commentOn", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
         assertEquals("Create or replace a comment on a table or a column", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test

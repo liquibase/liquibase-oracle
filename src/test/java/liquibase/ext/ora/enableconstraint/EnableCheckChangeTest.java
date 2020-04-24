@@ -78,7 +78,7 @@ public class EnableCheckChangeTest extends BaseTestCase {
 
         assertEquals("enableConstraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
         assertEquals("Enable constraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test

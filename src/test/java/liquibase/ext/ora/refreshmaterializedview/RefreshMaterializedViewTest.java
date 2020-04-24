@@ -41,7 +41,7 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
 
         assertEquals("metadata name incorrect", "refreshMaterializedView", ChangeFactory.getInstance().getChangeMetaData(change).getName());
         assertEquals("metadata description incorrect", "Refresh Materialized View", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals("metadata priority incorrect", ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals("metadata priority incorrect", ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
     }
 
     @Test

@@ -98,7 +98,7 @@ public class MergeChangeTest extends BaseTestCase {
 
         assertEquals("merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getName());
         assertEquals("Merge", ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(mergeTablesChange).getPriority());
     }
 
     @Test

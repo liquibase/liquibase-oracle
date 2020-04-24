@@ -43,7 +43,7 @@ public class EncapsulateTableWithViewTest extends BaseTestCase {
 
         assertEquals("encapsulateTableWithView", ChangeFactory.getInstance().getChangeMetaData(change).getName());
         assertEquals("Encapsulate table with view", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
     }
 
     @Test

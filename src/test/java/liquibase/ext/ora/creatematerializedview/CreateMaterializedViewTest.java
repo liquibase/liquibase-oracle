@@ -41,7 +41,7 @@ public class CreateMaterializedViewTest extends BaseTestCase {
 
         assertEquals("createMaterializedView", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getName());
         assertEquals("Create materialized view", ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(createMaterializedViewChange).getPriority());
     }
 
     @Test

@@ -41,7 +41,7 @@ public class DisableTriggerTest extends BaseTestCase {
 
         assertEquals("disableTrigger", ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getName());
         assertEquals("Disable Trigger", ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getPriority());
     }
 
     @Test

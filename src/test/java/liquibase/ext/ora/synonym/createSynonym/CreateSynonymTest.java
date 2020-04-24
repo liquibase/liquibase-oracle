@@ -46,7 +46,7 @@ public class CreateSynonymTest extends BaseTestCase {
 		CreateSynonymChange createSynonymChange = new CreateSynonymChange();
 		assertEquals("createSynonym", ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getName());
 		assertEquals("Create synonym", ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getDescription());
-		assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getPriority());
+		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getPriority());
 	}
 
 	@Test

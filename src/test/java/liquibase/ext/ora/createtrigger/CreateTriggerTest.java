@@ -42,7 +42,7 @@ public class CreateTriggerTest extends BaseTestCase {
 
         assertEquals("createTrigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getName());
         assertEquals("Create Trigger", ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(createTriggerChange).getPriority());
     }
 
     @Test

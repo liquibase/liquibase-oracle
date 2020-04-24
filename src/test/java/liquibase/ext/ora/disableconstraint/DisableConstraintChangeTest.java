@@ -78,7 +78,7 @@ public class DisableConstraintChangeTest extends BaseTestCase {
 
         assertEquals("disableConstraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getName());
         assertEquals("Disable constraint", ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT, ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getPriority());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(disableCheckChange).getPriority());
     }
 
     @Test
