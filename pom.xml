@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
     <name>Liquibase Oracle Extensions</name>
-    <version>3.3-SNAPSHOT</version>
+    <version>3.9.0</version>
 
      <licenses>
         <license>
@@ -96,7 +96,8 @@
         <connection>scm:git:git@github.com:iszilagyigit/liquibase-oracle.git</connection>
         <url>scm:git:https://github.com/iszilagyigit/liquibase-oracle.git</url>
         <developerConnection>scm:git:git@github.com:iszilagyigit/liquibase-oracle.git</developerConnection>
-    </scm>
+      <tag>liquibase-oracle-3.9.0</tag>
+  </scm>
 
     <build>
         <testResources>
