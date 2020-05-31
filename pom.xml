@@ -3,8 +3,16 @@
 
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
-    <name>Liquibase Oracle Extensions</name>
+
     <version>3.9.1-SNAPSHOT</version>
+
+    <name>Liquibase Oracle Extensions</name>
+    <description>Some tags to work on Oracle DB.</description>
+    <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
+   	<organization>
+		<name>Liquibase.org</name>
+		<url>http://www.liquibase.org</url>
+	</organization>
 
      <licenses>
         <license>
@@ -12,6 +20,28 @@
             <name>Apache License, Version 2.0</name>
         </license>
     </licenses>
+
+
+
+    <scm>
+        <connection>scm:git:http://github.com/liquibase/liquibase-oracle.git</connection>
+        <url>https://github.com/liquibase/liquibase-oracle</url>
+	<tag>HEAD</tag>
+  </scm>
+	    <developers>
+        <developer>
+            <id>nvoxland</id>
+            <name>Nathan Voxland</name>
+	    <email>nathan.voxland@liquibase.org</email>
+            <url>http://nathan.voxland.net</url>
+            <organizationUrl>http://nathan.voxland.net/</organizationUrl>
+            <roles>
+                <role>architect</role>
+                <role>developer</role>
+            </roles>
+            <timezone>-6</timezone>
+        </developer>
+    </developers>
 
     <properties>
         <oracle.version>11.2.0.3</oracle.version>
@@ -74,29 +104,7 @@
             <!--<scope>test</scope>-->
         <!--</dependency>-->
     </dependencies>
-    <description>Some tags to work on Oracle DB.</description>
-    <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
 
-	    <developers>
-        <developer>
-            <id>nvoxland</id>
-            <name>Nathan Voxland</name>
-            <email>nathan@voxland.net</email>
-            <url>http://nathan.voxland.net</url>
-            <organizationUrl>http://nathan.voxland.net/</organizationUrl>
-            <roles>
-                <role>architect</role>
-                <role>developer</role>
-            </roles>
-            <timezone>-6</timezone>
-        </developer>
-    </developers>
-
-    <scm>
-        <connection>scm:git:git@github.com:liquibase/liquibase-oracle.git</connection>
-        <url>scm:git:https://github.com/liquibase/liquibase-oracle.git</url>
-	<tag>HEAD</tag>
-  </scm>
 
     <build>
         <testResources>
