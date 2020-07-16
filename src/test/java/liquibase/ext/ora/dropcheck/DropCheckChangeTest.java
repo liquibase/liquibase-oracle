@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -76,9 +77,9 @@ public class DropCheckChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         DropCheckChange dropCheckChange = new DropCheckChange();
 
-        assertEquals("dropCheck", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getName());
-        assertEquals("Drop check", ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropCheckChange).getPriority());
+        assertEquals("dropCheck", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropCheckChange).getName());
+        assertEquals("Drop check", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropCheckChange).getPriority());
     }
 
     @Test

@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>3.10.2-SNAPSHOT</version>
+    <version>4.0.0-SNAPSHOT</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
@@ -21,14 +21,16 @@
         </license>
     </licenses>
 
-
+    <issueManagement>
+		<url>https://github.com/liquibase/liquibase-oracle/issues</url>
+	</issueManagement>
 
     <scm>
         <connection>scm:git:http://github.com/liquibase/liquibase-oracle.git</connection>
         <url>https://github.com/liquibase/liquibase-oracle</url>
-	<tag>HEAD</tag>
-  </scm>
-	    <developers>
+	    <tag>HEAD</tag>
+    </scm>
+	<developers>
         <developer>
             <id>nvoxland</id>
             <name>Nathan Voxland</name>
@@ -52,7 +54,7 @@
         <dependency>
             <groupId>org.liquibase</groupId>
             <artifactId>liquibase-core</artifactId>
-            <version>3.10.1</version>
+            <version>4.0.0</version>
         </dependency>
         <dependency>
             <groupId>junit</groupId>
@@ -104,7 +106,6 @@
             <!--<scope>test</scope>-->
         <!--</dependency>-->
     </dependencies>
-
 
     <build>
         <testResources>

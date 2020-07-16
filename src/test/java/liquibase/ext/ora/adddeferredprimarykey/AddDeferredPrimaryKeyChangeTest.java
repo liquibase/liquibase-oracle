@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -37,9 +38,9 @@ public class AddDeferredPrimaryKeyChangeTest extends BaseTestCase {
 	@Test
 	public void getChangeMetaData() {
 		AddDeferredPrimaryKeyChange addPrimaryKeyChange = new AddDeferredPrimaryKeyChange();
-		assertEquals("addDeferredPrimaryKey", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getName());
-		assertEquals("Add deferred primary key", ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getDescription());
-		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(addPrimaryKeyChange).getPriority());
+		assertEquals("addDeferredPrimaryKey", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(addPrimaryKeyChange).getName());
+		assertEquals("Add deferred primary key", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(addPrimaryKeyChange).getDescription());
+		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(addPrimaryKeyChange).getPriority());
 	}
 
 	@Test

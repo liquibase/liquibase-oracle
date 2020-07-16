@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class DisableTriggerTest extends BaseTestCase {
     public void getChangeMetaData() {
         DisableTriggerChange disableTriggerChange = new DisableTriggerChange();
 
-        assertEquals("disableTrigger", ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getName());
-        assertEquals("Disable Trigger", ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(disableTriggerChange).getPriority());
+        assertEquals("disableTrigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(disableTriggerChange).getName());
+        assertEquals("Disable Trigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(disableTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(disableTriggerChange).getPriority());
     }
 
     @Test

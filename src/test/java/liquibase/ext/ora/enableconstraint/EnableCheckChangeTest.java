@@ -5,6 +5,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -76,9 +77,9 @@ public class EnableCheckChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         EnableConstraintChange enableCheckChange = new EnableConstraintChange();
 
-        assertEquals("enableConstraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
-        assertEquals("Enable constraint", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals("enableConstraint", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getName());
+        assertEquals("Enable constraint", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class DropMaterializedViewTest extends BaseTestCase {
     public void getChangeMetaData() {
         DropMaterializedViewChange dropMaterializedViewChange = new DropMaterializedViewChange();
 
-        assertEquals("dropMaterializedView", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getName());
-        assertEquals("Drop Materialized View", ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropMaterializedViewChange).getPriority());
+        assertEquals("dropMaterializedView", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropMaterializedViewChange).getName());
+        assertEquals("Drop Materialized View", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropMaterializedViewChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropMaterializedViewChange).getPriority());
     }
 
     @Test

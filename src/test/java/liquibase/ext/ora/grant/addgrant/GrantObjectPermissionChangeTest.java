@@ -5,9 +5,11 @@ import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -81,9 +83,9 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
     	GrantObjectPermissionChange change = new GrantObjectPermissionChange();
 
-        assertEquals("grantObjectPermission", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("Grant Schema Object Permission", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals("grantObjectPermission", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getName());
+        assertEquals("Grant Schema Object Permission", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getPriority());
     }
 
     @Test
@@ -93,7 +95,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor("src/test/java");
+        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 
