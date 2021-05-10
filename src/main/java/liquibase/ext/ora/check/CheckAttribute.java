@@ -4,7 +4,7 @@ import liquibase.change.AbstractChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 public abstract class CheckAttribute extends AbstractChange {
 
@@ -40,7 +40,7 @@ public abstract class CheckAttribute extends AbstractChange {
     }
 
     public void setSchemaName(String schemaName) {
-        this.schemaName = StringUtils.trimToNull(schemaName);
+        this.schemaName = StringUtil.trimToNull(schemaName);
     }
 
     public void setConstraintName(String constraintName) {

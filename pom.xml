@@ -23,7 +23,7 @@
     </licenses>
 
 	<issueManagement>
-		<url>https://github.com/liquibase/liquibase-mssql/issues</url>
+		<url>https://github.com/liquibase/liquibase-oracle/issues</url>
 	</issueManagement>
 
     <scm>

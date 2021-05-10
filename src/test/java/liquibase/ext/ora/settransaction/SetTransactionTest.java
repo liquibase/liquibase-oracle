@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class SetTransactionTest extends BaseTestCase {
     public void getChangeMetaData() {
         SetTransactionChange setTransactionChange = new SetTransactionChange();
 
-        assertEquals("setTransaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getName());
-        assertEquals("Set Transaction", ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(setTransactionChange).getPriority());
+        assertEquals("setTransaction", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(setTransactionChange).getName());
+        assertEquals("Set Transaction", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(setTransactionChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(setTransactionChange).getPriority());
     }
 
     @Test

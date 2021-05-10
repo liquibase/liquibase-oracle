@@ -2,9 +2,11 @@ package liquibase.ext.ora.addcheck;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -86,9 +88,9 @@ public class AddCheckChangeTest extends BaseTestCase {
     public void getChangeMetaData() {
         AddCheckChange enableCheckChange = new AddCheckChange();
 
-        assertEquals("addCheck", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getName());
-        assertEquals("Add Check", ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(enableCheckChange).getPriority());
+        assertEquals("addCheck", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getName());
+        assertEquals("Add Check", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(enableCheckChange).getPriority());
     }
 
     @Test
@@ -98,7 +100,7 @@ public class AddCheckChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor("src/test/java");
+        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

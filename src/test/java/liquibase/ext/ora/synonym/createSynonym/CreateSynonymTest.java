@@ -7,6 +7,7 @@ import java.util.List;
 
 import liquibase.Contexts;
 import liquibase.LabelExpression;
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -44,9 +45,9 @@ public class CreateSynonymTest extends BaseTestCase {
 	@Test
 	public void getChangeMetaData() {
 		CreateSynonymChange createSynonymChange = new CreateSynonymChange();
-		assertEquals("createSynonym", ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getName());
-		assertEquals("Create synonym", ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getDescription());
-		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(createSynonymChange).getPriority());
+		assertEquals("createSynonym", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createSynonymChange).getName());
+		assertEquals("Create synonym", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createSynonymChange).getDescription());
+		assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(createSynonymChange).getPriority());
 	}
 
 	@Test

@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -41,9 +42,9 @@ public class EncapsulateTableWithViewTest extends BaseTestCase {
     public void getChangeMetaData() {
         EncapsulateTableWithViewChange change = new EncapsulateTableWithViewChange();
 
-        assertEquals("encapsulateTableWithView", ChangeFactory.getInstance().getChangeMetaData(change).getName());
-        assertEquals("Encapsulate table with view", ChangeFactory.getInstance().getChangeMetaData(change).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(change).getPriority());
+        assertEquals("encapsulateTableWithView", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getName());
+        assertEquals("Encapsulate table with view", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(change).getPriority());
     }
 
     @Test

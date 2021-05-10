@@ -6,6 +6,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 import java.util.List;
 
+import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
@@ -39,9 +40,9 @@ public class DropTriggerTest extends BaseTestCase {
     public void getChangeMetaData() {
         DropTriggerChange dropTriggerChange = new DropTriggerChange();
 
-        assertEquals("dropTrigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getName());
-        assertEquals("Drop trigger", ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getDescription());
-        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, ChangeFactory.getInstance().getChangeMetaData(dropTriggerChange).getPriority());
+        assertEquals("dropTrigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropTriggerChange).getName());
+        assertEquals("Drop trigger", Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropTriggerChange).getDescription());
+        assertEquals(ChangeMetaData.PRIORITY_DEFAULT + 200, Scope.getCurrentScope().getSingleton(ChangeFactory.class).getChangeMetaData(dropTriggerChange).getPriority());
     }
 
     @Test

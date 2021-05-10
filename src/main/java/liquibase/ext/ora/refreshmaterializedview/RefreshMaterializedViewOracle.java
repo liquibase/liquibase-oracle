@@ -7,7 +7,7 @@ import liquibase.sql.Sql;
 import liquibase.sql.UnparsedSql;
 import liquibase.sqlgenerator.SqlGeneratorChain;
 import liquibase.sqlgenerator.core.AbstractSqlGenerator;
-import liquibase.util.StringUtils;
+import liquibase.util.StringUtil;
 
 public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshMaterializedViewStatement> {
 
@@ -20,8 +20,8 @@ public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshM
 	public ValidationErrors validate(RefreshMaterializedViewStatement statement, Database database,
                                      SqlGeneratorChain sqlGeneratorChain) {
         ValidationErrors validationErrors = new ValidationErrors();
-        validationErrors.checkRequiredField("viewName", StringUtils.trimToNull(statement.getViewName()));
-        validationErrors.checkRequiredField("refreshType", StringUtils.trimToNull(statement.getRefreshType()));
+        validationErrors.checkRequiredField("viewName", StringUtil.trimToNull(statement.getViewName()));
+        validationErrors.checkRequiredField("refreshType", StringUtil.trimToNull(statement.getRefreshType()));
         validationErrors.checkRequiredField("atomicRefresh", statement.getAtomicRefresh());
         return validationErrors;
     }
@@ -32,7 +32,7 @@ public class RefreshMaterializedViewOracle extends AbstractSqlGenerator<RefreshM
         StringBuilder sql = new StringBuilder();
 
         sql.append("BEGIN DBMS_MVIEW.REFRESH('");
-        if ( StringUtils.trimToNull(statement.getSchemaName())  != null) {
+        if ( StringUtil.trimToNull(statement.getSchemaName())  != null) {
             sql.append(statement.getSchemaName()).append(".");
         }
         sql.append(statement.getViewName());
