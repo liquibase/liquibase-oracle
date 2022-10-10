@@ -1,14 +1,5 @@
 package liquibase.ext.ora.grant.revokegrant;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
@@ -17,21 +8,21 @@ import liquibase.changelog.ChangeLogParameters;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
 import liquibase.database.Database;
-import liquibase.database.core.OracleDatabase;
 import liquibase.ext.ora.grant.PermissionHelper;
-import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionChange;
-import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionGenerator;
-import liquibase.ext.ora.grant.addgrant.GrantObjectPermissionStatement;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.FileSystemResourceAccessor;
+import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
-import liquibase.statement.SqlStatement;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class RevokeObjectPermissionChangeTest extends BaseTestCase {
 
@@ -93,7 +84,7 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

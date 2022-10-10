@@ -1,11 +1,5 @@
 package liquibase.ext.ora.addcheck;
 
-import static org.junit.Assert.assertEquals;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
@@ -17,14 +11,19 @@ import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.FileSystemResourceAccessor;
+import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
 import liquibase.statement.SqlStatement;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class AddCheckChangeTest extends BaseTestCase {
 
@@ -100,7 +99,7 @@ public class AddCheckChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

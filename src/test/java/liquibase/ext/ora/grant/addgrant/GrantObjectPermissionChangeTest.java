@@ -20,7 +20,7 @@ import liquibase.database.Database;
 import liquibase.ext.ora.grant.PermissionHelper;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.FileSystemResourceAccessor;
+import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
@@ -95,7 +95,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 

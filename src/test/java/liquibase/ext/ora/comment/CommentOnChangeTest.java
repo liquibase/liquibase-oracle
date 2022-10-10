@@ -1,6 +1,7 @@
 package liquibase.ext.ora.comment;
 
 import liquibase.Scope;
+import liquibase.resource.DirectoryResourceAccessor;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +18,6 @@ import liquibase.database.Database;
 import liquibase.database.core.OracleDatabase;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.FileSystemResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
@@ -87,7 +87,7 @@ public class CommentOnChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new FileSystemResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 
