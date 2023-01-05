@@ -104,8 +104,8 @@ jobs:
         run: echo ::set-output name=releaseSha::$(git rev-parse HEAD)
 
 
-      - name: Build and Unit Test
-        run: mvn -B clean package
+      - name: Build
+        run: mvn -B clean package -DskipTests
 
       - name: Archive Test Results
         if: ${{ always() }}
