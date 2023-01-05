@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>4.18.0.1</version>
+    <version>4.18.0</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
@@ -202,12 +202,6 @@
 					<serverId>sonatype-nexus-staging</serverId>
 					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
 				</configuration>
-			</plugin>
-
-			<plugin>
-				<groupId>org.liquibase.ext</groupId>
-				<artifactId>liquibase-sdk-maven-plugin</artifactId>
-				<version>0.10.20</version>
 			</plugin>
 
 		</plugins>
