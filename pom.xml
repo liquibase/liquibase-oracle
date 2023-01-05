@@ -204,6 +204,12 @@
 				</configuration>
 			</plugin>
 
+			<plugin>
+				<groupId>org.liquibase.ext</groupId>
+				<artifactId>liquibase-sdk-maven-plugin</artifactId>
+				<version>0.10.20</version>
+			</plugin>
+
 		</plugins>
 
 	</build>
