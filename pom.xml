@@ -4,7 +4,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>4.18.0.1</version>
+    <version>4.18.0</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
@@ -133,7 +133,6 @@
 			<plugin>
 				<artifactId>maven-surefire-plugin</artifactId>
 				<configuration>
-					<skipTests>false</skipTests>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					<reportFormat>plain</reportFormat>
 				</configuration>
