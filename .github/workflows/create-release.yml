@@ -103,8 +103,16 @@ jobs:
         id: get-release-sha
         run: echo ::set-output name=releaseSha::$(git rev-parse HEAD)
 
-      - name: Build
-        run: mvn -B clean package -DskipTests
+
+      - name: Build and Unit Test
+        run: mvn -B clean package
+
+      - name: Archive Test Results
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: test-reports-jdk
+          path: ./**/target/surefire-reports
 
       - name: Save Artifacts
         uses: actions/upload-artifact@v2
