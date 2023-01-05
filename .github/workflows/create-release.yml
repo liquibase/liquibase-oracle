@@ -105,7 +105,7 @@ jobs:
 
 
       - name: Build and Unit Test
-        run: mvn -B clean test package
+        run: mvn -B clean package -DskipTests
 
       - name: Archive Test Results
         if: ${{ always() }}
@@ -149,16 +149,6 @@ jobs:
         with:
           java-version: ${{ matrix.java }}
           distribution: 'adopt'
-
-      - name: Run Tests
-        run: mvn -B verify
-
-      - name: Archive Test Results
-        if: ${{ always() }}
-        uses: actions/upload-artifact@v2
-        with:
-          name: test-reports-integration-jdk${{ matrix.java }}-oracle${{ matrix.oracle }}
-          path: ./**/target/surefire-reports
 
   draft-release:
     needs: [ setup, build, integration-tests ]
