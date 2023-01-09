@@ -124,7 +124,6 @@
 				<configuration>
 					<redirectTestOutputToFile>true</redirectTestOutputToFile>
 					<reportFormat>plain</reportFormat>
-					<skipTests>true</skipTests>
 				</configuration>
 				<executions>
 					<execution>
