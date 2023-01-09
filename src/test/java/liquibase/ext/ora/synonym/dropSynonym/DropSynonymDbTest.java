@@ -3,14 +3,9 @@ package liquibase.ext.ora.synonym.dropSynonym;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import liquibase.Contexts;
 import liquibase.database.jvm.JdbcConnection;
-import liquibase.exception.DatabaseException;
 import liquibase.ext.ora.synonym.BaseSynonymTest;
-import liquibase.ext.ora.testing.BaseTestCase;
 
 import org.junit.Before;
 import org.junit.Test;

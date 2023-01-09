@@ -9,7 +9,7 @@
 
     <changeSet id="1" author="lrejkowicz">
         <createTable tableName="AddDeferredPrimaryKeyTest">
-            <column name="id" type="int"/>
+            <column name="id" type="number(10)"/>
             <column name="name" type="varchar2(50)"/>
         </createTable>
     </changeSet>

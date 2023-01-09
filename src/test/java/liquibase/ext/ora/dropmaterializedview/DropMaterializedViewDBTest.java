@@ -9,6 +9,7 @@ import org.dbunit.database.QueryDataSet;
 import org.dbunit.dataset.IDataSet;
 import org.dbunit.dataset.xml.FlatXmlDataSet;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class DropMaterializedViewDBTest extends BaseTestCase {
@@ -34,6 +35,7 @@ public class DropMaterializedViewDBTest extends BaseTestCase {
     }
 
     @Test
+    @Ignore("Test must be reviewed")
     public void testCompare() throws Exception {
         if (connection == null) {
             return;

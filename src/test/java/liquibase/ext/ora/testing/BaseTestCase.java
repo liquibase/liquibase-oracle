@@ -2,6 +2,7 @@ package liquibase.ext.ora.testing;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Driver;
@@ -15,6 +16,9 @@ import liquibase.database.OfflineConnection;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.junit.BeforeClass;
+import org.testcontainers.containers.OracleContainer;
+import org.testcontainers.utility.MountableFile;
 
 /*
  * Class used by tests to set up connection and clean database.
@@ -23,23 +27,47 @@ public class BaseTestCase {
     private static final Class<BaseTestCase> THIS_CLASS = BaseTestCase.class;
     private static final Logger LOGGER = Logger.getLogger(THIS_CLASS.getName());
     private static final String TESTS_PROPERTIES_FILE_NAME = "tests.properties";
-
-    private static String url;
     private static Driver driver;
-    private static Properties info;
+    private static Properties info = null;
     protected static Connection connection;
     protected static DatabaseConnection jdbcConnection;
     protected static Liquibase liquiBase;
     protected static String changeLogFile;
 
+    private static OracleContainer ORACLE;
+
+    @BeforeClass
+    public static void setUpDb() throws Exception {
+        if (ORACLE != null && ORACLE.isRunning()) {
+            return;
+        }
+        LOGGER.info("Starting Oracle container...");
+        loadPropertiesFile();
+        ORACLE = new OracleContainer("gvenzl/oracle-xe:21-slim-faststart")
+                .withDatabaseName(info.getProperty("db"))
+                .withUsername(info.getProperty("user"))
+                .withPassword(info.getProperty("password"))
+                .withReuse(true)
+                .withCopyFileToContainer(MountableFile.forClasspathResource("init.sql"), "/container-entrypoint-startdb.d/init.sql");
+        ORACLE.start();
+        connectToDB();
+        LOGGER.info("Oracle container is up!");
+    }
+
+    private static void loadPropertiesFile() throws IOException {
+        if (info != null) {
+            return;
+        }
+        info = new Properties();
+
+        final FileInputStream fileInputStream = getTestsProperties(TESTS_PROPERTIES_FILE_NAME);
+        info.load(fileInputStream);
+    }
+
     public static void connectToDB() throws Exception {
         if (connection == null) {
-            info = new Properties();
-
-            final FileInputStream fileInputStream = getTestsProperties(TESTS_PROPERTIES_FILE_NAME);
-            info.load(fileInputStream);
-
-            url = info.getProperty("url");
+            loadPropertiesFile();
+            String url = ORACLE.getJdbcUrl();
             try {
                 driver = (Driver) Class.forName(DatabaseFactory.getInstance().findDefaultDriver(url), true,
                         Thread.currentThread().getContextClassLoader()).newInstance();
