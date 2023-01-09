@@ -13,7 +13,6 @@ import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
 import liquibase.change.ChangeMetaData;
-import liquibase.changelog.ChangeLogIterator;
 import liquibase.changelog.ChangeLogParameters;
 import liquibase.changelog.ChangeSet;
 import liquibase.changelog.DatabaseChangeLog;
@@ -103,7 +102,7 @@ public class TruncateChangeTest extends BaseTestCase {
 
         List<String> expectedQuery = new ArrayList<String>();
 
-        expectedQuery.add("CREATE TABLE LBUSER.truncatetest (id NUMBER(10), name VARCHAR2(50))");
+        expectedQuery.add("CREATE TABLE LBUSER.truncatetest (id INTEGER, name VARCHAR2(50))");
         expectedQuery.add("insert into truncatetest (id, name) values (1, 'dgolda')");
         expectedQuery.add("TRUNCATE TABLE LBUSER.truncatetest PURGE MATERIALIZED VIEW LOG REUSE STORAGE");
         // expectedQuery.add("TRUNCATE TABLE artur.truncatetest PURGE MATERIALIZED VIEW LOG REUSE STORAGE");

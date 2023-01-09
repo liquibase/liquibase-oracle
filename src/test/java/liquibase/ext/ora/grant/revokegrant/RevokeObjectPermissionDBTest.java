@@ -17,7 +17,7 @@ public class RevokeObjectPermissionDBTest extends BaseTestCase {
 
     @Before
     public void setUp() throws Exception {
-        changeLogFile = "liquibase/ext/ora/grant/revokegrant/changelog.test.xml";
+        changeLogFile = "liquibase/ext/ora/grant.revokegrant/changelog.test.xml";
         connectToDB();
         cleanDB();
     }
@@ -28,7 +28,7 @@ public class RevokeObjectPermissionDBTest extends BaseTestCase {
 
     protected IDataSet getDataSet() throws Exception {
         loadedDataSet = new FlatXmlDataSet(this.getClass().getClassLoader().getResourceAsStream(
-                "liquibase/ext/ora/grant/revokegrant/input.xml"));
+                "liquibase/ext/ora/grant.revokegrant/input.xml"));
 
         return loadedDataSet;
     }

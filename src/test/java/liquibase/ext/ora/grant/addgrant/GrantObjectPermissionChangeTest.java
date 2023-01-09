@@ -1,14 +1,5 @@
 package liquibase.ext.ora.grant.addgrant;
 
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
 import liquibase.Scope;
 import liquibase.change.Change;
 import liquibase.change.ChangeFactory;
@@ -20,16 +11,17 @@ import liquibase.database.Database;
 import liquibase.ext.ora.grant.PermissionHelper;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
-import liquibase.resource.DirectoryResourceAccessor;
+import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
 import liquibase.sqlgenerator.SqlGeneratorFactory;
-
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.assertEquals;
 
 public class GrantObjectPermissionChangeTest extends BaseTestCase {
 
@@ -95,7 +87,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 
@@ -113,7 +105,7 @@ public class GrantObjectPermissionChangeTest extends BaseTestCase {
         Change change = changeSet.getChanges().get(0);
 
         List<String> expectedQueries = new ArrayList<String>();
-        expectedQueries.add("GRANT SELECT,UPDATE,INSERT,DELETE ON LIQUIBASE.addgrant TO SYSTEM");
+        expectedQueries.add("GRANT SELECT,UPDATE,INSERT,DELETE ON LBUSER.addgrant TO SYSTEM");
 
         Sql[] sql = SqlGeneratorFactory.getInstance().generateSql(change.generateStatements(database)[0], database);
         assertEquals( "wrong number of statements generated", expectedQueries.size(), sql.length );

@@ -1,11 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<databaseChangeLog
-        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
-        xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog ../../../../liquibase/ext/ora/xml/dbchangelog-3.2.xsd 
-        http://www.liquibase.org/xml/ns/dbchangelog-ext ../../../../liquibase/ext/ora/xml/dbchangelog-ext.xsd ">
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:ora="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.18.xsd
+        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
 
     <changeSet author="kellerj" id="RefreshMaterializedViewTest_1">
         <createTable tableName="TABLE1">
@@ -46,7 +44,16 @@
     <changeSet author="kellerj" id="RefreshMaterializedViewTest_6">
         <ora:refreshMaterializedView viewName="TABLE1_MVIEW" atomicRefresh="true" refreshType="force" />
         <ora:refreshMaterializedView viewName="TABLE1_MVIEW" atomicRefresh="false" refreshType="complete" />
-        <ora:refreshMaterializedView schemaName="LIQUIBASE" viewName="TABLE1_MVIEW" />
+        <ora:refreshMaterializedView schemaName="LBUSER" viewName="TABLE1_MVIEW" atomicRefresh="false" refreshType="force" />
     </changeSet>
+
+    <!-- Special cleanup task, since Liquibase does not know to drop materialized views when clearing the schema. -->
+    <changeSet author="kellerj" id="RefreshMaterializedViewTest_7">
+        <preConditions onFail="CONTINUE">
+            <sqlCheck expectedResult="1">SELECT COUNT(*) FROM USER_MVIEWS WHERE mview_name = 'TABLE1_MVIEW'</sqlCheck>
+        </preConditions>
+        <ora:dropMaterializedView viewName="TABLE1_MVIEW" />
+    </changeSet>
+
 
 </databaseChangeLog>

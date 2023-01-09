@@ -89,9 +89,9 @@ public class RefreshMaterializedViewTest extends BaseTestCase {
         changeLog.validate(database);
 
         List<String> expectedSql = new ArrayList<String>();
-        expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('TABLE1_MVIEW','?',ATOMIC_REFRESH=>TRUE); END;");
+        expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('TABLE1_MVIEW','',ATOMIC_REFRESH=>TRUE); END;");
         expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('TABLE1_MVIEW','C',ATOMIC_REFRESH=>FALSE); END;");
-        expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('LIQUIBASE.TABLE1_MVIEW','?',ATOMIC_REFRESH=>FALSE); END;");
+        expectedSql.add("BEGIN DBMS_MVIEW.REFRESH('LBUSER.TABLE1_MVIEW','',ATOMIC_REFRESH=>FALSE); END;");
 
         List<ChangeSet> changeSets = changeLog.getChangeSets();
         assertEquals( "Test is out of sync with the changelog.test.xml file.  # of changesets",

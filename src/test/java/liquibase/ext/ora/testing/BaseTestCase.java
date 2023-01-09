@@ -15,6 +15,9 @@ import liquibase.database.OfflineConnection;
 import liquibase.database.jvm.JdbcConnection;
 import liquibase.exception.DatabaseException;
 import liquibase.resource.ClassLoaderResourceAccessor;
+import org.junit.BeforeClass;
+import org.testcontainers.containers.OracleContainer;
+import org.testcontainers.utility.MountableFile;
 
 /*
  * Class used by tests to set up connection and clean database.
@@ -32,6 +35,23 @@ public class BaseTestCase {
     protected static Liquibase liquiBase;
     protected static String changeLogFile;
 
+    private static OracleContainer ORACLE;
+
+    @BeforeClass
+    public static void setUpDb() throws Exception {
+        if (ORACLE != null && ORACLE.isRunning()) {
+            return;
+        }
+        ORACLE = new OracleContainer("gvenzl/oracle-xe:21-slim-faststart")
+                .withDatabaseName("lbuser")
+                .withUsername("lbuser")
+                .withPassword("lbuser")
+                .withReuse(true)
+                .withCopyFileToContainer(MountableFile.forClasspathResource("init.sql"), "/container-entrypoint-startdb.d/init.sql");
+        ORACLE.start();
+        connectToDB();
+    }
+
     public static void connectToDB() throws Exception {
         if (connection == null) {
             info = new Properties();
@@ -39,7 +59,7 @@ public class BaseTestCase {
             final FileInputStream fileInputStream = getTestsProperties(TESTS_PROPERTIES_FILE_NAME);
             info.load(fileInputStream);
 
-            url = info.getProperty("url");
+            url = ORACLE.getJdbcUrl();
             try {
                 driver = (Driver) Class.forName(DatabaseFactory.getInstance().findDefaultDriver(url), true,
                         Thread.currentThread().getContextClassLoader()).newInstance();

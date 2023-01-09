@@ -11,6 +11,7 @@ import liquibase.database.Database;
 import liquibase.ext.ora.grant.PermissionHelper;
 import liquibase.ext.ora.testing.BaseTestCase;
 import liquibase.parser.ChangeLogParserFactory;
+import liquibase.resource.ClassLoaderResourceAccessor;
 import liquibase.resource.DirectoryResourceAccessor;
 import liquibase.resource.ResourceAccessor;
 import liquibase.sql.Sql;
@@ -28,7 +29,7 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
 
 	@Before
 	public void setUp() throws Exception {
-        changeLogFile = "liquibase/ext/ora/grant/revokegrant/changelog.test.xml";
+        changeLogFile = "liquibase/ext/ora/grant.revokegrant/changelog.test.xml";
         connectToDB();
         cleanDB();
 	}
@@ -84,7 +85,7 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
         }
 
         Database database = liquiBase.getDatabase();
-        ResourceAccessor resourceAccessor = new DirectoryResourceAccessor(new File("src/test/java"));
+        ResourceAccessor resourceAccessor = new ClassLoaderResourceAccessor();
 
         ChangeLogParameters changeLogParameters = new ChangeLogParameters();
 
@@ -102,7 +103,7 @@ public class RevokeObjectPermissionChangeTest extends BaseTestCase {
         Change change = changeSet.getChanges().get(0);
 
         List<String> expectedQueries = new ArrayList<String>();
-        expectedQueries.add("REVOKE UPDATE,INSERT,DELETE ON LIQUIBASE.addgrant FROM SYSTEM");
+        expectedQueries.add("REVOKE UPDATE,INSERT,DELETE ON LBUSER.addgrant FROM SYSTEM");
 
         Sql[] sql = SqlGeneratorFactory.getInstance().generateSql(change.generateStatements(database)[0], database);
         assertEquals( "wrong number of statements generated", expectedQueries.size(), sql.length );
