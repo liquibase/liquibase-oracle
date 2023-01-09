@@ -47,13 +47,5 @@
         <ora:refreshMaterializedView schemaName="LBUSER" viewName="TABLE1_MVIEW" atomicRefresh="false" refreshType="force" />
     </changeSet>
 
-    <!-- Special cleanup task, since Liquibase does not know to drop materialized views when clearing the schema. -->
-    <changeSet author="kellerj" id="RefreshMaterializedViewTest_7">
-        <preConditions onFail="CONTINUE">
-            <sqlCheck expectedResult="1">SELECT COUNT(*) FROM USER_MVIEWS WHERE mview_name = 'TABLE1_MVIEW'</sqlCheck>
-        </preConditions>
-        <ora:dropMaterializedView viewName="TABLE1_MVIEW" />
-    </changeSet>
-
 
 </databaseChangeLog>
