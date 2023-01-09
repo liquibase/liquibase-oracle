@@ -42,6 +42,7 @@ public class BaseTestCase {
         if (ORACLE != null && ORACLE.isRunning()) {
             return;
         }
+        LOGGER.info("Starting Oracle container...");
         ORACLE = new OracleContainer("gvenzl/oracle-xe:21-slim-faststart")
                 .withDatabaseName("lbuser")
                 .withUsername("lbuser")
@@ -50,6 +51,7 @@ public class BaseTestCase {
                 .withCopyFileToContainer(MountableFile.forClasspathResource("init.sql"), "/container-entrypoint-startdb.d/init.sql");
         ORACLE.start();
         connectToDB();
+        LOGGER.info("Oracle container is up!");
     }
 
     public static void connectToDB() throws Exception {

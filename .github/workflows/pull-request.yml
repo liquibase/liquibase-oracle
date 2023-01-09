@@ -42,6 +42,6 @@ jobs:
     - name: Save Artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: liquibase-postgresql
+        name: liquibase-oracle
         path: |
           target/*.jar
