@@ -17,7 +17,10 @@ jobs:
   build-test:
     needs: authorize
     uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@v0.5.7
+    with:
+      os: '["ubuntu-latest"]'
     secrets: inherit
+
     
   integration-tests:
     name: Java ${{ matrix.java }}

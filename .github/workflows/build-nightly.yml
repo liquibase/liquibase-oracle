@@ -10,4 +10,5 @@ jobs:
       uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@v0.5.7
       with:
         nightly: true
+        os: '["ubuntu-latest"]'
       secrets: inherit
