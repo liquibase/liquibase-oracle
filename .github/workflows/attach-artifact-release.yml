@@ -1,7 +1,9 @@
 name: Attach Artifact to Release
 
 on:
-  workflow_dispatch:
+  pull_request:
+    types:
+      - closed
   push:
     branches:
       - main
