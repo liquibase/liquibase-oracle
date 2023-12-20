@@ -10,14 +10,14 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>4.27.0-SNAPSHOT</version>
+    <version>4.25.1-SNAPSHOT</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
     <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
 
     <properties>
-		<liquibase.version>4.25.0</liquibase.version>
+		<liquibase.version>4.25.1</liquibase.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
