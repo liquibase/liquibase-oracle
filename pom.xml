@@ -10,7 +10,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>4.26.0</version>
+    <version>4.27.0-SNAPSHOT</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
@@ -25,7 +25,7 @@
 	        <connection>scm:git:${project.scm.url}</connection>
 	        <developerConnection>scm:git:${project.scm.url}</developerConnection>
 		<url>https://github.com/liquibase/liquibase-oracle.git</url>
-		<tag>liquibase-oracle-4.26.0</tag>
+		<tag>HEAD</tag>
 	</scm>
 
     <dependencies>
