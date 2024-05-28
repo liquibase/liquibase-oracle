@@ -1,12 +1,11 @@
 package liquibase.ext.ora.check;
 
-import liquibase.change.AbstractChange;
-import liquibase.change.ChangeMetaData;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 import liquibase.util.StringUtil;
 
-public abstract class CheckAttribute extends AbstractChange {
+public abstract class CheckAttribute extends AbstractOracleChange {
 
     private String tableName;
     private String tablespace;

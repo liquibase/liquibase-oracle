@@ -1,13 +1,13 @@
 package liquibase.ext.ora.truncate;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="truncate", description = "Truncate", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class TruncateChange extends AbstractChange {
+public class TruncateChange extends AbstractOracleChange {
 
     private String schemaName;
     private String tableName;

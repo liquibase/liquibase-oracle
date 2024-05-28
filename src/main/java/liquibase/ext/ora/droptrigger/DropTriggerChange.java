@@ -1,13 +1,13 @@
 package liquibase.ext.ora.droptrigger;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="dropTrigger", description = "Drop trigger", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class DropTriggerChange extends AbstractChange {
+public class DropTriggerChange extends AbstractOracleChange {
     private String triggerName;
     private String schemaName;
 

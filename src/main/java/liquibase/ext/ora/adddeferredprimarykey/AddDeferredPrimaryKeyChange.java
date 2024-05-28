@@ -1,6 +1,6 @@
 package liquibase.ext.ora.adddeferredprimarykey;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
@@ -9,7 +9,7 @@ import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="addDeferredPrimaryKey", description = "Add deferred primary key", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class AddDeferredPrimaryKeyChange extends AbstractChange {
+public class AddDeferredPrimaryKeyChange extends AbstractOracleChange {
 
     private String schemaName;
     private String tableName;

@@ -1,6 +1,6 @@
 package liquibase.ext.ora.comment;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
@@ -9,7 +9,7 @@ import liquibase.statement.SqlStatement;
 
 
 @DatabaseChange(name="commentOn", description = "Create or replace a comment on a table or a column", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class CommentOnChange extends AbstractChange {
+public class CommentOnChange extends AbstractOracleChange {
 
     private String schemaName;
     private String tableName;
