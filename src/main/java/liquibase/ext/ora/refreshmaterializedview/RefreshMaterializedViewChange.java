@@ -1,13 +1,13 @@
 package liquibase.ext.ora.refreshmaterializedview;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="refreshMaterializedView", description = "Refresh Materialized View", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class RefreshMaterializedViewChange extends AbstractChange {
+public class RefreshMaterializedViewChange extends AbstractOracleChange {
 
     private String schemaName;
     private String viewName;

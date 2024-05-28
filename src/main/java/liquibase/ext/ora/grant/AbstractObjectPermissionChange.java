@@ -1,8 +1,8 @@
 package liquibase.ext.ora.grant;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 
-public abstract class AbstractObjectPermissionChange extends AbstractChange {
+public abstract class AbstractObjectPermissionChange extends AbstractOracleChange {
 
 	private String schemaName;
 	private String objectName;

@@ -1,13 +1,13 @@
 package liquibase.ext.ora.dropmaterializedview;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="dropMaterializedView", description = "Drop Materialized View", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class DropMaterializedViewChange extends AbstractChange {
+public class DropMaterializedViewChange extends AbstractOracleChange {
 
     private String schemaName;
     private String viewName;

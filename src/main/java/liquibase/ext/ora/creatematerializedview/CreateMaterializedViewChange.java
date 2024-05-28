@@ -1,6 +1,6 @@
 package liquibase.ext.ora.creatematerializedview;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
@@ -9,7 +9,7 @@ import liquibase.statement.SqlStatement;
 import liquibase.ext.ora.dropmaterializedview.DropMaterializedViewChange;
 
 @DatabaseChange(name="createMaterializedView", description = "Create materialized view", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class CreateMaterializedViewChange extends AbstractChange {
+public class CreateMaterializedViewChange extends AbstractOracleChange {
     private String schemaName;
     private String viewName;
     private String columnAliases;

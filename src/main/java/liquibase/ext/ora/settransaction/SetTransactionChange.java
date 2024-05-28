@@ -1,13 +1,13 @@
 package liquibase.ext.ora.settransaction;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="setTransaction", description = "Set Transaction", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class SetTransactionChange extends AbstractChange {
+public class SetTransactionChange extends AbstractOracleChange {
     private String transactionName;
     private String rollbackSegment;
     private String isolationLevel;

@@ -1,6 +1,6 @@
 package liquibase.ext.ora.splittable;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.changelog.ChangeSet;
@@ -8,7 +8,7 @@ import liquibase.database.Database;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="splitTable", description = "Split table", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class SplitTableChange extends AbstractChange {
+public class SplitTableChange extends AbstractOracleChange {
 
     private String splitTableName;
     private String splitTableSchemaName;
