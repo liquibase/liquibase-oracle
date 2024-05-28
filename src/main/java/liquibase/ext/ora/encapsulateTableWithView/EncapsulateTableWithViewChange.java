@@ -1,6 +1,6 @@
 package liquibase.ext.ora.encapsulateTableWithView;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
@@ -12,7 +12,7 @@ import liquibase.statement.core.CreateViewStatement;
 import liquibase.statement.core.RenameTableStatement;
 
 @DatabaseChange(name="encapsulateTableWithView", description = "Encapsulate table with view", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class EncapsulateTableWithViewChange extends AbstractChange {
+public class EncapsulateTableWithViewChange extends AbstractOracleChange {
 
     private String schemaName;
     private String tableName;

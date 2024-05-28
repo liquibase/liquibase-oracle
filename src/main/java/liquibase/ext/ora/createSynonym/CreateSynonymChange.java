@@ -2,7 +2,7 @@ package liquibase.ext.ora.createSynonym;
 
 import java.text.MessageFormat;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.Change;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
@@ -11,7 +11,7 @@ import liquibase.ext.ora.dropSynonym.DropSynonymChange;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name = "createSynonym", description = "Create synonym", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class CreateSynonymChange extends AbstractChange {
+public class CreateSynonymChange extends AbstractOracleChange {
 	
 	private Boolean replace;
 	private Boolean isPublic;

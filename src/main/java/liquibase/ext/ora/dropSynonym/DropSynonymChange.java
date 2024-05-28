@@ -2,16 +2,14 @@ package liquibase.ext.ora.dropSynonym;
 
 import java.text.MessageFormat;
 
-import liquibase.change.AbstractChange;
-import liquibase.change.Change;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.DatabaseChange;
 import liquibase.database.Database;
-import liquibase.ext.ora.dropcheck.DropCheckChange;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name = "dropSynonym", description = "Drop synonym", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class DropSynonymChange extends AbstractChange {
+public class DropSynonymChange extends AbstractOracleChange {
 
 	private Boolean isPublic = false;
 	private String synonymSchemaName;

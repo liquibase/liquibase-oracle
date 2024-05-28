@@ -3,7 +3,7 @@ package liquibase.ext.ora.merge;
 import java.util.ArrayList;
 import java.util.List;
 
-import liquibase.change.AbstractChange;
+import liquibase.ext.ora.AbstractOracleChange;
 import liquibase.change.ChangeMetaData;
 import liquibase.change.ChangeWithColumns;
 import liquibase.change.ColumnConfig;
@@ -14,7 +14,7 @@ import liquibase.exception.ValidationErrors;
 import liquibase.statement.SqlStatement;
 
 @DatabaseChange(name="merge", description = "Merge", priority = ChangeMetaData.PRIORITY_DEFAULT + 200)
-public class MergeChange extends AbstractChange implements ChangeWithColumns<ColumnConfig>{
+public class MergeChange extends AbstractOracleChange implements ChangeWithColumns<ColumnConfig>{
 
     private String sourceTableName;
     private String sourceSchemaName;
