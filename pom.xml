@@ -23,7 +23,7 @@
     </licenses>
 
     <properties>
-		    <liquibase.version>4.30.0</liquibase.version>
+		    <liquibase.version>4.31.0</liquibase.version>
         <junit.version>4.13.2</junit.version>
     </properties>
 
