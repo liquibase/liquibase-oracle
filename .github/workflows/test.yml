@@ -7,6 +7,11 @@ on:
       - reopened
       - synchronize
 
+permissions:
+  contents: read
+  pull-requests: write
+  packages: read
+
 jobs:
   authorize:
     environment: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository && 'external' || 'internal' }}
@@ -17,8 +22,6 @@ jobs:
   build-test:
     needs: authorize
     uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@main
-    with:
-      os: '["ubuntu-latest"]'
     secrets: inherit
 
   dependabot:
