@@ -10,7 +10,7 @@
     <groupId>org.liquibase.ext</groupId>
     <artifactId>liquibase-oracle</artifactId>
 
-    <version>4.32.0-SNAPSHOT</version>
+    <version>4.33.0-SNAPSHOT</version>
 
     <name>Liquibase Oracle Extensions</name>
     <description>Some tags to work on Oracle DB.</description>
@@ -83,3 +83,4 @@
     </build>
 
 </project>
+
