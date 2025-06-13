@@ -15,16 +15,16 @@ permissions:
 jobs:
   authorize:
     environment: ${{ github.event_name == 'pull_request_target' && github.event.pull_request.head.repo.full_name != github.repository && 'external' || 'internal' }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - run: true
 
   build-test:
     needs: authorize
-    uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@main
+    uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@DAT-20199
     secrets: inherit
 
   dependabot:
     needs: build-test
-    uses: liquibase/build-logic/.github/workflows/dependabot-automerge.yml@main
+    uses: liquibase/build-logic/.github/workflows/dependabot-automerge.yml@DAT-20199
     secrets: inherit
