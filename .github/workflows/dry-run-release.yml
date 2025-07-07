@@ -14,7 +14,7 @@ permissions:
 
 jobs:
   dry-run-attach-artifact-to-release:
-    uses: liquibase/build-logic/.github/workflows/extension-attach-artifact-release.yml@DAT-20361
+    uses: liquibase/build-logic/.github/workflows/extension-attach-artifact-release.yml@main
     secrets: inherit
     with:
       dry_run: true
@@ -53,7 +53,7 @@ jobs:
 
   dry-run-release-published:
     needs: dry-run-get-draft-release
-    uses: liquibase/build-logic/.github/workflows/extension-release-published.yml@DAT-20361
+    uses: liquibase/build-logic/.github/workflows/extension-release-published.yml@main
     secrets: inherit
     permissions:
       id-token: write
