@@ -15,10 +15,11 @@ permissions:
   contents: read
   security-events: write
   packages: read
+  id-token: write
 
 jobs:
   codeql:
-    uses: liquibase/build-logic/.github/workflows/codeql.yml@main
+    uses: liquibase/build-logic/.github/workflows/codeql.yml@DAT-20361
     secrets: inherit
     with:
       languages: '["java"]'
