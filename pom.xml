@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.liquibase.ext</groupId>
   <artifactId>liquibase-oracle</artifactId>
-  <version>5.1.0-SNAPSHOT</version>
+  <version>5.0.2-SNAPSHOT</version>
   <name>Liquibase Oracle Extensions</name>
   <description>Some tags to work on Oracle DB.</description>
   <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
@@ -20,7 +20,7 @@
     </license>
   </licenses>
   <properties>
-    <liquibase.version>5.0.1</liquibase.version>
+    <liquibase.version>5.0.2</liquibase.version>
     <junit.version>4.13.2</junit.version>
   </properties>
   <scm>
