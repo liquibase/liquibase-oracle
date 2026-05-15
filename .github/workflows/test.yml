@@ -24,6 +24,8 @@ jobs:
   build-test:
     needs: authorize
     uses: liquibase/build-logic/.github/workflows/os-extension-test.yml@main
+    with:
+      os: '["ubuntu-latest"]'
     secrets: inherit
 
   dependabot:
