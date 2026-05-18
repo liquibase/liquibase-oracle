@@ -4,11 +4,11 @@
   <parent>
     <groupId>org.liquibase</groupId>
     <artifactId>liquibase-parent-pom</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.2</version>
   </parent>
   <groupId>org.liquibase.ext</groupId>
   <artifactId>liquibase-oracle</artifactId>
-  <version>5.0.2-SNAPSHOT</version>
+  <version>5.0.3-SNAPSHOT</version>
   <name>Liquibase Oracle Extensions</name>
   <description>Some tags to work on Oracle DB.</description>
   <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
@@ -20,7 +20,7 @@
     </license>
   </licenses>
   <properties>
-    <liquibase.version>5.0.2</liquibase.version>
+    <liquibase.version>5.0.3</liquibase.version>
     <junit.version>4.13.2</junit.version>
   </properties>
   <scm>
@@ -39,7 +39,7 @@
     <dependency>
       <groupId>org.dbunit</groupId>
       <artifactId>dbunit</artifactId>
-      <version>3.0.0</version>
+      <version>3.1.0</version>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -63,7 +63,7 @@
           <dependency>
             <groupId>org.apache.maven.surefire</groupId>
             <artifactId>surefire-junit4</artifactId>
-            <version>3.5.4</version>
+            <version>3.5.5</version>
           </dependency>
         </dependencies>
         <configuration>
