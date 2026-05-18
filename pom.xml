@@ -8,7 +8,7 @@
   </parent>
   <groupId>org.liquibase.ext</groupId>
   <artifactId>liquibase-oracle</artifactId>
-  <version>5.0.3-SNAPSHOT</version>
+  <version>5.0.3</version>
   <name>Liquibase Oracle Extensions</name>
   <description>Some tags to work on Oracle DB.</description>
   <url>http://liquibase.jira.com/wiki/display/CONTRIB/Oracle+Extensions</url>
@@ -27,7 +27,7 @@
     <connection>scm:git:${project.scm.url}</connection>
     <developerConnection>scm:git:${project.scm.url}</developerConnection>
     <url>https://github.com/liquibase/liquibase-oracle.git</url>
-    <tag>HEAD</tag>
+    <tag>temp</tag>
   </scm>
   <dependencies>
     <dependency>
